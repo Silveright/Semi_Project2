@@ -1,17 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" >
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" > <!-- 순서 중요 -->
 <style>
 .d-flex {margin : 0;}
 .nav-item {font-size : 13pt; style:bold;}
 .navbar {padding : 10px 20px;}
 a{text-decoration : none; color:black;}
+.navbar-brand img {position : relative; left: 30px }
+.container-fluid  img {height : 230px; width: 400px; object-fit: none; position : relative; top : 5px}
 
 </style> 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-end">
+	<a class="navbar-brand" href="#!"><img src="../image/home.png" width="45px"></a>
 	<div class="collapse navbar-collapse flex-row-reverse">
       <ul class="navbar-nav mb-2 mb-lg-0 ">
       	<c:if test="${!empty id}">      	
@@ -33,19 +35,7 @@ a{text-decoration : none; color:black;}
 			<li class="nav-item"><a class="nav-link" href="#"><small>장바구니</small></a></li>
 			<li class="nav-item"><a class="nav-link" href="#"><small>관심상품</small></a></li>
 			<li class="nav-item"><a class="nav-link" href="#"><small>마이페이지</small></a></li>
-			 <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <small>커뮤니티</small>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">공지사항</a></li>
-            <li><a class="dropdown-item" href="#">문의사항</a></li>
-            <li><a class="dropdown-item" href="#">FAQ</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">리뷰</a></li>
-            <li><a class="dropdown-item" href="#">중고장터</a></li>
-          </ul>
-        </li>      
+			<li class="nav-item"><a class="nav-link" href="#"><small>커뮤니티</small></a></li>        
       </ul>
     </div>      
     <form class="d-flex">
@@ -55,8 +45,8 @@ a{text-decoration : none; color:black;}
 </nav>
 
 
-<div class="container-fluid p-5 text-center">
-	<h1><a href="#">SHOPPING</a></h1>
+<div class="container-fluid p-2 text-center">
+	<a href="#"><img src="../image/logo2.png"></a>
 </div>
  
 <div class="container-fluid border">
