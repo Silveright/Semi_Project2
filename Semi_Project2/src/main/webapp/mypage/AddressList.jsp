@@ -5,6 +5,9 @@
 <head>
 <title>주문내역</title>
 <jsp:include page="header.jsp"/>
+<Style>
+img{width:20px}
+</Style>
 </head>
 <body>
 	<br>
@@ -24,23 +27,20 @@
 
 							<table class="table">
 								<tr class="table-active">
-									<td>주문일자</td>
-									<td>이미지</td>
-									<td>상품명</td>
-									<td>수량</td>
-									<td>상품구매금액</td>
-									<td>주문상태</td>
-									<td>취소/교환/반품</td>
+									<td>배송지명</td>
+									<td>수령인</td>
+									<td>휴대전화</td>
+									<td>주소</td>
+									<td class="text-center">수정/삭제</td>
+									
 								</tr>
 								<tr class="align-middle">
-									<td>주문일자</td>
-									<td><img src="../image/profile.png"></td>
-									<td><input type="text"></td>
 									<td>수량</td>
 									<td>상품구매금액</td>
 									<td>주문상태</td>
-									<td>
-									</td>
+									<td>주소</td>
+									<td class="text-center"><button class="btn btn-primary  me-2">수정</button>
+									<button class="btn btn-danger">삭제</button></td>
 							</table>
 					</div>
 														</div>
