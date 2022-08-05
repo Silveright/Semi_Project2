@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:include page="header.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
 <title>작성 리뷰 목록</title>
+<jsp:include page="header.jsp"/>
 <style>
 input{border:1px solid black}
 b{font-size:0.9em}
 </style>
 </head>
 <body>
+<br>
 <div class="container">
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">

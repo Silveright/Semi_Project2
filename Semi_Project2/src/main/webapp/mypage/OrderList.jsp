@@ -11,6 +11,7 @@
 	<div class="container">
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">
+				<br>
 				<div>
 					<b>내 주문 내역</b>
 				</div>
