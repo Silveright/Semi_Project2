@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>작성 리뷰 목록</title>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../mainpage/header.jsp"/>
 <style>
 input{border:1px solid black}
 b{font-size:0.9em}

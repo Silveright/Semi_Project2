@@ -5,7 +5,7 @@
 <html>
 <head>
 <title>Insert title here</title>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../mainpage/header.jsp"/>
 <script src="js/jquery-3.6.0.js"></script>
 <script>
 $(document).ready(function() { 
