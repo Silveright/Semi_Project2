@@ -66,11 +66,14 @@
 									<td>주문상태</td>
 									<td align="center">
 
-										<div class="container mt-3 justify-content-center">
+										<div class="container justify-content-center">
 
-											<button type="button" class="ms-3 btn btn-small btn-danger"
+											<button type="button" class="ms-3 btn btn-small btn-danger my-1"
 												data-bs-toggle="modal" data-bs-target="#myModal">
-												주문취소</button>
+												주문취소</button><br>
+											<button type="button" class="ms-3 btn btn-small btn-primary"
+												data-bs-toggle="modal" data-bs-target="#myModal">
+												리뷰쓰기</button>
 										</div> <!-- The Modal -->
 										<div class="modal" id="myModal">
 											<div class="modal-dialog">

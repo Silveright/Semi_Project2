@@ -8,15 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
-import net.board.action.ActionForward;
-import net.board.db.BoardBean;
-import net.board.db.BoardDAO;
-import net.member.db.Member;
-import net.member.db.MemberDAO;
+import net.mypage.db.ReviewBean;
+import net.mypage.db.ReviewDAO;
 
 public class MemberReviewListAction implements Action {
 
@@ -24,17 +18,17 @@ public class MemberReviewListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
-		BoardDAO mdao = new BoardDAO();
+		ReviewDAO dao = new ReviewDAO();
 		
 		//로그인 성공 시 파라미터 page가 없어 초기값 설정이 필요하다.
 		int page=1;//보여줄 page
-		int limit =3;
+		int limit =10;
 		if(request.getParameter("page")!= null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		System.out.println("넘어온 페이지 =" +page);
 		
-		List<BoardBean> list = new ArrayList<BoardBean>();
+		List<ReviewBean> list = null;
 		int listcount = 0;
 		int index=-1;//search_field에 존재하지 않는 값으로 초기화>>전체 회원 조회됨
 		
@@ -48,14 +42,14 @@ public class MemberReviewListAction implements Action {
 		if(request.getParameter("search_word")==null
 					|| request.getParameter("search_word").equals("")) {
 			///총 리스트 수를 받아온다.
-			listcount = mdao.getListCount();
-			list=mdao.getList(page,limit);
+			listcount = dao.getListCount();
+			list=dao.getList(page,limit);
 		}else {//검색 클릭시
 			index=Integer.parseInt(request.getParameter("search_field"));
-			String[] search_field = new String[] {"id","name", "age","gender"};
+			String[] search_field = new String[] {"review_subject","review_content"};
 			search_word = request.getParameter("search_word");
-			listcount = mdao.getListCount(search_field[index], search_word);
-			list = mdao.getList(search_field[index], search_word, page, limit);
+			listcount = dao.getListCount(search_field[index], search_word);
+			list = dao.getList(search_field[index], search_word, page, limit);
 		}
 		
 		//글이 101개라면.. 101 + 10 -1 / 10 >> 12
@@ -106,11 +100,9 @@ public class MemberReviewListAction implements Action {
 			request.setAttribute("search_field", index);
 			request.setAttribute("search_word", search_word);
 			
-			
-			//글 목록 페이지로 이동하기 위해 경로를 설정한다..
-			forward.setPath("mypage/MemberRivewList.jsp");
-			forward.setRedirect(false);
-			return forward;//BoardFrontController.java로 리턴된다.
+		forward.setRedirect(false);
+		forward.setPath("mypage/MemberReviewList.jsp");
+		return forward;// BoardFrontController.java로 리턴된다.
 	}
 
 }

@@ -36,6 +36,34 @@ public class MemberFrontController extends javax.servlet.http.HttpServlet{
 			action = new ReviewListAction(); 
 			break;
 			
+		case "/updateprofile.pg":
+			action = new UpdateProfileAction(); 
+			break;
+			
+		case "/updateprofileProcess.pg":
+			action = new UpdateProfileProcessAction(); 
+			break;
+			
+			
+		case "/addresslist.pg":
+			action = new addresslistAction(); 
+			break;
+			
+		case "/addresslistadd.pg":
+			action = new AddresslistAddAction(); 
+			break;
+			
+		case "/addresslistaddprocess.pg":
+			action = new AddresslistAddProcessAction(); 
+			break;
+			
+		case "/memberrivewlist.pg": 
+			action = new MemberReviewListAction();
+			break;	
+			
+		case "/orderlist.pg": 
+			action = new OrderListAction();
+			break;	
 		/*
 		 * case "/reviewaddaction.pg": action = new ReviewAddAction(); break;
 		 * 
