@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>리뷰보기</title>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../mainpage/header.jsp"/>
 </head>
 <style>
 #upfile{display:none}

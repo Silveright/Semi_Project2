@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>주문내역</title>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../mainpage/header.jsp"/>
 <Style>
 img{width:20px}
 </Style>
