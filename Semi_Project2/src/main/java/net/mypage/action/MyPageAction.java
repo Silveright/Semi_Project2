@@ -16,7 +16,7 @@ public class MyPageAction implements Action {
 			throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
 
-		String id= request.getParameter("id");
+		String id= "id";//request.getParameter("id");
 		HttpSession session = request.getSession();
 		session.setAttribute("id", id);
 		
@@ -26,7 +26,7 @@ public class MyPageAction implements Action {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('"+message+"');");
-			out.println("location.href='login.net';");
+			out.println("history.back();");
 			out.println("</script>");
 			out.close();
 			return null;

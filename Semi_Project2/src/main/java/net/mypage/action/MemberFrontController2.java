@@ -8,8 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("*.pg")
-public class MemberFrontController extends javax.servlet.http.HttpServlet{
+
+@WebServlet("*.net")
+public class MemberFrontController2 extends javax.servlet.http.HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
@@ -28,21 +29,12 @@ public class MemberFrontController extends javax.servlet.http.HttpServlet{
 		Action action = null;
 		
 		switch(command) {
-		case "/mypage.pg":
-			action = new MyPageAction();
+		case "/main.net":
+			action = new MainPageAction();
 			break;
-			
-		case "/reviewlist.pg":
-			action = new ReviewListAction(); 
+		case "/login.net":
+			action = new MemberLoginAction();
 			break;
-			
-		/*
-		 * case "/reviewaddaction.pg": action = new ReviewAddAction(); break;
-		 * 
-		 * case "/memberrivewlist.pg": action = new MemberReviewListAction(); break;
-		 * 
-		 * case "/rivewlist.pg": action = new ReviewListAction(); break;
-		 */
 		}
 		
 		forward = action.execute(request, response);

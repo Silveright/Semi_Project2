@@ -27,6 +27,7 @@ img{width:20px}
 </head>
 <body>
 	<div class="container">
+	<form action="reviewaddaction.pg" method="post" enctype="multipart/form-data" name="boardform">
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">
 				<div>
@@ -38,19 +39,19 @@ img{width:20px}
 				<table class="table table-bordered ">
 					<tr>
 						<td class="table-active text-center" style="width: 20%">작성자</td>
-						<td><input type="text" class="form-control" name="writer"></td>
+						<td><input name="review_name" id="review_name" type="text" class="form-control" name="writer" readOnly value=${id }></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">제목</td>
-						<td><input type="text" class="form-control" name="subject"></td>
+						<td><input name="review_subject" id="review_subject" type="text" class="form-control" name="subject"></td>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea rows="10" cols="50" name="content"
+						<td colspan="2"><textarea rows="10" cols="50" name="review_content" id="review_content"
 								class="form-control"></textarea></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">구매제품</td>
-						<td><input type="text" class="form-control" name="subject"></td>
+						<td><input type="text" name="review_product" id="review_product" class="form-control" name="subject"></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">첨부파일</td>
@@ -61,12 +62,13 @@ img{width:20px}
 					</tr>
 				</table>
 				<div style="text-align: center">
-					<button type="button" class="btn btn-light float-right ml-1"
+					<button type="submit" class="btn btn-light float-right ml-1"
 						data-mdb-ripple-color="dark " style="width: 90px">취소</button>
-					<button type="button" class="btn btn-dark float-right ml-1">등록하기</button>
+					<button type="reset" class="btn btn-dark float-right ml-1">등록하기</button>
 				</div>
 			</div>
 		</div>
+		</form>
 	</div>
 </body>
 </html>
