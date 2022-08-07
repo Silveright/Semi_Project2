@@ -1,7 +1,6 @@
 package net.main.action;
 
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -67,6 +66,10 @@ public class MainFrontController extends javax.servlet.http.HttpServlet {
 			
 		case "/passFindSuccess.net":
 			action = new MemberPassFindSuccessAction(); 
+			break;
+			
+		case "/resetpass.net":
+			action = new MemberResetAction(); 
 			break;
 		}
 	

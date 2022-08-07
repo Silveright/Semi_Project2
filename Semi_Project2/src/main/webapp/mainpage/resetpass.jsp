@@ -17,6 +17,7 @@
 		<div class="card-body">
 			<h4 class="card-title text-center mb-4" style="font-weight:bold">비밀번호 재설정</h4>
 		</div>
+		<form id="reset" action="login.net">
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item">아이디<span>id</span></li>		
 			
@@ -28,16 +29,16 @@
 			
 			<li class="list-group-item">새 비밀번호 확인
 				<span><input type="password" size=36></span>
-			</li>			
-			
-					
+			</li>					
 		</ul>		
+		</form>					
+		
 		<div class="row g-2 m-5">
 			<div class="col-6">
-				<button class="btn btn-Secondary" style="width: 100%; height: 58px">비밀번호 변경</button>
+				<button form="reset" class="btn btn-Secondary" style="width: 100%; height: 58px">비밀번호 변경</button>
 			</div>
 			<div class="col-6">
-				<button class="btn btn-Dark" style="width: 100%; height: 58px">취소</button>
+				<button class="btn btn-Dark" style="width: 100%; height: 58px" onclick="location.href='http://localhost:8088/Semi_Project1'">취소</button>
 			</div>
 		</div>
 	</div>
