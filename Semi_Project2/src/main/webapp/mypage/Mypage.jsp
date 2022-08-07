@@ -3,8 +3,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>HTML 기본구조</title>
-<jsp:include page="header2.jsp"/>
+<title>마이페이지</title>
+<jsp:include page="header.jsp"/>
 <style>
 .fakeimg {
 	height: 200px;
@@ -47,40 +47,40 @@ body>div.container>div>div>div.container.custom>div:nth-child(2) {
 				<div class="row d-flex justify-content-center">
 					<div class="col-lg-2 col-md-6" style="width: 20%">
 						<div class="h-100 p-4 bg-light border rounded-3">
-							<img src="../image/search.png" alt="Chicago"
-								class="mx-auto rounded d-block" style="width: 65px"> <br>
+							<a href="orderlist.pg"><img src="image/search.png" alt="Chicago"
+								class="mx-auto rounded d-block" style="width: 65px"></a> <br>
 							<h6 class="text-center">주문내역 조회</h6>
 						</div>
 					</div>
 
 					<div class="col-lg-2 col-md-6" style="width: 20%">
 						<div class="h-100 p-4 bg-light border rounded-3">
-							<img src="../image/profile.png" alt="Chicago"
-								class="mx-auto rounded d-block" style="width: 90px">
+							<a href="updateprofile.pg"><img src="image/profile.png" alt="Chicago"
+								class="mx-auto rounded d-block" style="width: 90px"></a>
 							<h6 class="text-center">회원정보 수정</h6>
 						</div>
 					</div>
 
 					<div class="col-lg-2 col-md-6" style="width: 20%">
 						<div class="h-100 p-4 bg-light border rounded-3">
-							<img src="../image/star.png" alt="Chicago" class="mx-auto rounded d-block"
-								style="width: 65px"> <br>
+							<a href="wishilist.pg"><img src="image/star.png" alt="Chicago" class="mx-auto rounded d-block"
+								style="width: 65px"></a> <br>
 							<h6 class="text-center">관심상품</h6>
 						</div>
 					</div>
 
 					<div class="col-lg-2 col-md-6" style="width: 20%">
 						<div class="h-100 p-4 bg-light border rounded-3">
-							<img src="../image/files.png" alt="Chicago"
-								class="mx-auto rounded d-block" style="width: 60px"> <br>
-							<h6 class="text-center">게시물 관리</h6>
+							<a href="#myModal" data-bs-toggle="modal"><img src="image/files.png" alt="Chicago"
+								class="mx-auto rounded d-block" style="width: 65px"></a> <br>
+							<h6 class="text-center"><a href="#myModal" data-bs-toggle="modal">게시물 관리</a></h6>
 						</div>
 					</div>
 
 					<div class="col-lg-2 col-md-6" style="width: 20%">
 						<div class="h-100 p-4 bg-light border rounded-3">
-							<img src="../image/delivery-truck.png" alt="Chicago"
-								class="mx-auto rounded d-block" style="width: 65px"> <br>
+							<a href="addresslist.pg"><img src="image/delivery-truck.png" alt="Chicago"
+								class="mx-auto rounded d-block" style="width: 65px"></a> <br>
 							<h6 class="text-center">배송주소록 관리</h6>
 						</div>
 					</div>
@@ -88,5 +88,25 @@ body>div.container>div>div>div.container.custom>div:nth-child(2) {
 			</div>
 		</div>
 	</div>
+    
+<!-- Modal HTML -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>보러갈 게시판을 선택해주세요</p>
+              <a href="memberrivewlist.pg?id=${id}"><button type="button" class="btn btn-primary  me-3">내 리뷰 보러가기</button></a>
+               <a href="memberboardlist.pg?id=${id}"><button type="button" class="btn btn-primary">내 중고거래 글 보러가기</button></a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

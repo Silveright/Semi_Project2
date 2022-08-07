@@ -5,6 +5,8 @@
 <html>
 <head>
 <title>주문내역</title>
+<style>
+</style>
 </head>
 <body>
 
@@ -53,22 +55,22 @@
 									<td>수량</td>
 									<td>상품구매금액</td>
 									<td>주문상태</td>
-									<td>취소/교환/반품</td>
+									<td align="center">취소/교환/반품</td>
 								</tr>
 								<tr class="align-middle">
 									<td>주문일자</td>
-									<td><img src="../image/profile.png"></td>
-									<td><input type="text"></td>
+									<td><img src="../image/profile.png" width="77px"></td>
+									<td>상품명 예시</td>
 									<td>수량</td>
 									<td>상품구매금액</td>
 									<td>주문상태</td>
-									<td>
+									<td align="center">
 
-										<div class="container mt-3">
+										<div class="container mt-3 justify-content-center">
 
-											<button type="button" class="btn btn-primary"
+											<button type="button" class="ms-3 btn btn-small btn-danger"
 												data-bs-toggle="modal" data-bs-target="#myModal">
-												Open modal</button>
+												주문취소</button>
 										</div> <!-- The Modal -->
 										<div class="modal" id="myModal">
 											<div class="modal-dialog">
@@ -76,19 +78,19 @@
 
 													<!-- Modal Header -->
 													<div class="modal-header">
-														<h4 class="modal-title">Modal Heading</h4>
+														<h4 class="modal-title">주문취소</h4>
 														<button type="button" class="btn-close"
 															data-bs-dismiss="modal"></button>
 													</div>
 
 													<!-- Modal body -->
-													<div class="modal-body">Modal body..</div>
+													<div class="modal-body">주문을 취소하시겠습니까?</div>
 
 													<!-- Modal footer -->
 													<div class="modal-footer">
-														<button type="button" class="btn btn-danger"
+														<button type="button" class="btn btn-sm btn-danger"
 															data-bs-dismiss="modal">주문취소</button>
-														<button type="button" class="btn btn-primary"
+														<button type="button" class="btn btn-sm btn-primary"
 															data-bs-dismiss="modal">뒤로가기</button>
 													</div>
 
@@ -124,44 +126,14 @@
 									</tr>
 									<tr class="align-middle">
 										<td>주문일자</td>
-										<td><img src="../image/profile.png"></td>
-										<td><input type="text"></td>
+										<td><img src="../image/profile.png" width="77px"></td>
+										<td>상품명 예시</td>
 										<td>수량</td>
 										<td>상품구매금액</td>
 										<td>주문상태</td>
 										<td>
 
-											<div class="container mt-3">
-
-												<button type="button" class="btn btn-primary"
-													data-bs-toggle="modal" data-bs-target="#myModal">
-													Open modal</button>
-											</div> <!-- The Modal -->
-											<div class="modal" id="myModal">
-												<div class="modal-dialog">
-													<div class="modal-content">
-
-														<!-- Modal Header -->
-														<div class="modal-header">
-															<h4 class="modal-title">Modal Heading</h4>
-															<button type="button" class="btn-close"
-																data-bs-dismiss="modal"></button>
-														</div>
-
-														<!-- Modal body -->
-														<div class="modal-body">Modal body..</div>
-
-														<!-- Modal footer -->
-														<div class="modal-footer">
-															<button type="button" class="btn btn-danger"
-																data-bs-dismiss="modal">주문취소</button>
-															<button type="button" class="btn btn-primary"
-																data-bs-dismiss="modal">뒤로가기</button>
-														</div>
-
-													</div>
-												</div>
-											</div>
+											취소완료
 										</td>
 								</table>
 							</div>
