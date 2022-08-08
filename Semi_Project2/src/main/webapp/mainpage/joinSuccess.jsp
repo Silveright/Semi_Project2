@@ -6,13 +6,14 @@
 <head>
 <jsp:include page="header.jsp" />
 <style>
+	.card {width: 700px;}
 	li span {width:80px; float:right; display: inline-block; text-align:center;}
 	.card ul {width: 300px; margin: 0 auto;}
-	.join {width:100%; text-align:center; display:inline-clock;}
+	.card button {width: 100%; height: 58px}
 </style>
 </head>
 <body>
-	<div class="card" style="width: 700px;">
+	<div class="card">
 		<div class="card-body">
 			<h1 class="card-title text-center">회원가입이 완료되었습니다</h1>
 			<h5 class="card-subtitle text-center mb-5" style="color: darkgray">THANK YOU!</h5>
@@ -25,10 +26,10 @@
 		</ul>
 		<div class="row g-2 m-5">
 			<div class="col-6">
-				<button class="btn btn-Secondary" style="width: 100%; height: 58px" onclick="location.href='login.net'">로그인</button>
+				<button class="btn btn-Secondary" onclick="location.href='login.net'">로그인</button>
 			</div>
 			<div class="col-6">
-				<button class="btn btn-Dark" style="width: 100%; height: 58px" onclick="location.href='http://localhost:8088/Semi_Project1'">메인페이지</button>
+				<button class="btn btn-Dark" onclick="location.href='${pageContext.request.contextPath}/index.jsp'">메인페이지</button>
 			</div>
 		</div>
 	</div>

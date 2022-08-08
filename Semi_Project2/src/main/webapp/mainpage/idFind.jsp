@@ -1,20 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
-<script src = "http://code.jquery.com/jquery-latest.js"></script>
-<link href="${pageContext.request.contextPath}/css/join.css" type="text/css" rel="stylesheet">
-
 <html>
 <head>
+<script src = "http://code.jquery.com/jquery-latest.js"></script>
 <jsp:include page="header.jsp" />
+
 <style>
+	.card { width: 700px; margin:0 auto !important; border-top:none !important;}
 	li span {width:200px; float:right; display: inline-block; text-align:center;}
 	.card ul {width: 400px; margin: 0 auto;}
+	.card h2 {font-weight:bold}
 </style>
 </head>
 <body>
-	<div class="card" style="width: 700px; margin : 0 auto">
+	<div class="card">
 		<div class="card-body">
-			<h2 class="card-title text-center mb-4" style="font-weight:bold">아이디 찾기</h2>
+			<h2 class="card-title text-center m-5">아이디 찾기</h2>
 		</div>
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item">인증수단

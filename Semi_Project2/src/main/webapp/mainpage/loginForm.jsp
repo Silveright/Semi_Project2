@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 
-
-
 <html>
 <head>
 	<link href="${pageContext.request.contextPath}/css/login.css" type="text/css" rel="stylesheet">	
-	<jsp:include page="header.jsp" />	
+	<jsp:include page="header.jsp" />
+<style>
+	.card {width: 500px;}
+	.card button {width:100%; height: 50px}
+</style>	
 </head>
 <body>
   <body>
-	<div class="card" style="width: 500px;" >
+	<div class="card">
       <div class="card-body">
 		<h1 class="card-title text-center ">로그인</h1>
 		<h6 class="card-subtitle text-center mb-5" style="color: darkgray">WELCOME BACK</h6>
@@ -22,7 +24,7 @@
 		    <input type="password" class="form-control" id="password" placeholder="비밀번호">
 		    <label for="floatingPassword">Password</label>
 		  </div>              
-		  <button class="btn btn-dark mb-2" type="submit" style="width:100%; height: 50px">로그인</button>              
+		  <button class="btn btn-dark mb-2" type="submit">로그인</button>              
 		 <div class="form-check mb-3">
 		  <input class="form-check-input" type="checkbox" value="" id="remember">
 		  <label class="form-check-label" for="remember">

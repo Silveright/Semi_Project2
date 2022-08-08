@@ -7,16 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class MemberSelfCertiAction implements Action{
+public class MemberResetAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String certi = request.getParameter("certi");
-		System.out.println(certi);
-		request.setAttribute("certi", certi);
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);    
-		forward.setPath("mainpage/selfCerti.jsp");
+		forward.setPath("mainpage/resetpass.jsp");
 		return forward; 
 	}
 }
