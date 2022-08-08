@@ -72,7 +72,7 @@ table td input {
 						<td><input type="text" class="form-control" name="address2" value="${memberinfo.address2 }" ></td>
 					</tr>
 					<tr>
-						<td class="table-active text-center">휴대전화</td>
+						<td class="table-active text-center">전화</td>
 						<td><input type="text" name="phone" value="${memberinfo.tel_cell }" class="form-control" ></td>
 					</tr>
 					<tr>

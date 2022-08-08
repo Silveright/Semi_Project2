@@ -10,22 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import net.board.action.ActionForward;
-import net.board.db.BoardBean;
-import net.board.db.BoardDAO;
+import net.mypage.db.ReviewBean;
+import net.mypage.db.ReviewDAO;
 
 public class ReviewAddAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		BoardDAO boarddao = new BoardDAO();
-		BoardBean boarddata = new BoardBean();
+		ReviewDAO reviewdao = new ReviewDAO();
+		ReviewBean review = new ReviewBean();
 		ActionForward forward = new ActionForward();
 		
 		String realFolder ="";
 		
-		String saveFolder="boardupload";// webapp/boardupload
+		String saveFolder="reviewupload";// webapp/
 		
 		int fileSize= 5*1024*1024;//파일 최대 크기 5MB
 		
@@ -42,18 +41,17 @@ public class ReviewAddAction implements Action {
 								new DefaultFileRenamePolicy());
 			
 			//BoardBean 객체에 글 등록 폼에서 입력받은 정보들을 저장한다.
-			boarddata.setBoard_name(multi.getParameter("board_name"));
-			boarddata.setBoard_pass(multi.getParameter("board_pass"));
-			boarddata.setBoard_subject(multi.getParameter("board_subject"));
-			boarddata.setBoard_content(multi.getParameter("board_content"));
-			
+			review.setReview_subject(multi.getParameter("review_subject"));
+			review.setReview_pass(multi.getParameter("review_pass"));
+			review.setReview_content(multi.getParameter("review_content"));
+			review.setReview_name(multi.getParameter("review_name"));
 			//시스템 상에 업로드된 실제 파일명
-			String filename =multi.getFilesystemName("board_file");
-			boarddata.setBoard_file(filename);
+			String filename =multi.getFilesystemName("review_file");
+			review.setReview_file(filename);
 			
 			//글 등록 처리를 위해 DAO의 boardInsert메서드 호출
 			//글 등록 폼에서 입력한 정보가 저장되어있는 boarddata객체를 전달한다.
-			result=boarddao.boardInsert(boarddata);
+			result=reviewdao.reviewInsert(review);
 			
 			//글 등록에 실패할 경우 false 반환
 			if(result==false) {
@@ -68,7 +66,7 @@ public class ReviewAddAction implements Action {
 			//글 등록이 완료되면 글 목록을 보여주기 위해 :BoardList.bo로 이동한다.
 			//Redirect여부를 true로 설정
 			forward.setRedirect(true);
-			forward.setPath("BoardList.bo");//이동할 경로 지정
+			forward.setPath("reviewlist.pg");//이동할 경로 지정
 			return forward;
 			
 			
@@ -79,5 +77,4 @@ public class ReviewAddAction implements Action {
 			return forward;
 		}
 	}
-
 }

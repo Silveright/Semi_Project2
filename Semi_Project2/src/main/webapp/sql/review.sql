@@ -1,6 +1,6 @@
 create table review(
 	review_num number,
-	review_name varchar2(30),
+	review_name varchar2(30) references customer(id),
 	review_pass varchar2(30),
 	review_subject varchar2(300),
 	review_content varchar2(4000),
@@ -18,3 +18,6 @@ create sequence review_seq;
 insert into review (review_num, review_subject, review_name, review_re_ref) VALUES (1,'처음','admin',1);
 insert into review (review_num, review_subject, review_name, review_re_ref) VALUES (2,'둘째','admin',2);
 insert into review (review_num, review_subject, review_name, review_re_ref) VALUES (3,'셋째','admin',3);
+
+delete from review;
+select * from review;

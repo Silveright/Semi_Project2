@@ -39,11 +39,11 @@ img{width:20px}
 				<table class="table table-bordered ">
 					<tr>
 						<td class="table-active text-center" style="width: 20%">작성자</td>
-						<td><input name="review_name" id="review_name" type="text" class="form-control" name="writer" readOnly value=${id }></td>
+						<td><input name="review_name" id="review_name" type="text" class="form-control" readOnly value=${id }></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">제목</td>
-						<td><input name="review_subject" id="review_subject" type="text" class="form-control" name="subject"></td>
+						<td><input name="review_subject" id="review_subject" type="text" class="form-control"></td>
 					</tr>
 					<tr>
 						<td colspan="2"><textarea rows="10" cols="50" name="review_content" id="review_content"
@@ -51,20 +51,24 @@ img{width:20px}
 					</tr>
 					<tr>
 						<td class="table-active text-center">구매제품</td>
-						<td><input type="text" name="review_product" id="review_product" class="form-control" name="subject"></td>
+						<td><input type="text" name="review_product" id="review_product" class="form-control"></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">첨부파일</td>
-						<td><label for="upfile"> <img src="../image/attach.png"
+						<td><label for="upfile"> <img src="${pageContext.request.contextPath}/image/attach.png"
 								alt="파일첨부">
-						</label> <input type="file" id="upfile" name="board_file"> <span
+						</label> <input type="file" id="upfile" name="review_file"> <span
 							id="filevalue"></span></td>
+					</tr>
+					<tr>
+						<td class="table-active text-center">비밀번호</td>
+						<td><input type="password" name="review_pass" class="form-control"></td>
 					</tr>
 				</table>
 				<div style="text-align: center">
-					<button type="submit" class="btn btn-light float-right ml-1"
+					<button type="reset" class="btn btn-light float-right ml-1"
 						data-mdb-ripple-color="dark " style="width: 90px">취소</button>
-					<button type="reset" class="btn btn-dark float-right ml-1">등록하기</button>
+					<button type="submit" class="btn btn-dark float-right ml-1">등록하기</button>
 				</div>
 			</div>
 		</div>
