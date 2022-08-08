@@ -55,7 +55,7 @@
 									<td>수량</td>
 									<td>상품구매금액</td>
 									<td>주문상태</td>
-									<td align="center">취소/교환/반품</td>
+									<td align="center">취소/리뷰쓰기</td>
 								</tr>
 								<tr class="align-middle">
 									<td>주문일자</td>
@@ -71,9 +71,9 @@
 											<button type="button" class="ms-3 btn btn-small btn-danger my-1"
 												data-bs-toggle="modal" data-bs-target="#myModal">
 												주문취소</button><br>
-											<button type="button" class="ms-3 btn btn-small btn-primary"
-												data-bs-toggle="modal" data-bs-target="#myModal">
-												리뷰쓰기</button>
+											<a href="reviewwrite.pg"><button type="button" class="ms-3 btn btn-small btn-primary"
+												>
+												리뷰쓰기</button></a>
 										</div> <!-- The Modal -->
 										<div class="modal" id="myModal">
 											<div class="modal-dialog">

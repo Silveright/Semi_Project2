@@ -30,6 +30,7 @@ create table order_info(
     usepoint number not null,
     orderDate date default sysdate,
 );
+
 --orderitem_code
 -- - order_item 테이블의 기본키입니다.
 -- - DB에서 생성해주는 기본키 기능을 사용할 것입니다.
@@ -48,14 +49,54 @@ create table order_info(
 
 --bookDiscount
 -- - 주문한 상품의 할인율입니다.
+create table order_info(--하나의 주문정보를 담는 테이블
+    order_code number primary key,
+    receiver varchar2(50) not null,
+    id varchar2(20)  references member(id),
+    post number not null,
+    address1 varchar2(100) not null,
+    address2 varchar2(100) not null,
+    orderstate varchar2(30) not null,
+    order_cost number not null,
+    orderDate date default sysdate,
+);
 
-create table order_item(
+create table order_item(--한 주문에서 각 상품의 정보를 담는 테이블
     orderitem_code number primary key,
     order_code number,
     product_code number,
     productcount number not null,
     productprice number not null,
-    productdiscount number not null,
     FOREIGN KEY (order_code) REFERENCES order_info(order_code),
     FOREIGN KEY (product_code) REFERENCES product(product_code)
 );
+--주문내역 보는 쿼리문
+select * from order_item
+inner join order_info
+on order_item.order_code = order_info.order_code
+inner join product
+on product.product_code = order_item.product_code
+where order_info id=?;
+  
+  
+--상품 테이블 예시
+  PRODUCT_CODE PRODUCT_NA PRODUCT_PRICE PRODUCT_IM
+------------ ---------- ------------- ----------
+           1 반팔                5000 사진
+           2 긴팔                6000 사진1
+--주문 정보 테이블 예시
+ORDER_CODE RECEIVER   ID               POST ADDRESS1   ADDRESS2   ORDERSTATE ORDER_COST ORDERDAT
+---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- --------
+         1 홍길방     test            12345 서울시     행복도시   배송전          16000 22/08/08
+--주문 상품 테이블 예시         
+ORDERITEM_CODE ORDER_CODE PRODUCT_CODE PRODUCTCOUNT PRODUCTPRICE
+-------------- ---------- ------------ ------------ ------------
+             1          1            1            2        10000
+             2          1            2            1         6000
+             
+             
+             
+ORDERITEM_CODE ORDER_CODE PRODUCT_CODE PRODUCTCOUNT PRODUCTPRICE ORDER_CODE RECEIVER   ID               POST ADDRESS1   ADDRESS2   ORDERSTATE ORDER_COST ORDERDAT PRODUCT_CODE PRODUCT_NA PRODUCT_PRICE PRODUCT_IM
+-------------- ---------- ------------ ------------ ------------ ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- -------- ------------ ---------- ------------- ----------
+             1          1            1            2        10000          1 홍길방     test            12345 서울시     행복도시   배송전          16000 22/08/08            1 반팔                5000 사진
+             2          1            2            1         6000          1 홍길방     test            12345 서울시     행복도시   배송전          16000 22/08/08            2 긴팔                6000 사진1

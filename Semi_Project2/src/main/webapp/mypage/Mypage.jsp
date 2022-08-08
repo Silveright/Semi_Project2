@@ -73,7 +73,7 @@ body>div.container>div>div>div.container.custom>div:nth-child(2) {
 						<div class="h-100 p-4 bg-light border rounded-3">
 							<a href="#myModal" data-bs-toggle="modal"><img src="image/files.png" alt="Chicago"
 								class="mx-auto rounded d-block" style="width: 65px"></a> <br>
-							<h6 class="text-center"><a href="#myModal" data-bs-toggle="modal">게시물 관리</a></h6>
+							<h6 class="text-center">게시물 관리</h6>
 						</div>
 					</div>
 

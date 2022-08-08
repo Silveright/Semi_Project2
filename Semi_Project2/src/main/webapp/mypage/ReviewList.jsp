@@ -6,6 +6,9 @@
 <head>
 <title>Insert title here</title>
 <jsp:include page="../mainpage/header.jsp"/>
+<style>
+a{text-decoration:none; color:black}
+</style>
 <script src="js/jquery-3.6.0.js"></script>
 <script>
 $(document).ready(function() { 
@@ -39,6 +42,7 @@ b{font-size:0.9em}
 <title>MVC 게시판</title>
 </head>
 <body>
+<br>
 	<div class="container">
 	<c:if test="${listcount > 0 }">
 		<div class="row align-items-center justify-content-center">
@@ -78,7 +82,7 @@ b{font-size:0.9em}
 								&nbsp;
 							</c:if>
 							
-							<a href="reviewdetail?num=${r.review_num }">
+							<a href="reviewdetail.pg?num=${r.review_num }">
 							<c:if test="${r.review_subject.length()>=20 }">
 							<c:out value="${r.review_subject.substring(0,20) }..."/>
 								</c:if>
