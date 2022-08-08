@@ -23,13 +23,13 @@ public class addresslistAction implements Action {
 		String id = request.getParameter("id");
 		
 		list=dao.getList(id);
-	
+		request.setAttribute("list", list);
+		
 		
 		if(list != null) {
-			
 			forward.setRedirect(false);
 			forward.setPath("mypage/AddressList.jsp");
-			return forward;// BoardFrontController.java로 리턴된다.
+			return forward;
 		}
 		return null;
 	}

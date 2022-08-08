@@ -44,9 +44,12 @@ public class MemberFrontController extends javax.servlet.http.HttpServlet{
 			action = new UpdateProfileProcessAction(); 
 			break;
 			
-			
 		case "/addresslist.pg":
 			action = new addresslistAction(); 
+			break;
+
+		case "/addressdelete.pg":
+			action = new addressDeleteAction(); 
 			break;
 			
 		case "/addresslistadd.pg":
