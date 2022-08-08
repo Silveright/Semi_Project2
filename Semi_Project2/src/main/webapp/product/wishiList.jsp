@@ -46,6 +46,9 @@ td{text-align:center;}
 p{text-align:left}
 .btn:nth-child(3){background-color:#dcdcdc;color:black;}
 .btn-secondary{background-color:#dcdcdc;color:black}
+.select-btn{text-align:right;}
+.btn-orderAll{background-color:#black;color:white;width:150px;}
+.btn-deleteAll{background-color:white;color:black;border:1px solid;width:150px}
 </style>
 </head>
 <body>
@@ -194,6 +197,10 @@ p{text-align:left}
 						</div>
 					</div>
 					
+				</div>
+				<div class="select-btn">
+				   <button type="button" class="btn btn-orderAll" data-bs-dismiss="modal">전체 상품 주문</button>
+                   <button type="button" class="btn btn-deleteAll">관심상품 비우기</button>
 				</div>
 			</div>
 		</div>
