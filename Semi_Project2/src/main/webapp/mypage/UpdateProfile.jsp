@@ -4,7 +4,7 @@
 <html>
 <head>
 <head>
-	<jsp:include page="header.jsp"/>
+<jsp:include page="../mainpage/header.jsp"/>>
 <title>회원정보 수정</title>
  <style>
   footer{position:fixed; 

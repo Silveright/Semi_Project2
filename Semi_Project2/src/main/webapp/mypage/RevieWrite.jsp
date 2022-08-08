@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>리뷰작성</title>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../mainpage/header.jsp"/>
 </head>
 <style>
 table td {

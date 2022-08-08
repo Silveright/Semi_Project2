@@ -5,7 +5,7 @@
 <html>
 <head>
 <title>배송주소록 관리</title>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../mainpage/header.jsp"/>
 </head>
 <body>
 	<br>
