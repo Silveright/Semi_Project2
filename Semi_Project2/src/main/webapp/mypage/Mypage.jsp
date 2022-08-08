@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../mainpage/header.jsp"/>
 <style>
 .fakeimg {
 	height: 200px;
@@ -47,7 +47,7 @@ body>div.container>div>div>div.container.custom>div:nth-child(2) {
 				<div class="row d-flex justify-content-center">
 					<div class="col-lg-2 col-md-6" style="width: 20%">
 						<div class="h-100 p-4 bg-light border rounded-3">
-							<a href="orderlist.pg"><img src="image/search.png" alt="Chicago"
+							<a href="orderlist.pg?id=${id}"><img src="image/search.png" alt="Chicago"
 								class="mx-auto rounded d-block" style="width: 65px"></a> <br>
 							<h6 class="text-center">주문내역 조회</h6>
 						</div>
@@ -55,7 +55,7 @@ body>div.container>div>div>div.container.custom>div:nth-child(2) {
 
 					<div class="col-lg-2 col-md-6" style="width: 20%">
 						<div class="h-100 p-4 bg-light border rounded-3">
-							<a href="updateprofile.pg"><img src="image/profile.png" alt="Chicago"
+							<a href="updateprofile.pg?id=${id}"><img src="image/profile.png" alt="Chicago"
 								class="mx-auto rounded d-block" style="width: 90px"></a>
 							<h6 class="text-center">회원정보 수정</h6>
 						</div>
@@ -73,13 +73,13 @@ body>div.container>div>div>div.container.custom>div:nth-child(2) {
 						<div class="h-100 p-4 bg-light border rounded-3">
 							<a href="#myModal" data-bs-toggle="modal"><img src="image/files.png" alt="Chicago"
 								class="mx-auto rounded d-block" style="width: 65px"></a> <br>
-							<h6 class="text-center"><a href="#myModal" data-bs-toggle="modal">게시물 관리</a></h6>
+							<h6 class="text-center">게시물 관리</h6>
 						</div>
 					</div>
 
 					<div class="col-lg-2 col-md-6" style="width: 20%">
 						<div class="h-100 p-4 bg-light border rounded-3">
-							<a href="addresslist.pg"><img src="image/delivery-truck.png" alt="Chicago"
+							<a href="addresslist.pg?id=${id}"><img src="image/delivery-truck.png" alt="Chicago"
 								class="mx-auto rounded d-block" style="width: 65px"></a> <br>
 							<h6 class="text-center">배송주소록 관리</h6>
 						</div>

@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 
 
 
+
 public class ReviewDAO {
 	private DataSource ds;
 	public ReviewDAO() {
@@ -203,7 +204,7 @@ public class ReviewDAO {
 					+ " 			where rnum>=? and rnum<=?";
 			
 			
-			System.out.println(sql);
+			System.out.println("review getList: "+sql);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+value+"%");
 			//한 페이지당 10개씩 목록인 경우 1페이지, 2페이지, 3페이지, 4페이지...
@@ -251,6 +252,151 @@ public class ReviewDAO {
 			}
 		}//finally end
 		return list;
+	}
+
+	public boolean reviewInsert(ReviewBean review) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result =0;
+		try {
+			conn = ds.getConnection();
+			
+			//원문글의 BOARD_RE_REF는 자신의 글번호가된다.
+			String sql = "insert into review "
+					+ "	   (review_num, review_name,review_pass, review_subject,"
+					+ "		review_content, review_file, review_re_ref, "
+					+ "		review_re_lev,  review_re_seq, review_readcount)"
+					+ "  		values(review_seq.nextval, ?, ?, ?,"
+					+ "		    ?, ?, review_seq.nextval,"
+					+ "		    ?,?,?)";
+			//새로운 글을 등록한다.
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, review.getReview_name());
+			pstmt.setString(2, review.getReview_pass());
+			pstmt.setString(3, review.getReview_subject());
+			pstmt.setString(4, review.getReview_content());
+			pstmt.setString(5, review.getReview_file());
+			//원문의 경우 BOARD_RE_LEV, BOARD_RE_SEQ 필드 값은 0
+			pstmt.setInt(6, 0);
+			pstmt.setInt(7, 0);
+			pstmt.setInt(8, 0);//Readcount
+			
+			result = pstmt.executeUpdate();
+			if(result==1) {
+				System.out.println("데이터 삽입 완료");
+				return true;
+			}
+				
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			System.out.println("reviewInsert() 에러: " +ex);
+		} finally {
+				if(pstmt !=null)
+					try{
+						pstmt.close();
+					} catch(SQLException ex) {
+						
+						ex.printStackTrace();
+					}
+				if(conn != null)
+			try {
+					conn.close();//DB연결을 끊는다.
+			}catch (SQLException ex) {
+			}
+		}//finally
+		return false;
+	}
+
+	public void setReadCountUpdate(int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sel_where_sql =
+				"update review set "
+						+ "review_readcount =review_readcount+1"
+						+ "where review_num = ?";
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sel_where_sql.toString());//toStrin()없애도 내부적으로 메서드를 사용해준다.
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+		}catch(SQLException ex) {
+			System.out.println("setReadCountUpdate() 에러:" + ex);
+			ex.printStackTrace();
+		} finally {
+			if(pstmt !=null)
+			try {
+					pstmt.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			if(conn != null)
+			try {
+					conn.close();//DB연결을 끊는다.
+			}catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}//finally
+		
+	}
+
+	public ReviewBean getDetail(int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ReviewBean review = null;
+		
+		try {
+			/*context.xml에 생성해 놓은 (JNDI에 설정해 놓은) 리소스 jdbc/OracleDB를
+			  참조하여 Connection 객체를 얻어온다.*/
+			conn = ds.getConnection();
+			
+			String select_sql = "select * from review where review_num=?";
+			
+			//PreparedStatement 객체 얻기
+			pstmt = conn.prepareStatement(select_sql.toString());
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {//더이상 읽을 데이터가 없을때까지 반복
+				review= new ReviewBean();
+				review.setReview_num(rs.getInt("review_num"));
+				review.setReview_name(rs.getString("review_name"));
+				review.setReview_subject(rs.getString("review_subject"));
+				review.setReview_content(rs.getString("review_content"));
+				review.setReview_file(rs.getString("review_file"));
+				review.setReview_re_ref(rs.getInt("review_re_ref"));
+				review.setReview_re_lev(rs.getInt("review_re_lev"));
+				review.setReview_re_seq(rs.getInt("review_re_seq"));
+				review.setReview_readcount(rs.getInt("review_readcount"));
+				review.setReview_date(rs.getString("review_date"));
+
+			}
+		}catch(Exception se) {
+			System.out.println("getDetail()에러:" +se);
+			se.printStackTrace();
+		} finally {
+			if (rs!=null)
+			try {
+					rs.close();
+			}catch(SQLException e) {
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+			}
+			if(pstmt != null)
+			try {
+					pstmt.close();
+			}catch(SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			if(conn!=null)
+			try {
+					conn.close();
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}//finally end
+		return review;
 	}
 	
 }

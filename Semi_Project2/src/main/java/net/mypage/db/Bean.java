@@ -1,4 +1,4 @@
-package net.main.db;
+package net.mypage.db;
 
 public class Bean {
 	

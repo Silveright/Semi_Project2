@@ -6,15 +6,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-public class MainPageAction implements Action {
+public class OrderListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);//주소변경없이 jsp페이지의 내용을 보여준다.
-		forward.setPath("mypage/main.jsp");
+		forward.setRedirect(false);
+		forward.setPath("mypage/OrderList.jsp");
 		return forward;
 	}
 

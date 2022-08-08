@@ -15,7 +15,8 @@ public class MyPageAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
-
+		
+		//String id='';
 		String id= "id";//request.getParameter("id");
 		HttpSession session = request.getSession();
 		session.setAttribute("id", id);
