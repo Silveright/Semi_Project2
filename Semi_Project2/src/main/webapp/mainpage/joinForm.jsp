@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
-<link href="${pageContext.request.contextPath}/css/join.css" type="text/css" rel="stylesheet">
-
 <html>
 <head>
 <jsp:include page="header.jsp" />
+<style>
+.card { width: 700px; margin:0 auto !important; border-top:none !important;}
+.card-subtitle {color: darkgray}
+</style>
 </head>
 <body>
-	<div class="card" style="width: 700px;">
+	<div class="card">
 		<div class="card-body">
-			<h1 class="card-title text-center">회원가입</h1>
-			<h5 class="card-subtitle text-center mb-5" style="color: darkgray">SIGN	UP</h5>
+			<h1 class="card-title text-center mt-5">회원가입</h1>
+			<h5 class="card-subtitle text-center mb-5">SIGN	UP</h5>
 			<form action = "agreeProcess.net" >
 				<div class="form-floating mb-1">
 					<input type="text" class="form-control" id="id" placeholder="아이디">
@@ -127,7 +129,7 @@
 						style="width: 100%; height: 50px">이메일로 인증코드 전송</button>
 				</div>
 
-				<div class="row g-2 mb-1">
+				<div class="row g-2 mb-3">
 					<div class="col-8">
 						<div class="form-floating">
 							<input type="text" class="form-control" id="certification"
@@ -145,7 +147,7 @@
 
 				<hr class="my-4">	
 				
-				<div class="row g-2 m-5">
+				<div class="row g-2 m-3">
 					<div class="col-6">
 						<button class="btn btn-success signupbtn" type="submit"
 							style="width: 100%; height: 58px">회원가입</button>

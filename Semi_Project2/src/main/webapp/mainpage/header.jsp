@@ -2,39 +2,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
-.d-flex {
-	margin: 0;
-}
-
-.nav-item {
-	font-size: 13pt;
-	style: bold;
-}
-
-.navbar {
-	padding: 10px 20px;
-}
-
-a {
-	text-decoration: none;
-	color: black;
-}
-
-.navbar-brand img {
+#h .d-flex { margin: 0;}
+#h .nav-item { text-decoration: none;  font-size: 13pt; }
+#h .navbar { padding: 10px 20px; }
+#h .navbar-brand img {
 	width: 45px !important;
 	height: 45px !important;
 	object-fit: cover !important;
-	margin: -5px 0 5px 0
+	margin: 0 0 0 15px;
 }
-
-.container-fluid  img {
+#h + .container-fluid img {
 	height: 230px;
 	width: 400px;
 	object-fit: none;
@@ -43,10 +24,9 @@ a {
 }
 </style>
 
-<nav
-	class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-end">
+<nav id="h" class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-end">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="http://localhost:8088/Semi_Project1/"><img src="${pageContext.request.contextPath}/image/main/home.png"></a>
+		<a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp"><img src="${pageContext.request.contextPath}/image/main/home.png"></a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -100,7 +80,7 @@ a {
 
 
 <div class="container-fluid p-2 text-center">
-	<a href="#"><img src="${pageContext.request.contextPath}/image/main/logo.png"></a>
+	<a href="${pageContext.request.contextPath}/index.jsp"><img src="${pageContext.request.contextPath}/image/main/logo.png"></a>
 </div>
 
 <div class="container-fluid border">

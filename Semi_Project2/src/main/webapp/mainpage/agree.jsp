@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
-<link href="${pageContext.request.contextPath}/css/agree.css" type="text/css" rel="stylesheet">
-
 <html>
 <head>
 <jsp:include page="header.jsp" />
+<link href="${pageContext.request.contextPath}/css/agree.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<form id="agree" action="joinSuccess.net">

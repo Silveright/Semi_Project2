@@ -1,21 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src = "http://code.jquery.com/jquery-latest.js"></script>
-<link href="${pageContext.request.contextPath}/css/join.css" type="text/css" rel="stylesheet">
 
 <html>
 <head>
 <jsp:include page="header.jsp" />
+<script src = "http://code.jquery.com/jquery-latest.js"></script>
+
 <style>
+	.card {width: 700px; margin:0 auto !important; border-top:none !important;}
 	li span {width:300px; float:right; display: inline-block; text-align:left;}
 	.card ul {width: 500px; margin: 0 auto;}
 	.card ul li:nth-child(2) input {float:right}
+	.card-title {font-weight:bold}
+	.card div:last-child button{width: 100%; height: 58px}
 </style>
 </head>
 <body>
-	<div class="card" style="width: 700px;">
+	<div class="card">
 		<div class="card-body">
-			<h4 class="card-title text-center mb-4" style="font-weight:bold">본인확인 인증</h4>
+			<h2 class="card-title text-center m-5" >본인확인 인증</h2>
 		</div>
 		<form id="self" action="resetpass.net">
 		<ul class="list-group list-group-flush">	
@@ -51,10 +54,10 @@
 		</form>			
 		<div class="row g-2 m-5">
 			<div class="col-6">
-				<button form = "self" class="btn btn-Secondary" style="width: 100%; height: 58px">확인</button>
+				<button form = "self" class="btn btn-Secondary" >확인</button>
 			</div>
 			<div class="col-6">
-				<button class="btn btn-Dark" style="width: 100%; height: 58px" onclick="location.href='http://localhost:8088/Semi_Project1'">취소</button>
+				<button class="btn btn-Dark" onclick="location.href='${pageContext.request.contextPath}/index.jsp'">취소</button>
 			</div>
 		</div>
 	</div>
