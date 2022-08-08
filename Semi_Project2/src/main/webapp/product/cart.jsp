@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>	 
-<title>관심 상품</title>
+<title>장바구니</title>
 <style>
 .table-image{width:50px;}
 .table-active>td{width:150px;}
