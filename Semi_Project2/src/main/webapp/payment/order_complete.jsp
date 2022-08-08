@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -38,22 +37,15 @@
 	String today = sdformat.format(now);
 %>
 <body>
-
+<div class="container">
+		<div class="row align-items-center justify-content-center">
+			<div class="col-sm-9 ">
 <br>
-
-	<div class = "container px-0">
-
-		<div class="border border-muted mx-auto" style="display:table; width:200px; height:20px; text-align: center;">
-			<h3 class="h3" style="display:table-cell; text-align: center">주문 완료</h3> <!-- 세로방향으로 가운데정렬 -->
-		</div>
-		<br>
-
-
 <div class="container">
 	<div class="jumbotron">
 	<!-- 점보트론은 특별한 내용이나 정보에 대한 추가 주의를 환기시키기 위한 큰 회색 상자를 나타내는 것입니다. -->
-		<h2 class="display-4"><img src="../img/check.png" width="100" height="100"/>&nbsp;<i class="fas fa-shopping-basket"></i>고객님의 주문이 완료 되었습니다.</h2><br>
-		<p class="lead">주문번호 : ${requestScope.order_code}<br>주문일자 : <%= today%></p>
+		<h4 class="display-4"><img src="../img/check.png" width="80" height="80"/>&nbsp;<i class="fas fa-shopping-basket"></i>고객님의 주문이 완료 되었습니다.</h4><br>
+		<p class="lead">주문번호 : 202208xxxxxx <br>주문일자 : <%= today%></p>
 		<hr class="my-4">
 		<p>고객님의 주문이 완료 되었습니다.</p>
 		 주문내역 및 배송에 관한 안내는 <a href="../mypage/OrderList.jsp" style="color: blue;">주문정보</a> 를 통하여 확인 가능합니다.
@@ -78,76 +70,37 @@
 		</table>
 <br>
 
-<div style="margin-top: 40px; margin-bottom: 10px; font-weight: bold; font-size: 16px;">주문 상품 정보</div>
-<div class="table-responsive">
-				<table class="table table-hover">
-					<thead>
-						<tr style="text-align: center;"> <!-- 글자 가운데정렬 -->
-							<th>이미지</th>
-							<th>상품정보</th>
-							<th>판매가</th>
-							<th>수량</th>
-							<th>적립금</th>
-							<th>배송구분</th>
-							<th>배송비</th>
-							<th>합계</th>
-						</tr>
-					</thead>
-					<tbody>
+				<br>
+				<div>
+					<b>주문 내역</b>
+				</div>
+				<hr
+					style="height: 2px; opacity: 1; background-color: black; margin: 0 auto">
+				<br>
 
-						<c:set var="totalPrice" value="0" />
+							<table class="table">
+								<tr class="table-active">
+									<td>이미지</td>
+									<td>상품명</td>
+									<td>수량</td>
+									<td>상품구매금액</td>
+									<td>배송비</td>
+									<td>합계</td>
+								</tr>
+								<tr class="align-middle">
+									<td><img src="../image/profile.png" width="77px"></td>
+									<td>상품명 예시</td>
+									<td>수량</td>
+									<td>상품구매금액</td>
+									<td>배송비</td>
+									<td>합계</td>
 
-							<tr>
-								<td class="verticalM" align="center"><img alt="${제품이미지}" src="../img/${제품이미지}" width="90" height="100"></td>
-								<td class="verticalM">
-									<strong>${제품이미지}</strong>
-									<input type="hidden" name="product_code" value="${상품코드}" /> <!-- 주문완료페이지에 보낼 제품번호 -->
-									<ul style="margin-top: 15px;">
-										<li>[옵션: ${옵션}]</li>
-									</ul>
-									<input type="hidden" name="opt_code" value="${옵션번호}" /> <!-- 주문완료페이지에 보낼 옵션번호 -->
-								</td>
-								<td class="verticalM" align="center"><strong>원</strong></td>
-								<td class="verticalM" align="center">
-									<span>${주문수량}</span>
-									<input type="hidden" name="order_count" value="${주문수량}" /> <!-- 주문완료페이지에 보낼 주문수량 -->
-								</td>
-								<td class="verticalM" align="center">
-									<span>원</span>
-								</td>
-								<td class="verticalM" align="center"><span>기본배송</span></td>
-								<td class="verticalM" align="center">
-									<div>[고정]</div>
-								</td>
-								<td class="verticalM" align="center">
-									<strong>원</strong>
-									<input type="hidden" name="order_cost" value="${주문금액 + 주문수량}" /> <!-- 주문완료페이지에 보낼 주문가격(한개당가격*수량) -->
-								</td>
-							</tr>
+										
+							</table>
+						</div>
+				</div>		
+		</div>
 
-
-						<tr style="border-bottom: 1px solid #d9d9d9;">
-							<td></td>
-							<td colspan="8">
-								<div style="float: left;">[기본배송]</div>
-								<div style="float: right;">
-									<c:choose>
-										<c:when test="${totalPrice >= 100000}">
-											<c:set var="deliveryFee" value="0" />
-										</c:when>
-										<c:otherwise>
-											<c:set var="deliveryFee" value="2500" />
-										</c:otherwise>
-									</c:choose>
-									상품구매금액  + 배송비  = 합계 : 원
-								</div>
-							</td>
-						</tr>
-
-					</tbody>
-				</table>
-			</div>
-	</div>
 
 <div class="mt-5 p-4 bg-light text-center">
   <p>Footer</p>
