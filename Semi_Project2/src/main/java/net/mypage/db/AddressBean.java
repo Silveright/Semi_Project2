@@ -1,11 +1,20 @@
 package net.mypage.db;
 
 public class AddressBean {
+	private int addresslist_num;
 	private String address_id;
 	private String address_name;
 	private String address_receiver;
-	private String address_phone;
 	private int address_post;
+	private String address_phone;
+	private String address1;
+	private String address2;
+	public int getAddresslist_num() {
+		return addresslist_num;
+	}
+	public void setAddresslist_num(int addresslist_num) {
+		this.addresslist_num = addresslist_num;
+	}
 	
 	public int getAddress_post() {
 		return address_post;
@@ -13,7 +22,6 @@ public class AddressBean {
 	public void setAddress_post(int address_post) {
 		this.address_post = address_post;
 	}
-	private String address;
 	
 	public String getAddress_id() {
 		return address_id;
@@ -39,10 +47,16 @@ public class AddressBean {
 	public void setAddress_phone(String address_phone) {
 		this.address_phone = address_phone;
 	}
-	public String getAddress() {
-		return address;
+	public String getAddress1() {
+		return address1;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddress1(String address) {
+		this.address1 = address;
+	}
+	public String getAddress2() {
+		return address2;
+	}
+	public void setAddress2(String address2) {
+		this.address2 = address2;
 	}
 }

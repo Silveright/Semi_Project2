@@ -30,7 +30,7 @@ public class AddressDAO {
 		ResultSet rs=null;
 		
 		String board_list_sql = "select *"
-				+"from addresslist where id=?";
+				+"from addresslist where address_id=?";
 		
 		List<AddressBean> list = new ArrayList<AddressBean>();
 		
@@ -44,10 +44,13 @@ public class AddressDAO {
 			//DB에서 가져온 데이터를 VO객체에 담는다.
 			while(rs.next()) {//더이상 읽을 데이터가 없을때까지 반복
 				AddressBean address = new AddressBean();
+				address.setAddresslist_num(rs.getInt("addresslist_num"));
 				address.setAddress_name(rs.getString("address_name"));
 				address.setAddress_receiver(rs.getString("address_receiver"));
 				address.setAddress_phone(rs.getString("address_phone"));
-				address.setAddress(rs.getString("address"));
+				address.setAddress_post(rs.getInt("address_post"));
+				address.setAddress1(rs.getString("address1"));
+				address.setAddress2(rs.getString("address2"));
 				list.add(address);//값을 담은 객체를 리스트에 저장
 			}
 		} catch(Exception e) {
@@ -83,8 +86,8 @@ public class AddressDAO {
 		try {
 			conn = ds.getConnection();
 			
-			String sql = "insert into addresslist (address_id, address_name, address_receiver, address_phone, address, address_post)"
-					+ "  values(?,?,?,?,?,?)";
+			String sql = "insert into addresslist (addresslist_num,address_id, address_name, address_receiver, address_phone, address1, address2, address_post)"
+					+ "  values(addresslist_seq.nextval,?,?,?,?,?,?,?)";
 			//id의 최대값을 구하는데 데이터가 존재하지 않아 Null
 			//>nvl(max(id),0)+1 : id의 최대값이 존재하지 않는 경우 0을 넣고, 1씩 증가 
 			//id 프라이머리키에 해당 > 값을 하나씩 증가시키는 방법 : 시퀀스 이용 또는 최대값을 이용해 값을 하나씩 증가시킨다.
@@ -93,8 +96,9 @@ public class AddressDAO {
 				pstmt.setString(2, address.getAddress_name());
 				pstmt.setString(3, address.getAddress_receiver());
 				pstmt.setString(4, address.getAddress_phone());
-				pstmt.setString(5, address.getAddress());
-				pstmt.setInt(6, address.getAddress_post());
+				pstmt.setString(5, address.getAddress1());
+				pstmt.setString(6, address.getAddress2());
+				pstmt.setInt(7, address.getAddress_post());
 				
 				result = pstmt.executeUpdate();
 		//primary key 제약조건 위반 경우 발생 에러
@@ -114,6 +118,46 @@ public class AddressDAO {
 			}catch (SQLException ex) {
 			}
 		}//finally
+		return result;
+	}
+
+	public int delete(String id, int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result =0;
+		
+		try {
+			/*context.xml에 생성해 놓은 (JNDI에 설정해 놓은) 리소스 jdbc/OracleDB를
+			  참조하여 Connection 객체를 얻어온다.*/
+			conn = ds.getConnection();
+			
+			
+			String select_sql = "delete from addresslist "
+					+ "where address_id = ? and addresslist_num= ? ";
+			//PreparedStatement 객체 얻기
+			pstmt = conn.prepareStatement(select_sql.toString());
+			pstmt.setString(1, id);
+			pstmt.setInt(2, num);
+			
+			result = pstmt.executeUpdate();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if(pstmt !=null)
+			try {
+					pstmt.close();
+			} catch (SQLException ex) {
+				System.out.println(ex.getMessage());
+				ex.printStackTrace();
+			}
+			if(conn != null)
+			try {
+					conn.close();//DB연결을 끊는다.
+			}catch (Exception ex) {
+				System.out.println(ex.getMessage());
+				ex.printStackTrace();
+			}
+		}//finally end
 		return result;
 	}
 

@@ -5,13 +5,16 @@
 <head>
 <title>주문내역</title>
 <jsp:include page="../mainpage/header.jsp"/>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src ='${pageContext.request.contextPath}/js/addressadd.js'></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> 
 <Style>
 img{width:20px}
 </Style>
 </head>
 <body>
 	<form method='post' 
-			  action='addresslistaddprocess.pg?id=${id }'>
+			  action='addresslistaddprocess.pg?id=${id}'>
 	<div class="container">
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">
@@ -31,15 +34,27 @@ img{width:20px}
 					</tr>
 					<tr>
 						<td class="table-active text-center">휴대전화</td>
-						<td><input type="text" name='address_phone' class="form-control" id="check_pass"></td>
+						<td><input type="text" name='address_phone' class="form-control" id="check_pass">
+						</td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">우편번호</td>
-						<td><input type="text" name="address_post" class="form-control" ></td>
+						<td>
+						<div class="col-7">
+					        <div class="input-group">
+					            <input type="text" class="form-control" id="post1" name="post">
+					            <button type="button" id="postcode" class="btn btn-dark">우편번호</button>
+					        </div>
+					    </div>
+						</td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">주소</td>
-						<td><input type="text" name="address" class="form-control" ></td>
+						<td><input type="text" name="address1" class="form-control" id="address" ></td>
+					</tr>
+					<tr>
+						<td class="table-active text-center">상세주소</td>
+						<td><input type="text" name="address2" class="form-control" id="address2" ></td>
 					</tr>
 				</table>
 				<br>
