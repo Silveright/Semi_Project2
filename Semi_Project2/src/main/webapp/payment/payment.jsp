@@ -63,7 +63,7 @@ $(document).ready(function() {
 		    self.close(); // 팝업창을 닫는 것이다.
 			
         } else {
-            location.href="/Semi_Project/index.go";
+            location.href="/Semi_Project2/payment/payment.jsp";
             alert("결제에 실패하였습니다.");
         }
 
