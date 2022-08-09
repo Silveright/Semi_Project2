@@ -1,4 +1,4 @@
-package net.admin.action;
+package net.communityboard.action;
 
 import java.io.IOException;
 
