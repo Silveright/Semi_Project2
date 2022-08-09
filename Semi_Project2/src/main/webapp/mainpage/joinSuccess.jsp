@@ -10,12 +10,13 @@
 	li span {width:80px; float:right; display: inline-block; text-align:center;}
 	.card ul {width: 300px; margin: 0 auto;}
 	.card button {width: 100%; height: 58px}
+	.card {margin: 0 auto;}
 </style>
 </head>
 <body>
 	<div class="card">
 		<div class="card-body">
-			<h1 class="card-title text-center">회원가입이 완료되었습니다</h1>
+			<h1 class="card-title text-center mt-5">회원가입이 완료되었습니다</h1>
 			<h5 class="card-subtitle text-center mb-5" style="color: darkgray">THANK YOU!</h5>
 		</div>
 		<ul class="list-group list-group-flush">
