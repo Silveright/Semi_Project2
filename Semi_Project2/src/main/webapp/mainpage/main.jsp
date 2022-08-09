@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -58,7 +59,8 @@ img { margin: 0 auto; object-fit: cover; }
 									<!-- Product name-->
 									<h5 class="fw-bolder">${p.product_name}</h5>
 									<!-- Product price-->
-									${p.product_price}
+									&#8361;<fmt:formatNumber type="number" maxFractionDigits="3" value="${p.product_price}" />
+
 								</div>
 							</div>
 							<!-- Product actions-->
@@ -74,8 +76,7 @@ img { margin: 0 auto; object-fit: cover; }
 			</div>	
 		</div>			
 	</section>
-
 	<jsp:include page="footer.jsp" />
-
 </body>
+
 </html>
