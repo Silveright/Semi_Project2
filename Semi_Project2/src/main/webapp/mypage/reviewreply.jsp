@@ -23,18 +23,18 @@ table td input {
 }
 img{width:20px}
 </style>
-<title>MVC 게시판</title>
+<title>리뷰작성</title>
 </head>
 <body>
 	<div class="container">
-	<form action="reviewreplyaction.pg" method="post" enctype="multipart/form-data" name="boardform">
+	<form action="reviewreplyaction.pg" method="post" name="boardform">
 		<input type="hidden" name="review_re_ref" value="${review.review_re_ref }">
 			<input type="hidden" name="review_re_lev" value="${review.review_re_lev }">
 			<input type="hidden" name="review_re_seq" value="${review.review_re_seq }">
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">
 				<div>
-					<b>리뷰 작성</b>
+					<b>리뷰답변 작성</b>
 				</div>
 				<hr
 					style="height: 2px; opacity: 1; border-width: 0; background-color: black; margin: 0 auto">

@@ -25,6 +25,7 @@ public class ReviewReplyAction implements Action {
 		review.setReview_pass(request.getParameter("review_pass"));
 		review.setReview_subject(request.getParameter("review_subject"));
 		review.setReview_content(request.getParameter("review_content"));
+		System.out.println(request.getParameter("review_subject"));
 		System.out.println(request.getParameter("review_re_ref"));
 		review.setReview_re_ref(Integer.parseInt(request.getParameter("review_re_ref")));
 		review.setReview_re_lev(Integer.parseInt(request.getParameter("review_re_lev")));

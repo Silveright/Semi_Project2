@@ -53,15 +53,17 @@ table td input {
 						<td colspan="2"><textarea rows="10" cols="50" name="content"
 								class="form-control" ReadOnly>${reviewdata.review_content}</textarea></td>
 					</tr>
+					<c:if test="${reviewdata.review_re_lev==0}">
 					<tr>
 						<td class="table-active text-center">구매제품</td>
 						<td><input type="text" class="form-control" name="subject" ReadOnly></td>
 					</tr>
+					</c:if>
 					<tr>
 					<c:if test="${reviewdata.review_re_lev==0}">
 						<td class="table-active text-center">첨부파일</td>
 						<c:if test="${!empty reviewdata.review_file }">
-						<td><img src="${pageContext.request.contextPath}/image/down.png" width="10px">
+						<td><img src="${pageContext.request.contextPath}/image/mypage/down.png" width="10px">
 						<a href="filename=${reviewdata.review_file}">${reviewdata.review_file}</a></td>
 						</c:if>
 					</c:if>
