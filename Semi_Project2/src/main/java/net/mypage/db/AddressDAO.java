@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 
+
 public class AddressDAO {
 	private DataSource ds;
 	public AddressDAO() {
@@ -138,6 +139,110 @@ public class AddressDAO {
 			pstmt = conn.prepareStatement(select_sql.toString());
 			pstmt.setString(1, id);
 			pstmt.setInt(2, num);
+			
+			result = pstmt.executeUpdate();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if(pstmt !=null)
+			try {
+					pstmt.close();
+			} catch (SQLException ex) {
+				System.out.println(ex.getMessage());
+				ex.printStackTrace();
+			}
+			if(conn != null)
+			try {
+					conn.close();//DB연결을 끊는다.
+			}catch (Exception ex) {
+				System.out.println(ex.getMessage());
+				ex.printStackTrace();
+			}
+		}//finally end
+		return result;
+	}
+
+	public AddressBean address_info(String id, int num) {
+		AddressBean address = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			/*context.xml에 생성해 놓은 (JNDI에 설정해 놓은) 리소스 jdbc/OracleDB를
+			  참조하여 Connection 객체를 얻어온다.*/
+			conn = ds.getConnection();
+			
+			String select_sql = "select * from addresslist where address_id=? and addresslist_num=?";
+			
+			//PreparedStatement 객체 얻기
+			pstmt = conn.prepareStatement(select_sql.toString());
+			pstmt.setString(1, id);
+			pstmt.setInt(2, num);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {//더이상 읽을 데이터가 없을 때까지 반복
+				address = new AddressBean();
+				address.setAddresslist_num(rs.getInt("addresslist_num"));
+				address.setAddress_name(rs.getString("address_name"));
+				address.setAddress_receiver(rs.getString("address_receiver"));
+				address.setAddress_phone(rs.getString("address_phone"));
+				address.setAddress_post(rs.getInt("address_post"));
+				address.setAddress1(rs.getString("address1"));
+				address.setAddress2(rs.getString("address2"));
+			}
+		}catch(Exception se) {
+			se.printStackTrace();
+		} finally {
+			if (rs!=null)
+			try {
+					rs.close();
+			}catch(SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			if(pstmt != null)
+			try {
+					pstmt.close();
+			}catch(SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			if(conn!=null)
+			try {
+					conn.close();
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}//finally end
+		return address;
+	}
+
+	public int update(AddressBean a) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result =0;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String select_sql = "update addresslist set "
+					+ "address_name =?, "
+					+ "address_receiver = ?, "
+					+ "address_post = ?, "
+					+ "address_phone = ?, "
+					+ "address1 = ?,"
+					+ "address2 = ?"
+					+ "where address_id = ? and addresslist_num = ?";
+			//PreparedStatement 객체 얻기
+			pstmt = conn.prepareStatement(select_sql.toString());
+			pstmt.setString(1, a.getAddress_name());
+			pstmt.setString(2, a.getAddress_receiver());
+			pstmt.setInt(3, a.getAddress_post());
+			pstmt.setString(4, a.getAddress_phone());
+			pstmt.setString(5, a.getAddress1());
+			pstmt.setString(6, a.getAddress2());
+			pstmt.setString(7, a.getAddress_id());
+			pstmt.setInt(8, a.getAddresslist_num());
+			
 			
 			result = pstmt.executeUpdate();
 		}catch(Exception ex) {

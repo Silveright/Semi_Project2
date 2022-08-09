@@ -75,7 +75,7 @@ b{font-size:0.9em}
 								<c:forEach var="a" begin="0" end="${r.review_re_lev*2 }" step="1">
 									&nbsp;
 								</c:forEach>
-								<img src="image/line.gif">
+								<img src="${pageContext.request.contextPath}/image/mypage/line.gif">
 							</c:if>
 							
 							<c:if test="${r.review_re_lev ==0 }"><!-- 원문인 경우 -->

@@ -21,3 +21,4 @@ insert into review (review_num, review_subject, review_name, review_re_ref) VALU
 
 delete from review;
 select * from review;
+select review_pass from review where review_num =1;
