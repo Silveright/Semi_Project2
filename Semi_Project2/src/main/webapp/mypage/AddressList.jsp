@@ -42,7 +42,7 @@
 									<td>${a.address_post }</td>
 									<td>${a.address1 }</td>
 									<td>${a.address2 }</td>
-									<td class="text-center"><button class="btn btn-dark me-1">수정</button>
+									<td class="text-center"><a href="addresslistmodify.pg?id=${id}&num=${a.addresslist_num}"><button class="btn btn-dark me-1">수정</button></a>
 									<a href="addressdelete.pg?id=${id}&num=${a.addresslist_num}"><button class="btn btn-danger" id="addressdelete">삭제</button></a></td>
 								</tr>
 								</c:forEach>

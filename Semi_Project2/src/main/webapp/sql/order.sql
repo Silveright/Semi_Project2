@@ -56,7 +56,7 @@ create table order_info(--하나의 주문정보를 담는 테이블
     post number not null,
     address1 varchar2(100) not null,
     address2 varchar2(100) not null,
-    orderstate varchar2(30) not null,
+    orderstate varchar2(30) not null default '배송 준비',
     order_cost number not null,
     orderDate date default sysdate,
 );

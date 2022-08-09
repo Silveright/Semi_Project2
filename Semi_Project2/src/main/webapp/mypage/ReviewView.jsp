@@ -6,7 +6,6 @@
 <head>
 <title>리뷰보기</title>
 <jsp:include page="../mainpage/header.jsp"/>
-</head>
 <style>
 #upfile{display:none}
 
@@ -23,7 +22,12 @@ table td input {
   width: 100%;
   border: none;
 }
+
+[readonly]{
+  background-color:#fff !important;
+}
 </style>
+</head>
 <title>MVC 게시판</title>
 </head>
 <body>
@@ -39,31 +43,69 @@ table td input {
 				<table class="table table-bordered ">
 					<tr>
 						<td class="table-active text-center" style="width: 20%">작성자</td>
-						<td><input value="${reviewdata.review_name}" type="text" class="form-control" name="writer"></td>
+						<td><input value="${reviewdata.review_name}" type="text" class="form-control" ReadOnly></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">제목</td>
-						<td><input type="text" value="${reviewdata.review_subject}" class="form-control" name="subject"></td>
+						<td><input type="text" value="${reviewdata.review_subject}" class="form-control" ReadOnly></td>
 					</tr>
 					<tr>
 						<td colspan="2"><textarea rows="10" cols="50" name="content"
-								class="form-control">${reviewdata.review_content}</textarea></td>
+								class="form-control" ReadOnly>${reviewdata.review_content}</textarea></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">구매제품</td>
-						<td><input type="text" class="form-control" name="subject"></td>
+						<td><input type="text" class="form-control" name="subject" ReadOnly></td>
 					</tr>
 					<tr>
 					<c:if test="${reviewdata.review_re_lev==0}">
 						<td class="table-active text-center">첨부파일</td>
 						<c:if test="${!empty reviewdata.review_file }">
-						<td><img src="image/down.png" width="10px">
-						<a href="BoardFileDown.bo?filename=${reviewdata.review_file}">${reviewdata.review_file}</a></td>
+						<td><img src="${pageContext.request.contextPath}/image/down.png" width="10px">
+						<a href="filename=${reviewdata.review_file}">${reviewdata.review_file}</a></td>
 						</c:if>
 					</c:if>
 					</tr>
 				</table>
-					<button type="button" class="btn btn-dark float-end">글목록</button>
+				<c:if test="${reviewdata.review_name == id || id == 'admin' }">
+					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">삭제하기</button>
+					<a href="reviewmodify.pg?num=${reviewdata.review_num}"><button type="button" class="btn btn-dark">수정하기</button></a>
+				</c:if>
+					<a href="reviewreplyview.pg?num=${reviewdata.review_num }">
+					<button type="button" class="btn btn-dark float-sm-end ms-1">답변달기</button>
+					</a>
+					<a href="reviewlist.pg"><button type="button" class="btn btn-dark float-sm-end">글목록</button></a>
+					<div class="modal" id="myModal">
+											<div class="modal-dialog">
+												<div class="modal-content">
+
+													<!-- Modal Header -->
+													<div class="modal-header">
+														<h4 class="modal-title">리뷰가 삭제됩니다.</h4>
+														<button type="button" class="btn-close"
+															data-bs-dismiss="modal"></button>
+													</div>
+													<form name="deleteForm" action="reviewdeleteaction.pg" method="post">
+													<!-- Modal body -->
+													<div class="modal-body"><input type="hidden" name="num" value="${param.num}" id="comment_board_num">
+											     	  <div class="form-group">
+											           <label for="pwd">비밀번호</label>
+									           			<input type="password" 
+									           					class="form-control" id=" review_pass" 
+									                  placeholder="Enter password" name="review_pass">
+									       			  </div></div>
+																						
+													<!-- Modal footer -->
+													<div class="modal-footer">
+														<button type="submit" class="btn btn-sm btn-danger"
+															>삭제하기</button>
+														<button type="button" class="btn btn-sm btn-primary"
+															data-bs-dismiss="modal">뒤로가기</button>
+													</div>
+													</form>
+												</div>
+											</div>
+										</div>
 			</div>
 		</div>
 	</div>
