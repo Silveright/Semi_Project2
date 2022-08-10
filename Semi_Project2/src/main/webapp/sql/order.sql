@@ -52,14 +52,17 @@ create table order_info(
 create table order_info(--하나의 주문정보를 담는 테이블
     order_code number primary key,
     receiver varchar2(50) not null,
-    id varchar2(20)  references member(id),
-    post number not null,
+    id varchar2(20) references customer(id),
+    post varchar2(5) not null,
     address1 varchar2(100) not null,
     address2 varchar2(100) not null,
-    orderstate varchar2(30) not null default '배송 준비',
+    orderstate varchar2(30) default '배송전',--배송취소
     order_cost number not null,
-    orderDate date default sysdate,
+    orderDate date default sysdate
 );
+create sequence order_info_seq
+
+select * from order_info;
 
 create table order_item(--한 주문에서 각 상품의 정보를 담는 테이블
     orderitem_code number primary key,
@@ -70,6 +73,16 @@ create table order_item(--한 주문에서 각 상품의 정보를 담는 테이
     FOREIGN KEY (order_code) REFERENCES order_info(order_code),
     FOREIGN KEY (product_code) REFERENCES product(product_code)
 );
+create sequence order_item_seq
+select * from order_item;
+
+insert into order_info values (order_info_seq.nextval, '홍길동', 'id', '11111', '서울아파트', '10동 10호','배송전',10000,sysdate)
+insert into order_item values (order_item_seq.nextval, 1, 1, 2, 3000)
+insert into order_item values (order_item_seq.nextval, 1, 2, 1, 4000)
+
+
+
+
 --주문내역 보는 쿼리문
 select * from order_item
 inner join order_info
@@ -77,7 +90,34 @@ on order_item.order_code = order_info.order_code
 inner join product
 on product.product_code = order_item.product_code
 where order_info id=?;
-  
+
+select o.id, o.orderDate, p.product_image, p.product_name, oit.productcount, oit.productprice, o.orderstate
+from product p, order_info o, order_item oit
+where p.product_code=oit.product_code
+and o.order_code=oit.order_code
+and o.id=?;
+ID         ORDERDAT PRODUCT_IM PRODUCT_NA PRODUCTCOUNT PRODUCTPRICE ORDERSTATE
+---------- -------- ---------- ---------- ------------ ------------ ----------
+test       22/08/08 사진       반팔                  2        10000 	배송전
+test       22/08/08 사진1      긴팔                  1         6000 	배송전
+
+
+update (select o.id, o.orderDate, p.product_image, p.product_name, oit.productcount, oit.productprice, o.orderstate
+from product p, order_info o, order_item oit
+where p.product_code=oit.product_code
+and o.order_code=oit.order_code
+and o.id=?) oit set o.orderstate='배송취소' where oit.orderitem_code=1 ;
+ 
+
+
+
+
+   select o.id, o.orderDate, p.product_image, p.product_name, oit.productcount, oit.productprice, o.orderstate
+   from product p, order_info o, order_item oit
+   where p.product_code=oit.product_code
+   and o.order_code=oit.order_code
+   and o.id='id'
+   and o.orderstate='배송전';
   
 --상품 테이블 예시
   PRODUCT_CODE PRODUCT_NA PRODUCT_PRICE PRODUCT_IM
@@ -100,3 +140,59 @@ ORDERITEM_CODE ORDER_CODE PRODUCT_CODE PRODUCTCOUNT PRODUCTPRICE ORDER_CODE RECE
 -------------- ---------- ------------ ------------ ------------ ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- -------- ------------ ---------- ------------- ----------
              1          1            1            2        10000          1 홍길방     test            12345 서울시     행복도시   배송전          16000 22/08/08            1 반팔                5000 사진
              2          1            2            1         6000          1 홍길방     test            12345 서울시     행복도시   배송전          16000 22/08/08            2 긴팔                6000 사진1
+             
+             
+             
+   
+   
+   drop table order_info purge;
+   drop sequence order_info_seq;
+   
+   create sequence order_info_seq
+   
+   create table order_info(--하나의 주문정보를 담는 테이블
+    order_code number primary key,
+    id varchar2(20) references customer(id),
+    payment_option varchar2(20),
+    address1 varchar2(150) not null,
+    address2 varchar2(150) not null,
+    post varchar2(5) not null,
+    receiver_name varchar2(15) not null,
+    receiver_phone varchar2(13) not null,
+    order_cost number not null,
+    delivery_message varchar2(150),
+    order_date date default sysdate
+	);
+	
+insert into order_info values (order_info_seq.nextval,'id', '무통장 입금','서울아파트', '10동 10호', '11111', '홍길동','01012341234',50000,'문 앞에 놔주세요',sysdate)
+	
+	drop sequence order_item_seq;
+	drop table order_item purge;
+	
+    create sequence order_item_seq
+    
+    create table order_item(--한 주문에서 각 상품의 정보를 담는 테이블
+    orderitem_code number primary key,
+    order_code number,
+    product_code number,
+    product_count number not null,
+    product_price number not null,
+    orderstate varchar2(30) default '배송 전',--배송취소
+    FOREIGN KEY (order_code) REFERENCES order_info(order_code),
+    FOREIGN KEY (product_code) REFERENCES product(product_code)
+	);
+	
+insert into order_item values (order_item_seq.nextval, 1, 1, 2, 30000, '배송 전')
+insert into order_item values (order_item_seq.nextval, 1, 2, 1, 20000, '배송 전')
+	
+	
+   select o.id, o.order_date, p.product_image, p.product_name, oit.product_count, oit.product_price, oit.orderstate
+   from product p, order_info o, order_item oit
+   where p.product_code=oit.product_code
+   and o.order_code=oit.order_code
+   and o.id='id'
+   and oit.orderstate='배송 전';
+  
+
+	
+             

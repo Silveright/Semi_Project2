@@ -5,6 +5,7 @@
 <head>
 <head>
 <jsp:include page="../mainpage/header.jsp"/>
+<script src="js/jquery-3.6.0.js"></script>
 <title>회원정보 수정</title>
  <style>
   footer{position:fixed; 
@@ -45,15 +46,15 @@ table td input {
 				<table class="table table-bordered ">
 					<tr>
 						<td class="table-active text-center" style="width: 20%">아이디</td>
-						<td><input type="text" name='id' value="${id }" readOnly class="form-control"></td>
+						<td><input type="text" name='id' value="${id }" readOnly class="form-control "></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">비밀번호</td>
-						<td><input type="text" id="pass" name='pass' value="${memberinfo.password }" class="form-control"></td>
+						<td><input type="password" id="pass" name='pass' value="${memberinfo.password }" class="form-control"></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">비밀번호 확인</td>
-						<td><input type="text" class="form-control" id="check_pass"></td>
+						<td><input type="password" class="form-control" id="check_pass"></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">이름</td>
@@ -68,12 +69,12 @@ table td input {
 						<td><input type="text" class="form-control" name="address1" value="${memberinfo.address }" ></td>
 					</tr>
 					<tr>
-						<td class="table-active text-center">상세주소</td>
-						<td><input type="text" class="form-control" name="address2" value="${memberinfo.address2 }" ></td>
-					</tr>
-					<tr>
 						<td class="table-active text-center">전화</td>
-						<td><input type="text" name="phone" value="${memberinfo.tel_cell }" class="form-control" ></td>
+						<td>
+							<div class="input-group ">
+							    <span class="input-group-text">010</span>
+							    <input type="text" name="tel" class="form-control p-2" value="${memberinfo.tel }">
+							  </div>
 					</tr>
 					<tr>
 						<td class="table-active text-center">이메일</td>
@@ -83,12 +84,27 @@ table td input {
 				<br>
 				<div style="text-align: center">
 					<button type="submit" class="btn btn-dark">수정하기</button>
-					<button type="reset" class="btn btn-light"
+					<button type="reset" class="btn btn-light" id="cancel"
 						data-mdb-ripple-color="dark" style="width: 90px">취소</button>
 				</div>
 			</div>
 		</div>
 	</div>
 </form>
+<script>
+$(function(){
+	$("form").submit(function(){
+		if($('#pass').val()!=$('#check_pass').val()){
+			alert('비밀번호가 일치하지 않습니다.');
+			$('#check_pass').val('');
+			$('#check_pass').focus();
+			return false;
+		}
+	})
+	$("#cancel").click(function(){
+		history.back();
+	})
+})
+</script>
 </body>
 </html>

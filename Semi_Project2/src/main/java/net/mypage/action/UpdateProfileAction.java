@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import net.mypage.db.MemberBean;
-import net.mypage.db.MemberDAO;
+import net.mypage.db.Customer;
+import net.mypage.db.CustomerDAO;
 
 
 public class UpdateProfileAction implements Action {
@@ -20,8 +20,8 @@ public class UpdateProfileAction implements Action {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		
-		MemberDAO mdao = new MemberDAO();//회원 테이블 사용
-		MemberBean m = mdao.member_info(id);
+		CustomerDAO mdao = new CustomerDAO();//회원 테이블 사용
+		Customer m = mdao.member_info(id);
 		
 		forward.setPath("mypage/UpdateProfile.jsp");
 		forward.setRedirect(false);
