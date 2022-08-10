@@ -33,8 +33,8 @@
 		 </div>
 		 <hr class="my-3">
 		 <ul>
-		 	<li><a href="idFind.net">아이디 찾기</a></li> |
-		 	<li><a href="passFind.net">비밀번호 찾기</a></li> |
+		 	<li><a href="idFind.net">아이디 찾기	&#166;</a></li>
+		 	<li><a href="passFind.net">비밀번호 찾기	&#166;</a></li>
 		 	<li><a href="join.net">회원가입</a></li>                 
 		 </ul>
 		 <hr class="my-3">

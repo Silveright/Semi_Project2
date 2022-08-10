@@ -78,5 +78,4 @@ img { margin: 0 auto; object-fit: cover; }
 	</section>
 	<jsp:include page="footer.jsp" />
 </body>
-
 </html>

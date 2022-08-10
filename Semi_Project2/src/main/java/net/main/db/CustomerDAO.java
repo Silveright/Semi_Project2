@@ -30,7 +30,7 @@ public class CustomerDAO {
 		try {
 			con = ds.getConnection();
 			
-			String sql = "select id from  where id=?";			
+			String sql = "select id from customer where id=?";			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
