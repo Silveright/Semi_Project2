@@ -209,6 +209,7 @@ $(document).ready(function(){
 		
 		b_flagPostcodeClick = true; // 우편번호찾기 버튼을 굳이 클릭안하도록 함.
 		
+		$("input#postcode").val("${memberinfo.postcode}");
 		$("input#address").val("${memberinfo.address}");
 		$("input#detailAddress").val("${memberinfo.detailaddress}");
 		
@@ -226,12 +227,47 @@ $(document).ready(function(){
 		
 		$("input#postcode").val("");
 		$("input#address").val("");
-
+		$("input#detailAddress").val("");
 		
 		$("input#hp2").val("");
 		$("input#hp3").val("");
 		
 	});
+	
+
+	// 결제하기 버튼 클릭시, 배송 정보를 넘겨줘야함.
+	function goPurchase(){
+		
+		// *** 필수입력사항에 모두 입력이 되었는지 검사한다. *** //
+		var boolFlag = false;
+		
+		$("input.requiredInfo").each(function(){
+			var data = $(this).val().trim();
+			if(data == "") {
+				alert("*표시된 필수입력사항은 모두 입력하셔야 합니다.");
+				boolFlag = true;
+				return false; // break; 라는 뜻이다.
+			}
+		});
+		
+		
+		if(boolFlag){
+			return; // 종료
+		}
+		
+		
+		if( $("input#destinationSame").prop("checked") ){
+			b_flagPostcodeClick = true; // 회원정보와 동일이 체크가 되어져있으면, "우편번호찾기"를 클릭했는지 검사할 필요 없음.
+		}
+		
+		
+		if(!b_flagPostcodeClick){
+			// "우편번호찾기" 를 클릭했는지 클릭안했는지를 알아보기위한 용도임.
+			alert("우편번호찾기를 클릭하여 배송 정보에 주소를 입력하세요!!");
+			return; // 종료
+		}
+		
+		
 </script>
 
 <style>
@@ -395,10 +431,10 @@ textarea {
 						<td>
 							<input type="text" id="post" name="post" value="${memberinfo.post }" size="6" maxlength="5" readonly class="requiredInfo" required/>&nbsp;&nbsp;
 							<%-- 우편번호 찾기 --%>
-							<button type="button" class="btn-sm btn-dark" id="postcode" name="postcode">우편번호</button><br/>
+							<input type="button" class="btn-sm btn-dark" id="postcode" name="postcode" value="우편번호" readOnly><br/>
 
 							<input type="text" id="address" name="address" value="${memberinfo.address}" size="40" readonly class="requiredInfo" placeholder="주소" required style="margin-top: 4px;"/><br/>
-	            			<input type="text" id="detailAddress" name="detailAddress" value="" size="40" class="requiredInfo" placeholder="상세주소" required style="margin-top: 4px;"/><br/>
+	            			<input type="text" id="detailAddress" name="detailAddress" value="${memberinfo.detailaddress }" size="40" class="requiredInfo" placeholder="상세주소" required style="margin-top: 4px;"/><br/>
 							
 							<span class="error">주소를 입력하세요</span>
 						</td> 
@@ -481,7 +517,7 @@ textarea {
 					<input type="radio" name="b" checked> <label
 						for="huey" >현금영수증 신청</label> 
 					<input type="radio" name="b"> <label for="dewey">신청 안 함</label>
-					<a href="http://localhost:8088/" onclick="window.open('payment.jsp','width=795,height=500',resizable=1);">
+					<a href="http://localhost:8088/" onclick="window.open('payment.jsp','width=900,height=600',resizable=1);">
 					<button type="submit" class="btn btn-dark float-end">결제하기</button>
 					</a>
 					</div>

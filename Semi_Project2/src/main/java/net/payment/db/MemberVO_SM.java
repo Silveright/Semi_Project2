@@ -5,6 +5,7 @@ public class MemberVO_SM {
 	private String name; 				// 회원명
 	private String post;				// 우편번호
 	private String address; 			// 주소
+	private String extraaddress;		// 상세주소
 	private String email; 				// 이메일 
 	private String tel; 				// 연락처 
 	
@@ -19,6 +20,12 @@ public class MemberVO_SM {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getExtraaddress() {
+		return extraaddress;
+	}
+	public void setExtraaddress(String extraaddress) {
+		this.extraaddress = extraaddress;
 	}
 	public String getPost() {
 		return post;
