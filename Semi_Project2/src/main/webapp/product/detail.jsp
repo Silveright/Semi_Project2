@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="../mainpage/header.jsp"/>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,15 +97,13 @@
          				  <div class="fakeimg"></div>
            
         				   <div class="col-sm-6">
-           
-          				   <p>상품명</p>
+                           
+          				   <p>상품명</p>${product.product_name }
 						   <hr>
-						   <p>판매가</p>
+						   <p>판매가</p>${product.product_price }
 						   <hr>
-						   <p>배송정보</p>
-						   <hr>
-			
-        				  
+						   <p>배송정보</p>배송 기간 : 1~3 일
+						   <hr>  
          				   
          				   <p>사이즈<span>&nbsp;&nbsp;</span>
          				   <select name="size" id="size-select">
@@ -123,21 +125,62 @@
            				  </select></p><hr>
            				  
            				  <table class="total">
-           				    <td>상품명</td>
+           				    <td>${product.product_name }</td>
            				    <td><input type="text" name="p_num1" id="p_num1" size="2" maxlength="4" class="p_num" value="2">
            				    </td>
-           				    <td>상품금액</td>
+           				    <td>${product.product_price }</td><!-- 곱하기 수량 추가 -->        				    
            				  </table><br>
            				  
        				      
            			      <hr style="opacity: 1; background-color: black; margin: 0 auto">
           				  <p>총 상품 금액</p><br>
-          				  <button type="button" class="btn btn-dark">바로 구매하기</button>
-					      <button type="button" class="btn btn-light">관심상품 담기</button>
-					      <button type="button" class="btn btn-light">장바구니 담기</button>
+          				  <button type="button" class="btn btn-dark">바로 구매하기</button> <!-- 링크. 상품 구매로 이동 -->
+					      <button type="button" class="btn btn-primary btn-light" data-bs-toggle="modal" data-bs-target="#WishListModal">
+                          관심상품 담기
+                          </button>
+                          <button type="button" class="btn btn-primary btn-light" data-bs-toggle="modal" data-bs-target="#CartModal">
+                          장바구니 담기
+                          </button>
           				  </div>       
          		    </div><br>
-				   
+         		    
+         		              <!-- WishListModal  -->
+                              <div class="modal fade" id="WishListModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">관심상품 담기</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      관심상품으로 이동하시겠습니까?
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-primary" onclick="location.href='wishList.jsp' ">이동</button>
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>                                 
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- CartModal  -->
+                              <div class="modal fade" id="CartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">장바구니 담기</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      장바구니로 이동하시겠습니까?
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" onclick="location.href='cart.jsp' ">이동</button>
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                                      
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>  
 				</div>
 				<hr
 					style="height: 2px; opacity: 1; background-color: black; margin: 0 auto"><br>

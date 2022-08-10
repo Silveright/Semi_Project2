@@ -1,6 +1,6 @@
 package net.product.db;
 
-public class cart {
+public class CartBean {
 	private int cart_code;
 	private String id;
 	private int product_code;

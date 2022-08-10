@@ -1,6 +1,6 @@
 package net.product.db;
 
-public class category {
+public class ProductCategoryBean {
 	private int category_code;
 	private String class0;
 	private String class1;
