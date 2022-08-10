@@ -1,5 +1,5 @@
 package net.communityboard.db;
 
-public class Board {
+public class QnaBean {
 
 }

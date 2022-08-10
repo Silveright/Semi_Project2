@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../mainpage/header.jsp"/>
 <html>
 <head>
@@ -21,16 +22,20 @@
   <br>
   <br>
 <div class="container -text-center">
-	<table class="table table-hover text-center ">
+	<table class="table table-hover text-center table-striped ">
 		<tr class="table-active">
 		<th>번호</th>
 		<th>내용</th>
 		<th>날짜</th>
 		<th>작성자</th>
 		</tr>
-		
+	<tbody>
+	<c:set var="num" value="${listcount-(page-1)*limit}"/>
+	<c:forEach var="b" items="${noticelist}">
 		<tr>
-		<td>1</td>
+		<td><c:out value="${num}"/> <%--num출력 --%>
+			<c:set var="num" value="${num-1}"/>  <%--num-num-1; 의미 --%>
+		</td>
 		<td>공지사항입니다.</td>
 		<td>2022.08.04</td>
 		<td>작성자</td>
@@ -84,7 +89,7 @@
 		<td>2022.08.04</td>
 		<td>작성자</td>
 		</tr>
-		
+		</tbody>
 	</table>
 	
 					<div class="center-block">

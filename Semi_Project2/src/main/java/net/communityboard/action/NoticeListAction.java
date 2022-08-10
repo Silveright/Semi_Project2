@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import net.communityboard.db.Boardbean;
+import net.communityboard.db.NoticeBean;
 import net.communityboard.db.BoardDAO;
 import net.mypage.action.Action;
 import net.mypage.action.ActionForward;
@@ -22,7 +22,7 @@ public class NoticeListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		BoardDAO boarddao = new BoardDAO();
-		List<Boardbean> boardlist = new ArrayList<Boardbean>();
+		List<NoticeBean> noticelist = new ArrayList<NoticeBean>();
 		
 		//로그인 성공시 파라미터 page가 없어요. 그래서 초기값이 필요합니다.
 		int page=1; //보여줄 page
@@ -42,7 +42,7 @@ public class NoticeListAction implements Action {
 		int listcount = boarddao.getListCount();
 		
 		// 리스트를 받아옵니다.
-		boardlist = boarddao.getBoardList(page, limit);
+		noticelist = boarddao.getNoticeList(page, limit);
 		
 		/*
 		 * 총 페이지 수
@@ -103,7 +103,7 @@ public class NoticeListAction implements Action {
 			 request.setAttribute("listcount", listcount); //총 글의 수
 			 
 			 // 해당 페이지의 글 목록을 갖고 있는 리스트
-			 request.setAttribute("boardlist", boardlist);
+			 request.setAttribute("noticelist", noticelist);
 			 
 			 request.setAttribute("limit", limit);
 			 ActionForward forward = new ActionForward();
@@ -129,7 +129,7 @@ public class NoticeListAction implements Action {
 			 //메서드를 통해서 저장합니다.
 			 //List형식을 JsonElement로 바꾸어 주어야 object에 저장할 수 있습니다.
 			 //List => JsonElement
-			 JsonElement je = new Gson(). toJsonTree(boardlist);
+			 JsonElement je = new Gson(). toJsonTree(noticelist);
 			 System.out.println("boardlist="+je.toString());
 			 object.add("boardlist", je);
 			 
