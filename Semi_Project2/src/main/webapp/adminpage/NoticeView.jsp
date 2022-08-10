@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../mainpage/header.jsp"/>
 <html>
 <head>
 <title>공지 글 보기</title>
@@ -53,8 +53,8 @@ table td input {
 						<td>첨부파일명</td>
 					</tr>
 				</table>
-					<button type="button" class="btn btn-secondary float-left">글목록</button>
-					<button type="button" class="btn btn-secondary float-end">수정</button>
+					<button type="button" class="btn btn-dark float-left">글목록</button>
+					<button type="button" class="btn btn-dark float-end">수정</button>
 			</div>
 		</div>
 	</div>

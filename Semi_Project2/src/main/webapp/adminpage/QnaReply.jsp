@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../mainpage/header.jsp"/>
 <html>
 <head>
 <title>문의처리</title>
@@ -68,7 +68,7 @@ img{width:20px}
 				<div style="text-align: center">
 					<button type="button" class="btn btn-light float-right ml-1"
 						data-mdb-ripple-color="dark " style="width: 90px">취소</button>
-					<button type="button" class="btn btn-secondary float-right ml-1">답변완료</button>
+					<button type="button" class="btn btn-dark float-right ml-1">답변완료</button>
 				</div>
 			</div>
 		</div>

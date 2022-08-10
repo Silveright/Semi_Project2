@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
-<jsp:include page="header.jsp"/>
+<jsp:include page="../mainpage/header.jsp"/>
 <html>
 <title>공지 글 작성</title>
 <head>
@@ -19,8 +19,8 @@ h1 {
 	display: none
 }
 
-.btn1{float:right;}
-.btn2{float:left;}
+.sub {float:right;}
+
 </style>
 </head>
 <body>
@@ -67,8 +67,8 @@ h1 {
 			
 			<br>
 			<div class="form-group">
-				<button type=submit class="btn1 btn-secondary">등록</button>
-				<button type=reset class="btn2 btn-secondary" onClick="history.go(-1)">취소</button>
+				<button type=submit class="btn btn-dark sub">등록</button>
+				<button type=reset class="btn btn-dark cac" onClick="history.go(-1)">취소</button>
 			</div>
 		</form>
 	</div>
