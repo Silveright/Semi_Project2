@@ -107,6 +107,10 @@ public class MemberFrontController extends javax.servlet.http.HttpServlet{
 		case "/reviewdetail.pg":
 			action = new ReviewDetailAction();
 			break;
+			
+		case "/ordercancel.pg":
+			action = new OrdercancelAction();
+			break;
 		
 		/*
 		 * 

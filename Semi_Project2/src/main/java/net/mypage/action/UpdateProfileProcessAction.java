@@ -7,8 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.mypage.db.MemberBean;
-import net.mypage.db.MemberDAO;
+import net.mypage.db.Customer;
+import net.mypage.db.CustomerDAO;
+
 
 
 public class UpdateProfileProcessAction implements Action {
@@ -17,23 +18,21 @@ public class UpdateProfileProcessAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		MemberBean member = new MemberBean();
+		Customer member = new Customer();
 		
 		member.setId(request.getParameter("id"));
 		member.setPassword(request.getParameter("pass"));
 		member.setName(request.getParameter("name"));
-		member.setGender(request.getParameter("gender"));
 		member.setPost(request.getParameter("post"));
-		member.setAddress1(request.getParameter("address1"));
-		member.setAddress2(request.getParameter("address2"));
-		member.setTel_cell(request.getParameter("phone"));
+		member.setAddress(request.getParameter("address1"));
+		member.setTel(request.getParameter("tel"));
 		member.setEmail(request.getParameter("email"));
 		//응답하는 데이터 타입이 html 타입이고
 		//charset=utf-8로 지정하면서 응답되는 데이터 처리를 한 부분이다.
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 
-		MemberDAO dao = new MemberDAO();
+		CustomerDAO dao = new CustomerDAO();
 
 		int result = dao.update(member);
 		
