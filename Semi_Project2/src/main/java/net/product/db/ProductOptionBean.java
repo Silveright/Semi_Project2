@@ -1,6 +1,6 @@
 package net.product.db;
 
-public class option {
+public class ProductOptionBean {
 	private int opt_code;
 	private int product_code;
 	private String opt_color;

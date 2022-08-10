@@ -1,6 +1,6 @@
 package net.product.db;
 
-public class product {
+public class ProductBean {
 	private int product_code;
 	private String product_name;
 	private int product_price;

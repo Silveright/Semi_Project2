@@ -89,14 +89,14 @@ p{text-align:left}
 									<td align="center">선택</td>
 								</tr>
 								<tr class="align-middle">
-									<td><input type='checkbox' name='choice' value='choice' /></td>
-									<td><img src="../image/profile.png" width="77px"></td>
-									<td>상품명<br>
+									<td><input type='checkbox' name='choice' value='choice' /></td>   <!--  메뉴 체크박스 클릭시 아래 모든 체크박스 표시  -->
+									<td>${product.product_image }</td>
+									<td>${product.product_name }<br>
 									<button type="button" id="opt-change" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#optionModal">옵션변경</button>
 									</td>
 									<td><input type="text" name="p_num1" id="p_num1" size="2" maxlength="4" class="p_num" value="2">                           
-									<td>상품 금액</td>
-									<td>합계</td>
+									<td>${product.product_price }</td>
+									<td>${product.product_price }</td> <!-- 곱하기 수량 -->
 									<td align="center">
 									
 							<!-- Button trigger modal -->
@@ -123,7 +123,7 @@ p{text-align:left}
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>
-                                      <button type="button" class="btn btn-primary">계속하기</button>
+                                      <button type="button" class="btn btn-primary">계속하기</button>  <!-- 결제창으로 이동 -->
                                     </div>
                                   </div>
                                 </div>
@@ -141,7 +141,7 @@ p{text-align:left}
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>
-                                      <button type="button" class="btn btn-primary">계속하기</button>
+                                      <button type="button" class="btn btn-primary">계속하기</button>   <!-- 데이터를 관심상품으로 넘김 -->
                                     </div>
                                   </div>
                                 </div>
@@ -159,7 +159,7 @@ p{text-align:left}
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>
-                                      <button type="button" class="btn btn-primary">삭제하기</button>
+                                      <button type="button" class="btn btn-primary">삭제하기</button>    <!-- display none -->
                                     </div>
                                   </div>
                                 </div>
@@ -187,7 +187,7 @@ p{text-align:left}
                                       </table>
                                     </div>
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">변경</button>
+                                    <button type="button" class="btn btn-primary">변경</button>      <!-- 변경된 옵션을 적용 -->
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
                                     </div>                                 
                                   </div>	
@@ -200,8 +200,8 @@ p{text-align:left}
 					
 				</div>
 				<div class="select-btn">
-				   <button type="button" class="btn btn-orderAll" data-bs-dismiss="modal">전체 상품 주문</button>
-                   <button type="button" class="btn btn-deleteAll">장바구니 비우기</button>
+				   <button type="button" class="btn btn-orderAll" data-bs-dismiss="modal">전체 상품 주문</button>   
+                   <button type="button" class="btn btn-deleteAll">장바구니 비우기</button>   <!-- display none -->
 				</div>
 			</div>
 		</div>

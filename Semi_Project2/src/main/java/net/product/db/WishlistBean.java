@@ -1,6 +1,6 @@
 package net.product.db;
 
-public class wishlist {
+public class WishlistBean {
 	private int wishlist_code;
 	private String id;
 	private int product_code;
