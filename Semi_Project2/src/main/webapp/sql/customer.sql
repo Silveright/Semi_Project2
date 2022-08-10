@@ -6,9 +6,14 @@ create table customer(
 	gender				char(1),
 	post				varchar2(5),
 	address				varchar2(150),
-	tel					varchar2(8),
+	phone				varchar2(11)),   --변수명 phone, varcher(11)로 수정함 (01012345678)
 	email				varchar2(30),
 	register_date		date default sysdate,
-	grade				char(1),
-	secondhand_code		number(5) foreign key references secondhand_board(secondhand_code) on delete cascade,
-);
+	grade				char(1)
+)
+
+	--seconhand_board 테이블 생성후에 추가해줄것
+	secondhand_code		number(5) references secondhand_board(secondhand_code) on delete cascade
+	
+select * from customer;
+

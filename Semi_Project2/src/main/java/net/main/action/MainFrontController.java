@@ -40,6 +40,10 @@ public class MainFrontController extends javax.servlet.http.HttpServlet {
 			action = new MemberJoinAction(); 
 			break;
 			
+		case "/idcheck.net":
+			action = new MemberIdCheckAction(); 
+			break;
+			
 		case "/idFind.net":
 			action = new MemberIdFindAction(); 
 			break;

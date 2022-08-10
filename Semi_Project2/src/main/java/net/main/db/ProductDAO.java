@@ -45,6 +45,7 @@ public class ProductDAO {
 				p.setProduct_name(rs.getString("product_name"));
 				p.setProduct_price(rs.getInt("product_price"));
 				p.setProduct_image(rs.getString("product_image"));
+				p.setCategory_code(rs.getInt("category_code"));
 				list.add(p);								
 			}
 		} catch (Exception ex) {
