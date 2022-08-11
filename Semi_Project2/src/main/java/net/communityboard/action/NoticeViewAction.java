@@ -1,4 +1,4 @@
-package net.admin.action;
+package net.communityboard.action;
 
 import java.io.IOException;
 
@@ -14,8 +14,10 @@ public class NoticeViewAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(false);
+		forward.setPath("community_board/noticeview.jsp"); //글 내용 보기 페이지로 이동하기 위해 경로를 설정합니다.
+		return forward;
 	}
 
 }

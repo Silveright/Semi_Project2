@@ -63,9 +63,9 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><small>커뮤니티</small></a>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">FAQ</a></li>
-						<li><a class="dropdown-item" href="#">공지사항</a></li>
-						<li><a class="dropdown-item" href="#">문의사항</a></li>
+						<li><a class="dropdown-item" href="faqlist.co">FAQ</a></li>
+						<li><a class="dropdown-item" href="noticelist.co">공지사항</a></li>
+						<li><a class="dropdown-item" href="qnalist.co">문의사항</a></li>
 						<li><a class="dropdown-item" href="reviewlist.pg">리뷰</a></li>
 						<li><a class="dropdown-item" href="#">중고거래</a></li>
 					</ul></li>
