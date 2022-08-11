@@ -62,6 +62,9 @@ a{text-decoration:none}
 								<!-- foreach문 시작 -->
 								<c:forEach var="l" items="${list }"  varStatus="vs">
 								<c:if test="${l.orderstate=='배송 완료'||l.orderstate=='배송 전' }">
+								<c:set var="sum" value="2500"/>
+								<fmt:formatNumber  value="${sum+l.product_price}" pattern="#,###" />
+								
 								<tr class="align-middle">
 									<td>${l.order_date}</td>
 									<td><img src="${pageContext.request.contextPath}/image/main/product/${l.product_image}.jpg" alt="${p.product_image}" width="77px"></td>
