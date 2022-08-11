@@ -6,7 +6,7 @@ create table customer(
 	gender				char(1),
 	post				varchar2(5),
 	address				varchar2(150),
-	phone				varchar2(11)),   --변수명 phone, varcher(11)로 수정함 (01012345678)
+	phone				varchar2(11),   --변수명 phone, varcher(20)로 수정함 
 	email				varchar2(30),
 	register_date		date default sysdate,
 	grade				char(1)
@@ -14,6 +14,7 @@ create table customer(
 
 	--seconhand_board 테이블 생성후에 추가해줄것
 	secondhand_code		number(5) references secondhand_board(secondhand_code) on delete cascade
+
+	select * from customer
 	
-select * from customer;
 

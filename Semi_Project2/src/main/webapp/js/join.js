@@ -1,6 +1,10 @@
 $(function(){
 	var checkid = false;
-	var checkemail = false;
+	var checkpass = false;
+	var checkaddress = false;	
+	var checkphone = false;	
+	var emailcerticheck = false;		
+
 	
 	$("#id").on('keyup',
 		function() {		
@@ -11,7 +15,6 @@ $(function(){
 				$('#id').addClass('is-invalid');
 				$('#id+label').css('color', 'red').text("아이디는 영문자, 숫자 5~12자 가능합니다.");
 				checkid=false;
-				return;	
 			}
 			
 			$.ajax({
@@ -28,8 +31,8 @@ $(function(){
 						checkid=false;
 					}
 				}
-			});
-		})
+			})
+		});
 			
 	$("#pass_check, #pass").on('keyup',
 		function() {
@@ -40,11 +43,14 @@ $(function(){
 			if(pass == pass_check && pass != "") {
 				$('#pass_check').removeClass('is-invalid');
 				$('#pass_check+label').css('color', 'green').text("비밀번호가 같습니다");
+				checkpass = true;
 			} else if (pass == "") {
-				$('#pass_check').removeClass('is-invalid');			
+				$('#pass_check').removeClass('is-invalid');		
+				checkpass = false;	
 			} else {
 				$('#pass_check').addClass('is-invalid');
 				$('#pass_check+label').css('color', 'red').text("비밀번호가 다릅니다");
+				checkpass = false;
 			}
 		});	
 	
@@ -126,10 +132,12 @@ $(function(){
 
 			if(address_detail.length == 0) {	
 				$('#address_detail').addClass('is-invalid');
-				$('#address_detail+label').css('color', 'red').text("상세 주소를 입력하세요");					
+				$('#address_detail+label').css('color', 'red').text("상세 주소를 입력하세요");	
+				checkaddress = false;				
 			} else {
 				$("#address_detail").removeClass('is-invalid');
 				$('#address_detail+label').css('color', 'green').text("동호수까지 적어주세요");
+				checkaddress = true;	
 			}
 		});
 	
@@ -141,9 +149,11 @@ $(function(){
 			if(!pattern.test(phone)) {
 				$('#phone').addClass('is-invalid');
 				$('#phone+label').css('color', 'red').text("'-' 또는 공백 없이 숫자만 입력해주세요");
+				checkphone = false;		
 			} else {
 				$("#phone").removeClass('is-invalid');
 				$('#phone+label').css('color', 'green').text("휴대폰 번호 형식에 맞습니다.");
+				checkphone = true;		
 			}
 		});	
 	
@@ -169,4 +179,60 @@ $(function(){
 				$('#domain+label').css('color', 'green').text("이메일 형식에 맞습니다.");
 			}
 		});	
-})	
+		
+	
+		
+	$("#emailcertiprocess").on('click',
+		function(){
+
+			$.ajax({
+				url : "emailcertiprocess.net",
+				data : {"code_input" : $("#certification").val() },
+				success : function(resp) {
+					if(resp == 1) {			
+						alert('인증확인을 성공했습니다'); 
+						emailcerticheck = true;
+					} else {
+						alert('인증코드가 틀렸습니다'); 
+						emailcerticheck = false;
+					}
+				}
+			})
+		});
+	
+	$('#signup').on('click',		
+		function() {			
+			$('form').attr("action","agreeProcess.net");
+
+			if(!checkid){
+				alert("사용가능한 id로 입력하세요");
+				$("#id").val('').focus();
+				return false;
+			}
+			
+			if(!checkpass){
+				alert("비밀번호 형식을 확인하세요");
+				$("#pass").val('').focus();
+				return false;
+			}
+	
+			
+			if(!checkaddress){
+				alert("상세주소 형식을 확인하세요");
+				$("#address_detail").val('').focus();
+				return false;
+			}
+			
+			if(!checkphone){
+				alert("핸드폰 번호 형식을 확인하세요");
+				$("#phone").val('').focus();
+				return false;
+			}			
+			
+			if(!emailcerticheck){
+				alert("이메일 인증을 확인하세요");
+				$("#emailcertiprocess").val('').focus();
+				return false;
+			}			
+		});	
+	})
