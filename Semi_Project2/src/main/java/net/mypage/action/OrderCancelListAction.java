@@ -10,39 +10,38 @@ import javax.servlet.http.HttpServletResponse;
 import net.mypage.db.Order_infoDAO;
 import net.mypage.db.Orderlist;
 
-
-public class OrderListAction implements Action {
+public class OrderCancelListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		ActionForward forward = new ActionForward();
 		String id = request.getParameter("id");
 		
-		Order_infoDAO dao = new Order_infoDAO();
-		List<Orderlist> list = null;
-
 		int page=1;//보여줄 page
 		int limit =5;//한 페이지에 보여줄 게시판 목록의 수
+
+		List<Orderlist> list = null;
+		Order_infoDAO dao = new Order_infoDAO();
+		
+		list = dao.getCancel(id, page, limit);
 
 		
 		if(request.getParameter("page")!= null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		System.out.println("넘어온 주문 페이지 =" +page);
+		System.out.println("넘어온 주문취소 페이지 =" +page);
 		
-		int listcount = dao.getListCount(id);//총 내역 수 
-		System.out.println("주문 내역의 수"+listcount);
+		int listcount = dao.getCancleListCount(id);
+		System.out.println("주문취소 목록 수 " + listcount);
 		
-		list=dao.getList(id,page,limit);
-		
+		list=dao.getCancel(id,page,limit);
 		int maxpage = (listcount + limit -1)/limit;
 		int startpage = ((page-1)/10) *10 +1;
 		int endpage = startpage +10-1;
 		if(endpage>maxpage)
 			endpage=maxpage;
 		
-		ActionForward forward = new ActionForward();
 
 		if(list==null) {
 			forward.setPath("error/error.jsp");
@@ -61,9 +60,8 @@ public class OrderListAction implements Action {
 		request.setAttribute("limit", limit);
 		
 		
-		
 		forward.setRedirect(false);
-		forward.setPath("mypage/OrderList.jsp");
+		forward.setPath("mypage/Ordercancel.jsp");
 		return forward;
 	}
 

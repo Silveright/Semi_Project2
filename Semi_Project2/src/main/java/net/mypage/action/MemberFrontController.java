@@ -88,12 +88,16 @@ public class MemberFrontController extends javax.servlet.http.HttpServlet{
 			action = new AddresslistModifyProcessAction(); 
 			break;
 			
-		case "/memberrivewlist.pg": 
+		case "/memberreviewlist.pg": 
 			action = new MemberReviewListAction();
 			break;	
 			
 		case "/orderlist.pg": 
 			action = new OrderListAction();
+			break;	
+			
+		case "/ordercancellist.pg": 
+			action = new OrderCancelListAction();
 			break;	
 		
 		case "/reviewwrite.pg":

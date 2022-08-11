@@ -34,7 +34,11 @@ img{width:20px}
 					</tr>
 					<tr>
 						<td class="table-active text-center">휴대전화</td>
-						<td><input type="text" name='address_phone' class="form-control" id="check_pass">
+						<td>
+						<div class="input-group ">
+							    <span class="input-group-text">010</span>
+							    <input type="text" name="address_phone" class="form-control p-2" value="${memberinfo.tel }">
+							  </div>
 						</td>
 					</tr>
 					<tr>

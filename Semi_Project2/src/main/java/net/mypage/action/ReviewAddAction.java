@@ -45,6 +45,7 @@ public class ReviewAddAction implements Action {
 			review.setReview_pass(multi.getParameter("review_pass"));
 			review.setReview_content(multi.getParameter("review_content"));
 			review.setReview_name(multi.getParameter("review_name"));
+			review.setProduct_name(multi.getParameter("review_product"));
 			//시스템 상에 업로드된 실제 파일명
 			String filename =multi.getFilesystemName("review_file");
 			review.setReview_file(filename);

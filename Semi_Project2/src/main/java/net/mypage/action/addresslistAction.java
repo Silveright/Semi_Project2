@@ -25,7 +25,6 @@ public class addresslistAction implements Action {
 		list=dao.getList(id);
 		request.setAttribute("list", list);
 		
-		
 		if(list != null) {
 			forward.setRedirect(false);
 			forward.setPath("mypage/AddressList.jsp");
