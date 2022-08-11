@@ -33,7 +33,7 @@ public class MemberReviewListAction implements Action {
 		int index=-1;//search_field에 존재하지 않는 값으로 초기화>>전체 회원 조회됨
 		
 		String search_word="";
-		
+		String id = request.getParameter("id");
 		/*
 		메뉴-관리자-회원정보 클릭한 경우(member_list.net)
 		또는 메뉴-관리자-회원정보 클릭후 페이지를 클릭한 경우
@@ -43,13 +43,13 @@ public class MemberReviewListAction implements Action {
 					|| request.getParameter("search_word").equals("")) {
 			///총 리스트 수를 받아온다.
 			listcount = dao.getListCount();
-			list=dao.getList(page,limit);
+			list=dao.getList(page,limit,id);
 		}else {//검색 클릭시
 			index=Integer.parseInt(request.getParameter("search_field"));
 			String[] search_field = new String[] {"review_subject","review_content"};
 			search_word = request.getParameter("search_word");
 			listcount = dao.getListCount(search_field[index], search_word);
-			list = dao.getList(search_field[index], search_word, page, limit);
+			list = dao.getList(search_field[index], search_word, page, limit,id);
 		}
 		
 		//글이 101개라면.. 101 + 10 -1 / 10 >> 12

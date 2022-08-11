@@ -38,7 +38,7 @@ body>div.container>div>div>div.container.custom>div:nth-child(2) {
 							class="p-4 text-center">배송 준비중</small> <small
 							class="p-4 text-center">배송 중</small> <br>
 						<br> <small class="p-5 text-center">0</small> <small
-							class="p-5 text-center">0</small> <small class="p-5 text-center">0</small>
+							class="p-5 text-center">${delivery}</small> <small class="p-5 text-center">0</small>
 					</div>
 					<br>
 				</div>
@@ -99,7 +99,7 @@ body>div.container>div>div>div.container.custom>div:nth-child(2) {
             </div>
             <div class="modal-body">
                 <p>보러갈 게시판을 선택해주세요</p>
-              <a href="memberrivewlist.pg?id=${id}"><button type="button" class="btn btn-primary  me-3">내 리뷰 보러가기</button></a>
+              <a href="memberreviewlist.pg?id=${id}"><button type="button" class="btn btn-primary  me-3">내 리뷰 보러가기</button></a>
                <a href="memberboardlist.pg?id=${id}"><button type="button" class="btn btn-primary">내 중고거래 글 보러가기</button></a>
             </div>
             <div class="modal-footer">

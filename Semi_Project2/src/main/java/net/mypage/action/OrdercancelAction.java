@@ -25,7 +25,7 @@ public class OrdercancelAction implements Action {
 		if(result ==1) {
 			out.println("<script>");
 			out.println("alert('주문이 취소되었습니다.');");
-			out.println("location.href='orderlist.pg?id="+id+"'");
+			out.println("location.href='ordercancellist.pg?id="+id+"'");
 			out.println("</script>");
 		}else {
 			out.println("</script>");

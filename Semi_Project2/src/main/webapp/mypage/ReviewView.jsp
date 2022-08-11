@@ -56,7 +56,7 @@ table td input {
 					<c:if test="${reviewdata.review_re_lev==0}">
 					<tr>
 						<td class="table-active text-center">구매제품</td>
-						<td><input type="text" class="form-control" name="subject" ReadOnly></td>
+						<td><input type="text" class="form-control" value=${reviewdata.product_name } name="subject" ReadOnly></td>
 					</tr>
 					</c:if>
 					<tr>

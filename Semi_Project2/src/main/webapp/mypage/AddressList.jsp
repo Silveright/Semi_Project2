@@ -34,7 +34,7 @@
 									<td>상세주소</td>
 									<td class="text-center">수정/삭제</td>
 								</tr>
-								<c:forEach var="a" items="${list }">
+								<c:forEach var="a" items="${list }" varStatus="vs">
 								<tr class="align-middle">
 									<td>${a.address_name }</td>
 									<td>${a.address_receiver }</td>
@@ -77,6 +77,11 @@ $("#addressdelete").click(function(event){
 			event.preventDefault();
 		}
 	})
+/*  function phoneFormat(){    
+var str = $('tr:nth-child(n+2) > td:nth-child(3)').text().trim();        
+ var phone = str.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");   
+ $('tr:nth-child(n+2) > td:nth-child(3)').text(phone);}
+phoneFormat(); */
 </script>
 </body>
 </html>
