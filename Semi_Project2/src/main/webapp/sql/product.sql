@@ -1,3 +1,18 @@
+create table cart( -- 장바구니
+    cart_code      number(5)    primary key,
+    id             varchar2(20) references customer(id),
+    product_code   number(5)    references product(product_code),
+    cart_count     number(3)    
+)
+
+create sequence cart_seq start with 1 increment by 1;
+
+create table wisglist( -- 관심상품
+    wishlist_code  number(5)    primary key,
+    id             varchar2(20) references customer(id),
+    product_code   number(5)    references product(product_code),
+)
+
 create table product(
 	product_code number(5),
 	product_name varchar2(200),
@@ -6,7 +21,7 @@ create table product(
 	category_code number(5) references product_category(category_code),
 	primary key(product_code)
 )
-create sequence product_seq;
+create sequence product_seq start with 1 increment by 1;
 
 --상품옵션, 카테고리
 --create table product_option(
