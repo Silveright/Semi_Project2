@@ -153,10 +153,10 @@
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                      관심상품으로 이동하시겠습니까?
+                                      관심상품에 추가하시겠습니까?
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-primary" onclick="location.href='wishList.jsp' ">이동</button>
+                                      <button type="button" class="btn btn-primary" onclick="location.href='wishList.jsp' ">확인</button>
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>                                 
                                     </div>
                                   </div>
@@ -171,10 +171,10 @@
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                      장바구니로 이동하시겠습니까?
+                                      장바구니에 추가하시겠습니까?
                                     </div>
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" onclick="location.href='cart.jsp' ">이동</button>
+                                    <button type="button" class="btn btn-primary" onclick="location.href='cart.jsp' ">추가</button>
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
                                       
                                     </div>
