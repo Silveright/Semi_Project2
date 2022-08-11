@@ -80,7 +80,7 @@
   </style>
 </head>
 <body>
-
+<form id="frm1">
 	<div class="container">
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">
@@ -133,8 +133,8 @@
            				  
        				      
            			      <hr style="opacity: 1; background-color: black; margin: 0 auto">
-          				  <p>총 상품 금액</p><br>
-          				  <button type="button" class="btn btn-dark">바로 구매하기</button> <!-- 링크. 상품 구매로 이동 -->
+          				  <p>총 상품 금액</p><br><input type="submit" value="바로 구매하기" class="btn btn-dark" onclick='btn_click("purchase");'>
+          				   <!-- 링크. 상품 구매로 이동 -->
 					      <button type="button" class="btn btn-primary btn-light" data-bs-toggle="modal" data-bs-target="#WishListModal">
                           관심상품 담기
                           </button>
@@ -221,5 +221,20 @@
              </div>
 			</div>
 		</div>
+		<input type="hidden" name="num" value="${product.product_code}">
+		<input type="hidden" name="id" value="${id}">
+		
+</form>
+<script>
+    function btn_click(str){                             
+        if(str=="purchase"){                                 
+            frm1.action="${pageContext.request.contextPath}/purchaseAction.go";      
+        } else if(str=="delete"){      
+            frm1.action="/manage/delete";      
+        }  else {
+            //...
+        }
+    }
+</script>
 </body>
 </html>
