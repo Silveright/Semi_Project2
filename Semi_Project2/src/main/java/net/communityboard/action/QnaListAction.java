@@ -14,8 +14,10 @@ public class QnaListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(false);
+		forward.setPath("community_board/QnaList.jsp");
+		return forward;
 	}
 
 }
