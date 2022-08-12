@@ -13,6 +13,7 @@ public class Customer {
 	private String register_date;	
 	private String grade;	
 	private int secondhand_code;
+	private String address_detail;
 	
 	public String getId() {
 		return id;
@@ -85,7 +86,14 @@ public class Customer {
 	}
 	public void setSecondhand_code(int secondhand_code) {
 		this.secondhand_code = secondhand_code;
-	}		
+	}
+	public String getAddress_detail() {
+		return address_detail;
+	}
+	public void setAddress_detail(String address_detail) {
+		this.address_detail = address_detail;
+	}
+			
 	
 	
 }
