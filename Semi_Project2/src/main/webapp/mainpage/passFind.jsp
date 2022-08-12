@@ -34,6 +34,7 @@
 </body>
 <script>
 	$("#page").load("${pageContext.request.contextPath}/mainpage/emailcerti.jsp");
+	$("#page").attr("class", "list-group list-group-flush");
 
 	$("input").change(function(){
 		var value = $("input[type=radio]:checked").val();
@@ -45,7 +46,6 @@
 		}
 	})
 	
-	$("#page").attr("class", "list-group list-group-flush")
 	
 
 		

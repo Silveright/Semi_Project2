@@ -18,6 +18,7 @@ public class MemberSelfCertiAction implements Action{
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String certi_type = request.getParameter("certi");
+		System.out.println("id=" + id);
 		System.out.println("name=" + name);
 		System.out.println("email=" + email);
 		System.out.println("phone=" + phone);
@@ -48,7 +49,7 @@ public class MemberSelfCertiAction implements Action{
 			forward.setPath("mainpage/selfCerti.jsp");
 			return forward; 
 		} else {
-			String message = "해당하는 password를 찾을 수 없습니다. 다시 입력해주세요.";
+			String message = "해당 비밀번호를 찾을 수 없습니다. 다시 입력해주세요.";
 
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();

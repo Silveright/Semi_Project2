@@ -199,7 +199,7 @@ $(function(){
 				}
 			})
 		});
-	
+
 	$('#signup').on('click',		
 		function() {			
 			$('form').attr("action","agreeProcess.net");

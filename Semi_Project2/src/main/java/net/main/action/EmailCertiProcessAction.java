@@ -19,15 +19,21 @@ public class EmailCertiProcessAction implements Action{
 		System.out.println("code_input=" + code_input);
 		System.out.println("code_send=" + code_send);
 		
-		PrintWriter out = response.getWriter();
+		PrintWriter writer = response.getWriter();
+		
+//		if(code_input.equals(code_send)) {
+//			writer.println("<script>alert('인증코드가 확인되었습니다'); history.back(); </script>"); 
+//		} else {
+//			writer.println("<script>alert('인증코드가 틀렸습니다'); location.href='mainpage/selfCerti.jsp';</script>"); 
+//		}
 
 		if(code_input.equals(code_send)) {
-			out.print(1);
+			writer.print(1);
 		} else {
-			out.print(-1);
+			writer.print(-1);
 		}
 		
-		session.invalidate();
+//		session.invalidate();
 		return null; 
 	}
 }

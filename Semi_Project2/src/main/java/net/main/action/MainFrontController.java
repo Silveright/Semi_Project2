@@ -82,7 +82,7 @@ public class MainFrontController extends javax.servlet.http.HttpServlet {
 			
 		case "/selfCerti.net":
 			action = new MemberSelfCertiAction(); 
-			break;			
+			break;	
 			
 		case "/passFindSuccess.net":
 			action = new MemberPassFindSuccessAction(); 
