@@ -59,16 +59,16 @@ table td input {
 					</tr>
 					<tr>
 						<td class="table-active text-center">구매제품</td>
-						<td><input type="text" class="form-control" name="product" ReadOnly></td>
+						<td><input type="text" class="form-control" value=${reviewinfo.product_name } name="product" ReadOnly></td>
 					</tr>
 					<tr>
 					<c:if test="${reviewinfo.review_re_lev==0}">
 						<td class="table-active text-center">첨부파일</td>
-						<td><label for="upfile"> <img src="${pageContext.request.contextPath}/image/attach.png"
+						<td><label for="upfile"> <img src="${pageContext.request.contextPath}/image/mypage/attach.png"
 								alt="파일첨부" width="20px">
 						</label> <input type="file" id="upfile" name="review_file"> <span
 							id="filevalue">${reviewinfo.review_file}</span>
-							<img src="image/remove.png" alt="파일삭제" width="10px" class="remove"></td>
+							<img src="image/mypage/remove.png" alt="파일삭제" width="10px" class="remove"></td>
 					</c:if>
 					</tr>
 					<tr>

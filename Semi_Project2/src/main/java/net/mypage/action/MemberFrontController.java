@@ -88,12 +88,16 @@ public class MemberFrontController extends javax.servlet.http.HttpServlet{
 			action = new AddresslistModifyProcessAction(); 
 			break;
 			
-		case "/memberrivewlist.pg": 
+		case "/memberreviewlist.pg": 
 			action = new MemberReviewListAction();
 			break;	
 			
 		case "/orderlist.pg": 
 			action = new OrderListAction();
+			break;	
+			
+		case "/ordercancellist.pg": 
+			action = new OrderCancelListAction();
 			break;	
 		
 		case "/reviewwrite.pg":
@@ -111,7 +115,35 @@ public class MemberFrontController extends javax.servlet.http.HttpServlet{
 		case "/ordercancel.pg":
 			action = new OrdercancelAction();
 			break;
-		
+
+		case "/deliveryok.pg":
+			action = new DeliveryOkAction();
+			break;
+			
+		case "/reviewfiledown.pg":
+			action = new ReviewFileDownAction();
+			break;
+			
+		case "/reviewcommentlist.pg":
+			action = new ReviewCommentList(); 
+			break;
+
+		case "/reviewcommentadd.pg":
+			action = new ReviewCommentAddAction(); 
+			break;
+			
+		case "/reviewcommentdelte.pg":
+			action = new ReviewCommentDeleteAction(); 
+			break;
+			
+		case "/reviewcommentreply.pg":
+			action = new ReviewCommentReplyAction(); 
+			break;
+			
+		case "/reviewcommentupdate.pg":
+			action = new ReviewCommentUpdateAction(); 
+			break;
+			
 		/*
 		 * 
 		 * case "/memberrivewlist.pg": action = new MemberReviewListAction(); break;

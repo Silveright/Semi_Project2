@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MemberJoinSuccessAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		ActionForward forward = new ActionForward();
 		forward.setPath("mainpage/joinSuccess.jsp");
 		forward.setRedirect(false); 

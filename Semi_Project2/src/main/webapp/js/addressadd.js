@@ -1,4 +1,88 @@
 $(document).ready(function(){
+	
+	var checkphone=false;
+	
+	$("#phone").on('keyup',
+				function(){
+					
+					
+					$("#message").empty();
+					
+					var pattern = /^\d{3,4}\d{4}$/;
+					var phone = $("#phone").val();
+					if(!pattern.test(phone)){
+						$("#message").css('color', 'red').html("영문자 숫자 _로 5~12자 가능합니다.");
+						checkphone=false;
+					}else{
+						$("#message").css('color', 'green').html("전화번호 형식에 맞습니다.");
+						checkphone=true;
+					}
+				})
+	
+	$('#myform').submit(function(){
+			var addressname = $.trim($('#addressname').val());
+			if(addressname ==''){
+				alert('배송지명을 입력하세요');
+				$('#addressname').focus();
+				return false;
+			}
+
+			var receiver=$.trim($('#receiver').val());
+			if(receiver ==''){
+				alert('수령인을 입력하세요');
+				$('#receiver').focus();
+				return false;
+			}
+			var phone=$.trim($('#phone').val());
+			if(phone ==''){
+				alert('전화번호를 입력하세요');
+				$('#phone').focus();
+				return false;
+			}
+			var post1=$.trim($('#post1').val());
+			if(post1 ==''){
+				alert('우편번호를 입력하세요');
+				$('#post1').focus();
+				return false;
+			}
+			
+			if(!$.isNumeric($("#post1").val())){
+				alert("우편번호는 숫자만 입력 가능합니다.")
+				$("#post1").val("").focus();
+				return false;
+			}
+
+			if(!$.isNumeric($("#phone").val())){
+				alert("전화번호는 숫자만 입력 가능합니다.")
+				$("#phone").val("").focus();
+				return false;
+			}
+			
+			
+			var address = $.trim($('#address1').val());
+			if (address ==''){
+				alert('주소를 입력하세요');
+				$('#address1').focus();
+				return false;
+			}
+
+			var address = $.trim($('#address2').val());
+			if (address ==''){
+				alert('상세주소를 입력하세요');
+				$('#address2').focus();
+				return false;
+			}
+			if(!checkphone){
+				alert("전화번호 형식을 확인하세요");
+				$('#phone').focus();
+				return false;
+			}
+			
+			
+			
+	})
+	
+	
 		$('#postcode').click(function(){
 			new daum.Postcode({
             oncomplete: function(data) {
@@ -29,8 +113,13 @@ $(document).ready(function(){
                 }
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
               $("#post1").val(data.zonecode);
-              $("#address").val(fullRoadAddr);
+              $("#address1").val(fullRoadAddr);
             }
         }).open();
 		})
+		
+		
+		
+		
+		
 	})

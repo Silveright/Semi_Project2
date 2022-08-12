@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
   <head>
 	 <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>주문 완료</title>
 	<jsp:include page="/mainpage/header.jsp"/>
+	<script src="js/jquery-3.6.0.js"></script>
 	  <style>
   .fakeimg {
     height: 200px;
@@ -58,7 +61,9 @@
 			<thead>
 				<tr style="font-weight: bolder; font-size: 13pt;">
 					<th>총 주문 금액</th>
-					<td style="width: 85%">원</td>
+					<td style="width: 85%"><fmt:formatNumber  value="${sum+p.product_price+total_product}" pattern="#,###" />
+						<input type="hidden" name="totalprice" value="${sum }"><!-- 결제 시 결제화면에 담아갈 총금액 정보-->
+									원</td>
 				</tr>	
 			</thead>
 			<tbody>	
@@ -88,12 +93,17 @@
 									<td>합계</td>
 								</tr>
 								<tr class="align-middle">
-									<td><img src="../image/profile.png" width="77px"></td>
-									<td>상품명 예시</td>
-									<td>수량</td>
-									<td>상품구매금액</td>
-									<td>배송비</td>
-									<td>합계</td>
+									<td><img src="${pageContext.request.contextPath}/image/main/product/${p.product_image}.jpg" alt="${p.product_image}" width="77px"></td>
+									<td>${p.product_name}</td>
+								 <td>${count }</td>
+									<c:set var="total_product" value="${p.product_price * count }"/>
+								<td><fmt:formatNumber  value="${total_product }" pattern="#,###" /></td>
+								<td><fmt:formatNumber  value="2500" pattern="#,###" /></td>
+									<c:set var="sum" value="2500"/>
+								<td>
+									<fmt:formatNumber  value="${sum+p.product_price+total_product}" pattern="#,###" /> 
+									<input type="hidden" name="totalprice" value="${sum }"><!-- 결제 시 결제화면에 담아갈 총금액 정보-->
+									</td>
 
 										
 							</table>

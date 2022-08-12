@@ -67,7 +67,7 @@ img { margin: 0 auto; object-fit: cover; }
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 								<div class="text-center">
 									<!-- product_code 상세페이지로 get방식으로 넘겨주기 --> 
-									<a class="btn btn-outline-dark mt-auto" href="productdetail.pg?product_code=${p.product_code}">상세보기</a>  
+									<a class="btn btn-outline-dark mt-auto" href=" detail.do?product_code=${product.product_code} ">상세보기</a>  
 								</div>
 							</div>
 						</div>

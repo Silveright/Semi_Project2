@@ -1,16 +1,14 @@
 package net.payment.db;
 
-import java.io.UnsupportedEncodingException;
-import java.security.GeneralSecurityException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.activation.DataSource;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 public class MemberDAO_SM implements InterMemberDAO_SM {
 		
@@ -47,14 +45,14 @@ public class MemberDAO_SM implements InterMemberDAO_SM {
 	    
 	    // 회원정보를 조회하는 메소드 (getParameter로 넘어온 id를 이용) -> 회원명,주소,연락처,이메일
 		@Override
-		public MemberVO_SM showMemberInfo(String id) throws SQLException {
+		public MemberVO_SM showMemberInfo(String id)  {
 			
 			MemberVO_SM member = null;
 			
 			try {
 				conn = ds.getConnection();
 				
-				String sql = " select name, address, tel, email " + 
+				String sql = " select name, post, address, extraaddress, tel, email " + 
 							 " from customer " + 
 							 " where id = ? ";
 				
@@ -69,18 +67,19 @@ public class MemberDAO_SM implements InterMemberDAO_SM {
 					member.setName(rs.getString(1));
 					member.setPost(rs.getString(2));
 					member.setAddress(rs.getString(3));
-					member.setTel(rs.getString(4)); 
-					member.setEmail(rs.getString(5)); 
+					member.setExtraaddress(rs.getString(4));
+					member.setTel(rs.getString(5)); 
+					member.setEmail(rs.getString(6)); 
 				}
 				
-			} catch(GeneralSecurityException | UnsupportedEncodingException e) {
-				e.printStackTrace();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				System.out.println("getListCount() 에러: " + ex);
 			} finally {
 				close();
 			}
 			
 			return member;
-		}// end of public MemberVO_SM showMemberInfo(String userid)----------------------------
-
+		}
 	
 	}

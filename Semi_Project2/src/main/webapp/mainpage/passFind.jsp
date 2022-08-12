@@ -17,7 +17,7 @@
 		<div class="card-body">
 			<h2 class="card-title text-center m-5" style="font-weight:bold">비밀번호 찾기</h2>
 		</div>
-		<form id="passfind" action="selfCerti.net">
+		<form id="passfind" action="selfCerti.net" method="post">
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item">인증수단
 					<span>
@@ -34,6 +34,7 @@
 </body>
 <script>
 	$("#page").load("${pageContext.request.contextPath}/mainpage/emailcerti.jsp");
+	$("#page").attr("class", "list-group list-group-flush");
 
 	$("input").change(function(){
 		var value = $("input[type=radio]:checked").val();
@@ -45,7 +46,6 @@
 		}
 	})
 	
-	$("#page").attr("class", "list-group list-group-flush")
 	
 
 		

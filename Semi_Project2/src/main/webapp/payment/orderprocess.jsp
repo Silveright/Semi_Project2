@@ -1,13 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="../mainpage/header.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
 <title>주문내역</title>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 다음 우편번호찾기 -->
-<script type="text/javascript">
+
+
+<style>
+textarea {
+	width: 100%;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
+
+	table#DeliveryInfo{ /* 배송 정보 테이블  */
+        width: 100%;
+	}  
+	table#DeliveryInfo tr {
+        /* line-height: 30px; */
+        border-top: solid 1px #d9d9d9;
+        border-bottom: solid 1px #d9d9d9;
+	}
+	table#DeliveryInfo th {
+		border-right: solid 1px #d9d9d9;
+		width: 15%;
+		padding-left: 8px;
+	}
+	table#DeliveryInfo td {
+		padding-left: 8px;
+		padding-top: 8px;
+        padding-bottom: 8px;
+	}
+	.star { /* 필수 입력 사항 표시 */
+		color: red;
+        font-weight: bold;
+        font-size: 15pt;
+	}
+	
+	
+	
+</style>
+<script src="js/jquery-3.6.0.js"></script>
+
+<script>
 var b_flagPostcodeClick = false;
 // 결제하기 버튼을 클릭시 "우편번호찾기" 를 클릭했는지 클릭안했는지를 알아보기위한 용도임.
 $(document).ready(function(){
@@ -42,63 +80,10 @@ $(document).ready(function(){
 	
 	
 	
-	$("button#postcode").click(function(){
+	$("input#address_detail").blur(function(){
 		
-		b_flagPostcodeClick = true; 
-		// 결제하기 버튼을 클릭시 "우편번호찾기" 를 클릭했는지 클릭안했는지를 알아보기위한 용도임.
-		
-	   new daum.Postcode({
-	         oncomplete: function(data) {
-	             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-	
-	             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-	             // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-	             var addr = ''; // 주소 변수
-	             var extraAddr = ''; // 참고항목 변수
-	
-	             //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-	             if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-	                 addr = data.roadAddress;
-	             } else { // 사용자가 지번 주소를 선택했을 경우(J)
-	                 addr = data.jibunAddress;
-	             }
-	
-	             // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-	             if(data.userSelectedType === 'R'){
-	                 // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-	                 // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-	                 if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-	                     extraAddr += data.bname;
-	                 }
-	                 // 건물명이 있고, 공동주택일 경우 추가한다.
-	                 if(data.buildingName !== '' && data.apartment === 'Y'){
-	                     extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-	                 }
-	                 // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-	                 if(extraAddr !== ''){
-	                     extraAddr = ' (' + extraAddr + ')';
-	                 }
-	                 // 조합된 참고항목을 해당 필드에 넣는다.
-	                 document.getElementById("extraAddress").value = extraAddr;
-	             
-	             } else {
-	                 document.getElementById("extraAddress").value = '';
-	             }
-	
-	             // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	             document.getElementById('postcode').value = data.zonecode;
-	             document.getElementById("address").value = addr;
-	             // 커서를 상세주소 필드로 이동한다.
-	             document.getElementById("detailAddress").focus();
-	         }
-	     }).open();               
-	});
-	
-	
-	$("input#detailAddress").blur(function(){
-		
-		var detailAddress = $(this).val().trim();
-		if(detailAddress == ""){
+		var address_detail = $(this).val().trim();
+		if(address_detail == ""){
 			// 입력하지 않거나 공백만 입력한 경우
 			$("table#DeliveryInfo :input").prop("disabled",true); 
 			$(this).prop("disabled",false);
@@ -116,7 +101,7 @@ $(document).ready(function(){
 			$(this).parent().find(".error").hide();
 		}
 		
-	});// 아이디가 detailAddress 인 것은 포커스를 잃어버렸을 경우(blur) 이벤트를 처리해주는 것이다.
+	});// 아이디가 address_detail 인 것은 포커스를 잃어버렸을 경우(blur) 이벤트를 처리해주는 것이다.
 	
 	
 	
@@ -209,9 +194,10 @@ $(document).ready(function(){
 		
 		b_flagPostcodeClick = true; // 우편번호찾기 버튼을 굳이 클릭안하도록 함.
 		
-		$("input#postcode").val("${memberinfo.postcode}");
+		$("input#post").val("${memberinfo.post}");
 		$("input#address").val("${memberinfo.address}");
-		$("input#detailAddress").val("${memberinfo.detailaddress}");
+		$("input#address_detail").val("${memberinfo.address_detail}");
+		$("input#email").val("${memberinfo.email}");
 		
 		
 		$("input#hp2").val("${ fn:substring(memberinfo.tel, 3, 7) }");
@@ -219,18 +205,20 @@ $(document).ready(function(){
 		
 	});
 	
+
 	$("input#destinationNew").click(function(){ // 배송지 선택에서 "새로운 배송지"를 클릭하면 기존 정보 없앰.
 		
 		$("input#name").val("");
 		
 		b_flagPostcodeClick = false;
 		
-		$("input#postcode").val("");
+		$("input#post").val("");
 		$("input#address").val("");
-		$("input#detailAddress").val("");
+		$("input#address_detail").val("");
 		
 		$("input#hp2").val("");
 		$("input#hp3").val("");
+		$("input#email").val("");
 		
 	});
 	
@@ -266,46 +254,64 @@ $(document).ready(function(){
 			alert("우편번호찾기를 클릭하여 배송 정보에 주소를 입력하세요!!");
 			return; // 종료
 		}
+	}//goPurchase() end
+	
+});//ready end
+
+	// 결제하기 버튼 클릭시, 배송 정보를 넘겨줘야함.
+	function goPurchase(){
+		
+		// *** 필수입력사항에 모두 입력이 되었는지 검사한다. *** //
+		var boolFlag = false;
+		
+		$("input.requiredInfo").each(function(){
+			var data = $(this).val().trim();
+			if(data == "") {
+				alert("*표시된 필수입력사항은 모두 입력하셔야 합니다.");
+				boolFlag = true;
+				return false; // break; 라는 뜻이다.
+			}
+		});
 		
 		
+		if(boolFlag){
+			return; // 종료
+		}
+		
+		
+		if( $("input#destinationSame").prop("checked") ){
+			b_flagPostcodeClick = true; // 회원정보와 동일이 체크가 되어져있으면, "우편번호찾기"를 클릭했는지 검사할 필요 없음.
+		}
+		
+		
+		if(!b_flagPostcodeClick){
+			// "우편번호찾기" 를 클릭했는지 클릭안했는지를 알아보기위한 용도임.
+			alert("우편번호찾기를 클릭하여 배송 정보에 주소를 입력하세요!!");
+			return; // 종료
+		}
+	}//goPurchase() end
+	
+	function dispList(selectList) {
+	    var obj1 = document.getElementById("sc1_list"); // 상품1 리스트
+	    var obj2 = document.getElementById("sc2_list"); // 상품2 리스트
+	 
+	    if( selectList == "0" ) { // 상품1 리스트
+	        obj1.style.display = "block";	
+	        obj2.style.display = "none";
+	        alert(	obj.style.display ) ;
+	    } else { // 상품2 리스트
+	        obj1.style.display = "none";
+	        obj2.style.display = "block";
+	    }
+	}
+	
 </script>
-
-<style>
-textarea {
-	width: 100%;
-  top: 0; left: 0; right: 0; bottom: 0;
-}
-
-	table#DeliveryInfo{ /* 배송 정보 테이블  */
-        width: 100%;
-	}  
-	table#DeliveryInfo tr {
-        /* line-height: 30px; */
-        border-top: solid 1px #d9d9d9;
-        border-bottom: solid 1px #d9d9d9;
-	}
-	table#DeliveryInfo th {
-		border-right: solid 1px #d9d9d9;
-		width: 15%;
-		padding-left: 8px;
-	}
-	table#DeliveryInfo td {
-		padding-left: 8px;
-		padding-top: 8px;
-        padding-bottom: 8px;
-	}
-	.star { /* 필수 입력 사항 표시 */
-		color: red;
-        font-weight: bold;
-        font-size: 15pt;
-	}
-	
-	
-	
-</style>
 </head>
 <body>
-<form>
+<form action="주문완료 페이지 링크.go">
+<!-- 결제 화면에서 받아가야 할 정보를 hidden으로 처리했습니다. -->
+<input type="hidden" name="" value="${p.product_image}">
+<input type="hidden" name="" value="${p.product_name}">
 	<div class="container">
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">
@@ -327,76 +333,21 @@ textarea {
 									<td>합계</td>
 								</tr>
 								<tr class="align-middle">
-									<td><img src="../image/profile.png" width="77px"></td>
-									<td>상품명 예시</td>
-									<td>수량</td>
-									<td>상품구매금액</td>
-									<td>배송비</td>
-									<td>합계</td>
+									<td><img src="${pageContext.request.contextPath}/image/main/product/${p.product_image}.jpg" alt="${p.product_image}" width="77px"></td>
+									<td>${p.product_name}</td>
+								 <td>${count }</td>
+									<c:set var="total_product" value="${p.product_price * count }"/>
+								<td><fmt:formatNumber  value="${total_product }" pattern="#,###" /></td>
+								<td><fmt:formatNumber  value="2500" pattern="#,###" /></td>
+									<c:set var="sum" value="2500"/>
+								<td>
+									<fmt:formatNumber  value="${sum+p.product_price+total_product}" pattern="#,###" /> 
+									<input type="hidden" name="totalprice" value="${sum }"><!-- 결제 시 결제화면에 담아갈 총금액 정보-->
+									</td>
 
 										
 							</table>
 							<br>
-			<!-- 
-				<div>
-					<b>주문 정보</b>
-				</div>
-				<hr
-					style="height: 2px; opacity: 1; background-color: black; margin: 0 auto">
-				<br>
-							
-			<table class="table table-bordered ">
-					<tr>
-						<td class="table-active text-center" style="width: 20%">주문하시는 분</td>
-						<td><input type="text" name='' value= ></td>
-					</tr>
-					<tr>
-						<td class="table-active text-center">주소</td>
-						<td><input type="text" name="post" value="${memberinfo.post }" class="my-1">
-						<button type="button" class="btn-sm btn-dark">우편번호</button><br>
-							<input type="text" name="post" value="${memberinfo.post }"></td>
-					</tr>
-					<tr>
-						<td class="table-active text-center">휴대전화</td>
-						<td><input type="text" name="address1" class="me1">
-						-<input type="text" name="address1" class="me1">
-						-<input type="text" name="address1" class="me1"></td>
-					</tr>
-					<tr>
-						<td class="table-active text-center">이메일</td>
-						<td><input type="text" name="address1" value="${memberinfo.address }" >
-						@ <input type="text" name="address1" class="me-1" value="${memberinfo.address }" ></td>
-					</tr>
-					<tr>
-						<td class="text-center table-active" colspan="2">배송정보</td>
-					</tr>
-					<tr>
-						<td class="table-active text-center">받으시는 분</td>
-						<td><input type="text" name="post" value="${memberinfo.post }"></td>
-					</tr>
-					<tr>
-						<td class="table-active text-center">주소</td>
-						<td><input type="text" name="post" value="${memberinfo.post }" class="my-1">
-						<button type="button" class="btn-sm btn-dark">우편번호</button><br>
-							<input type="text" name="post" value="${memberinfo.post }"></td>
-					</tr>
-					<tr>
-						<td class="table-active text-center">휴대전화</td>
-						<td><input type="text" name="address1" class="me1">
-						-<input type="text" name="address1" class="me1">
-						-<input type="text" name="address1" class="me1"></td>
-					</tr>
-					<tr>
-						<td class="table-active text-center">배송메세지</td>
-						<td><textarea></textarea></td>
-					</tr>
-				</table>
-				<br>
-					<div style="margin-bottom: 10px; font-size: 15px;">상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</div>
-				<br>		
-				 -->
-					
-					<!-- 배송 정보 form 테이블 시작 -->
 					
 						<br>
 				<div style="clear: both; margin-top: 40px; margin-bottom: 10px; ">
@@ -434,7 +385,8 @@ textarea {
 							<input type="button" class="btn-sm btn-dark" id="postcode" name="postcode" value="우편번호" readOnly><br/>
 
 							<input type="text" id="address" name="address" value="${memberinfo.address}" size="40" readonly class="requiredInfo" placeholder="주소" required style="margin-top: 4px;"/><br/>
-	            			<input type="text" id="detailAddress" name="detailAddress" value="${memberinfo.detailaddress }" size="40" class="requiredInfo" placeholder="상세주소" required style="margin-top: 4px;"/><br/>
+	            			<input type="text" id="address_detail" name="address_detail" size="40" class="requiredInfo" placeholder="상세주소" required style="margin-top: 4px;"/><br/>
+							<!-- 회원 테이블에 detail주소가 빠져서 쓸 수 없음 직접 입력하도록 해야함 -->
 							
 							<span class="error">주소를 입력하세요</span>
 						</td> 
@@ -482,10 +434,14 @@ textarea {
 						<td class="text-center" style="width: 20%">총 결제예정 금액</td>
 					</tr>
 					<tr>
-						<td class="text-center" style="width: 20%"></td>
-						<td class="text-center" style="width: 20%"></td>
-						<td class="text-center" style="width: 20%"></td>
+						<td class="text-center" style="width: 20%"><fmt:formatNumber  value="${total_product }" pattern="#,###" /></td>
+						<td class="text-center" style="width: 20%"><fmt:formatNumber  value="2500" pattern="#,###" /></td>
+						<c:set var="sum" value="2500"/>
+						<td class="text-center" style="width: 20%"><fmt:formatNumber  value="${sum+p.product_price+total_product}" pattern="#,###" />
+						<input type="hidden" name="totalprice" value="${sum }"><!-- 결제 시 결제화면에 담아갈 총금액 정보-->
+									</td>
 					</tr>
+					
 				</table>
 				
 				<br>
@@ -497,29 +453,60 @@ textarea {
 
 					<div class="container-fluid border p-3 my-custom-container">
 
-
-					<input type="radio" id="huey" name="drone" value="huey" checked> <label
-						for="huey">무통장입금</label> 
-					<input type="radio" id="dewey"
-						name="drone" value="dewey"> <label for="dewey">카드결제</label>
-
+					<!-- 
+					<input type="radio" id="huey" name="drone" value="huey" checked> 
+					<label for="huey">무통장입금</label> 
+					<input type="radio" id="dewey" name="drone" value="dewey"> 
+					<label for="dewey">카드결제</label>
+				
 					<table class="table table-bordered ">
 					<tr>
 						<td class="table-active text-center" style="width: 20%">입금자명</td>
-						<td><input type="text" name='' value= ></td>
+						<td><input type="text" name='' value='${memberinfo.name}' ></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">입금은행</td>
 						<td><input type="text" name="post" value="XX은행 110-123-567890" class="my-1">
 						</td>
 					</tr>
-				</table>
+					</table>
+					-->
+					<input type="radio" name="choose" id="sc1" onclick="dispList('0');" checked> 무통장입금
+					<input type="radio" name="choose" id="sc2" onclick="dispList('1');"> 카드결제
+					
+					<div id="sc1_list" style="display:none">
+ 					<table class="table table-bordered ">
+					<tr>
+						<td class="table-active text-center" style="width: 20%">입금자명</td>
+						<td><input type="text" name='' value='${memberinfo.name}' ></td>
+					</tr>
+					<tr>
+						<td class="table-active text-center">입금은행</td>
+						<td><input type="text" name="post" value="XX은행 110-123-567890" class="my-1">
+						</td>
+					</tr>
+					</table>
 					<input type="radio" name="b" checked> <label
 						for="huey" >현금영수증 신청</label> 
 					<input type="radio" name="b"> <label for="dewey">신청 안 함</label>
-					<a href="http://localhost:8088/" onclick="window.open('payment.jsp','width=900,height=600',resizable=1);">
+					
+					<a href="" onclick="window.open('payment.go','width=900,height=600',resizable=1);">
 					<button type="submit" class="btn btn-dark float-end">결제하기</button>
 					</a>
+					</div>
+					</div>
+					
+					<div id="sc2_list" style="display:none">
+					<table class="table table-bordered ">
+					<tr>
+					<td>
+					<a href="" onclick="window.open('payment.go','width=900,height=600',resizable=1);">
+					<button type="submit" class="btn btn-dark float-end">결제하기</button>
+					
+					</a>
+					</td>
+					</tr>
+					</table>
 					</div>
 					<br>
 	
@@ -585,7 +572,8 @@ textarea {
 				</div>
 		</div>
 	</div>
-
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 다음 우편번호찾기 -->
+<script src="js/order.js" charset="utf-8"></script>
 </form>
 </body>
 </html>

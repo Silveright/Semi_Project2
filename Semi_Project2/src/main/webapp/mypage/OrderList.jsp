@@ -6,8 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <title>주문내역</title>
 <style>
+a{text-decoration:none}
 </style>
 </head>
 <body>
@@ -22,7 +24,6 @@
 				<hr
 					style="height: 2px; opacity: 1; background-color: black; margin: 0 auto">
 				<br>
-				<c:if test="${!empty list || !empty cancel }"> 
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item" role="presentation">
 						<button class="nav-link active" id="userinfo-tab"
@@ -30,9 +31,9 @@
 							role="tab" aria-controls="userinfo" aria-selected="true">주문내역조회</button>
 					</li>
 					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="myreview-tab" data-bs-toggle="tab"
+						<a href="ordercancellist.pg?id=${id}"><button class="nav-link" id="myreview-tab" data-bs-toggle="tab"
 							data-bs-target="#myreview" type="button" role="tab"
-							aria-controls="myreview" aria-selected="false">주문취소내역</button>
+							aria-controls="myreview" aria-selected="false">주문취소내역</button></a><!-- 눌렀을 때 새페이지로 이동?? 거기서 바로 취소내역 탭열리게 하려면..?  -->
 					</li>
 				</ul>
 
@@ -48,7 +49,7 @@
 							<hr
 								style="height: 2px; opacity: 1; background-color: black; margin: 0 auto">
 							<br>
-							<c:if test="${!empty list}">
+							<c:if test="${!empty list }">
 							<table class="table">
 								<tr class="table-active">
 									<td>주문일자</td>
@@ -57,10 +58,12 @@
 									<td>수량</td>
 									<td>상품구매금액</td>
 									<td>주문상태</td>
-									<td align="center">취소/리뷰쓰기</td>
+									<td align="center">취소</td>
 								</tr>
 								<!-- foreach문 시작 -->
 								<c:forEach var="l" items="${list }"  varStatus="vs">
+								<c:if test="${l.orderstate=='배송 완료'||l.orderstate=='배송 전' }">
+								
 								<tr class="align-middle">
 									<td>${l.order_date}</td>
 									<td><img src="${pageContext.request.contextPath}/image/main/product/${l.product_image}.jpg" alt="${p.product_image}" width="77px"></td>
@@ -75,9 +78,13 @@
 											<button type="button" class="ms-3 btn btn-small btn-danger my-1"
 												data-bs-toggle="modal" data-bs-target="#myModal${vs.index }">
 												주문취소</button><br>
+											<a href="deliveryok.pg?num=${ l.orderitem_code}&id=${id}">
+											<button type="button" class="ms-3 btn btn-small btn-outline-dark my-1" id="deliveryok" >
+												배송완료 처리</button>
+											</a>
 											</c:if> 
-											<c:if test="${l.orderstate=='배송완료'}"> 
-											<a href="reviewwrite.pg"><button type="button" class="ms-3 btn btn-small btn-primary"
+											<c:if test="${l.orderstate=='배송 완료'}"> 
+											<a href="reviewwrite.pg?num=${ l.product_code}"><button type="button" class="ms-3 btn btn-small btn-primary"
 												>
 												리뷰쓰기</button></a>
 											</c:if> 
@@ -109,62 +116,76 @@
 										</div>
 									</td><!-- td 안 modal -->
 								</tr>
+								</c:if>
 								</c:forEach>
 								<!-- foreach문 끝 -->
 							</table>
+							
+							<div class="center-block">
+					<div class="container">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination justify-content-center">
+							<c:if test="${page <=1 }"> 
+								<li class="page-item"><a class="page-link" href="#"
+									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								</a></li>
+							</c:if>
+							<c:if test="${page > 1 }">
+								<li class="page-item"><a class="page-link" href="#"
+									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								</a></li>
+							</c:if>
+							
+							<c:forEach var="a" begin="${startpage }" end="${endpage }">
+								<c:if test="${a==page}"> 
+								<li class="page-item active">
+									<a class="page-link">${a }</a>
+								</li>
+								</c:if>
+								<c:if test="${a!=page}"> 
+								<li class="page-item">
+									<a href="orderlist.pg?id=${id }&page=${a}"  
+									class="page-link">${a }</a>
+								</li>
+								</c:if>
+							</c:forEach>
+								
+								<c:if test="${page >=maxpage}"> 
+								<li class="page-item">
+								<a class="page-link gray"
+									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+								</a></li>
+								</c:if>
+								<c:if test="${page <maxpage}"> 
+								<li class="page-item">
+								<a class="page-link" href="orderlist.pg?id=${id }&page=${page+1}"
+									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+								</a></li>
+								</c:if>
+							</ul>
+						</nav>
+					</div>
+				</div>
 							</c:if>
 							<c:if test="${empty list}">
 							<h3>주문내역이 없습니다.</h3>
+							<a href="main.net"><button type="button" class="btn btn-primary float-end">쇼핑하러가기</button>
+							</a>
 							</c:if>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="myreview" role="tabpanel"
-						aria-labelledby="myreview-tab">
-						<div class="tab-pane fade show active" id="userinfo"
-							role="tabpanel" aria-labelledby="userinfo-tab">
-							<div class="container custom">
-								<br>
-								<div>
-									<b>주문 상품 정보</b>
-								</div>
-								<hr
-									style="height: 2px; opacity: 1; background-color: black; margin: 0 auto">
-								<br>
-									<c:if test="${!empty cancel}">
-								<table class="table">
-									<tr class="table-active">
-										<td>주문일자</td>
-										<td>이미지</td>
-										<td>상품명</td>
-										<td>수량</td>
-										<td>상품구매금액</td>
-										<td>주문상태</td>
-									</tr>
-									<c:forEach var="c" items="${cancel }"  varStatus="vs">
-									<tr class="align-middle">
-										<td>${c.order_date }</td>
-										<td><img src="${pageContext.request.contextPath}/image/main/product/${c.product_image}.jpg" alt="${c.product_image}" width="77px"></td>
-										<td>${c.product_name}</td>
-										<td>${c.product_count}</td>
-										<td><fmt:formatNumber value="${c.product_price}" pattern="#,###" /></td>
-										<td>${c.orderstate}</td>
-										</tr>
-										</c:forEach>
-								</table>
-								</c:if>
-								<c:if test="${empty cancel}">
-								<h3>취소내역이 없습니다.</h3>
-								</c:if>
-							</div>
-						</div>
-					</div>
 				</div>
-			</c:if>
-			<c:if test="${empty list && empty cancel }"> --%>
-				<h1>주문 정보가 없습니다.</h1>
-			</c:if>
 			</div>
 		</div>
 	</div>
+	<script>
+	$("#userinfo > div > table > tbody >tr > td:nth-child(7) > div.container.justify-content-center > a > #deliveryok").click(function(event){
+		var answer = confirm("배송 완료로 변경하시겠습니까?");
+		console.log(answer);
+		if(!answer){
+			event.preventDefault();
+		}
+	})
+	</script>
 </body>
 </html>
