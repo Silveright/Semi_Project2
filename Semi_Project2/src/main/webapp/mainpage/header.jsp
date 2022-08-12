@@ -57,7 +57,7 @@
 					<li class="nav-item"><a class="nav-link" href="login.net"><small>로그인</small></a></li>
 					<li class="nav-item"><a class="nav-link" href="join.net"><small>회원가입</small></a></li>
 				</c:if>
-				<li class="nav-item"><a class="nav-link" href="cart.do"><small>장바구니</small></a></li>
+				<li class="nav-item"><a class="nav-link" href="cart.do?id=${id }"><small>장바구니</small></a></li>
 				<li class="nav-item"><a class="nav-link" href="wishlist.do"><small>관심상품</small></a></li>
 				<li class="nav-item"><a class="nav-link" href="mypage.pg"><small>마이페이지</small></a></li>
 				<li class="nav-item dropdown">

@@ -137,7 +137,7 @@ public class CustomerDAO {
 				m.setGender(rs.getString("gender"));
 				m.setAddress(rs.getString("address"));
 				m.setAddress_detail(rs.getString("address_detail"));
-				m.setTel(rs.getString("tel"));
+				m.setTel(rs.getString("phone"));
 				m.setEmail(rs.getString("email"));
 				System.out.println("회원정보 읽기 성공");
 			}

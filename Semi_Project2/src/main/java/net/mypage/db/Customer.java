@@ -8,11 +8,20 @@ public class Customer {
 	private String gender;
 	private String post;
 	private String address;
-	private String tel;
+	private String address_detail;
+	private String phone;
 	private String email;
 	private String register_date;	
 	private String grade;	
 	private int secondhand_code;
+	
+	public void setAddress_detail(String address_detail) {
+		this.address_detail = address_detail;
+	}
+
+	public String getAddress_detail() {
+		return address_detail;
+	}
 	
 	public String getId() {
 		return id;
@@ -56,11 +65,11 @@ public class Customer {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getTel() {
-		return tel;
+	public String getPhone() {
+		return phone;
 	}
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public String getEmail() {
 		return email;

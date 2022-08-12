@@ -1,6 +1,7 @@
 package net.product.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,8 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.product.db.CartDAO;
-import net.product.db.ProductBean;
-import net.product.db.ProductDAO;
+import net.product.db.CartDTO;
 
 public class ProductCartAction implements Action {
 
@@ -17,25 +17,21 @@ public class ProductCartAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		ActionForward forward = new ActionForward();
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("id", "id");
+		List<CartDTO> cart = null; 
+		CartDAO dao = new CartDAO();
+
+		String id = request.getParameter("id");
 		
-		String id = (String)session.getAttribute("id");
+		cart = dao.getcartList(id);
+		request.setAttribute("cart", cart);
 		
-		if(id!=null) {
-			//카트에 담기
-			CartDAO dao = new CartDAO();
-			CartDTO dto
-			//product_code=1&size=xs&size=black&p_num1=1&tabs=on&num=1&id=
-			dto.setProduct_code(request.getParameter("product_code"));
-			
-			
-		}else {
-			
-			//로그인 페이지로 이동해라
+		if(cart!=null) {
+			forward.setRedirect(false);
+			forward.setPath("product/cart.jsp");
+			return forward;
 		}
-		
 		
 		return null;
 		

@@ -57,11 +57,14 @@
 						<td><input type="text" class="form-control" name="address1" id="address1" value="${memberinfo.address }" ></td>
 					</tr>
 					<tr>
+						<td class="table-active text-center">상세주소</td>
+						<td><input type="text" class="form-control" name="address2" id="address2" value="${memberinfo.address_detail}" ></td>
+					</tr>
+					<tr>
 						<td class="table-active text-center">전화</td>
 						<td>
 							<div class="input-group ">
-							    <span class="input-group-text">010</span>
-							    <input type="text" name="tel" id="phone" class="form-control p-2" value="${memberinfo.tel }">
+							    <input type="text" name="tel" id="phone" class="form-control p-2" value="${memberinfo.phone }">
 							  </div><span id="message"></span>
 					</tr>
 					<tr>
