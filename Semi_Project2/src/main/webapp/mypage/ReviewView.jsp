@@ -6,6 +6,9 @@
 <head>
 <title>리뷰보기</title>
 <jsp:include page="../mainpage/header.jsp"/>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/reviewview.js"></script>
+<link rel="stylesheet" href="css/view.css">
 <style>
 #upfile{display:none}
 
@@ -50,8 +53,14 @@ table td input {
 						<td><input type="text" value="${reviewdata.review_subject}" class="form-control" ReadOnly></td>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea rows="10" cols="50" name="content"
-								class="form-control" ReadOnly>${reviewdata.review_content}</textarea></td>
+						<td colspan="2"><div id="ta1" contentEditable="false" style="white-space:pre;">
+${reviewdata.review_content}
+	  					<c:if test="${!empty reviewdata.review_file }">
+	  					<c:set var='src' value='${"reviewupload/"}${reviewdata.review_file}'/>
+	  					<br><img src="${src}" width="30%" alt="reviewfile">
+	  					</c:if>
+						
+						</div></td>
 					</tr>
 					<c:if test="${reviewdata.review_re_lev==0}">
 					<tr>
@@ -64,7 +73,7 @@ table td input {
 						<td class="table-active text-center">첨부파일</td>
 						<c:if test="${!empty reviewdata.review_file }">
 						<td><img src="${pageContext.request.contextPath}/image/mypage/down.png" width="10px">
-						<a href="filename=${reviewdata.review_file}">${reviewdata.review_file}</a></td>
+						<a href="reviewfiledown.pg?filename=${reviewdata.review_file}">${reviewdata.review_file}</a></td>
 						</c:if>
 					</c:if>
 					</tr>
@@ -89,7 +98,8 @@ table td input {
 													</div>
 													<form name="deleteForm" action="reviewdeleteaction.pg" method="post">
 													<!-- Modal body -->
-													<div class="modal-body"><input type="hidden" name="num" value="${param.num}" id="comment_board_num">
+													<div class="modal-body">
+													<input type="hidden" name="num" value="${param.num}" id="comment_review_num">
 											     	  <div class="form-group">
 											           <label for="pwd">비밀번호</label>
 									           			<input type="password" 
@@ -108,6 +118,33 @@ table td input {
 												</div>
 											</div>
 										</div>
+					<div class="comment-area">
+			<div class="comment-head">
+				<h3 class="comment-count">
+					댓글<sup id="count"></sup><%--superscript(윗첨자) --%>
+				</h3>
+				<div class="comment-order">
+					<ul class="comment-order-list">
+					</ul>
+				</div>
+			</div><!-- comment-head end-->
+			<ul class="comment-list">
+			</ul>
+			<div class="commnet-write">
+				<div class="comment-write-area">
+					<b class="comment-write-area-name" >${id}</b> <span
+						class="comment-write-area-count">0/200</span>
+					<textarea placeholder="댓글을 남겨보세요" rows="1"
+						class="comment-write-area-text" maxLength="200"></textarea>
+					
+				</div>
+				<div class="register-box" >
+					<div class="button btn-cancel" >취소</div><%-- 댓글의 취소는 display:none, 등록만 보이도록 합니다.--%>
+					<div class="button btn-register" >등록</div>
+				</div>
+			</div><%--commnet-write end--%>
+		</div><%-- comment-area end--%>
+										
 			</div>
 		</div>
 	</div>

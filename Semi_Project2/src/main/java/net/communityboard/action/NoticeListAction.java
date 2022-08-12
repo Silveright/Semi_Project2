@@ -13,7 +13,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import net.communityboard.db.NoticeBean;
-import net.communityboard.db.BoardDAO;
+import net.communityboard.db.NoticeDAO;
 import net.mypage.action.Action;
 import net.mypage.action.ActionForward;
 public class NoticeListAction implements Action {
@@ -21,7 +21,8 @@ public class NoticeListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		BoardDAO boarddao = new BoardDAO();
+		
+		NoticeDAO boarddao = new NoticeDAO();
 		List<NoticeBean> noticelist = new ArrayList<NoticeBean>();
 		
 		//로그인 성공시 파라미터 page가 없어요. 그래서 초기값이 필요합니다.
@@ -130,8 +131,8 @@ public class NoticeListAction implements Action {
 			 //List형식을 JsonElement로 바꾸어 주어야 object에 저장할 수 있습니다.
 			 //List => JsonElement
 			 JsonElement je = new Gson(). toJsonTree(noticelist);
-			 System.out.println("boardlist="+je.toString());
-			 object.add("boardlist", je);
+			 System.out.println("noticelist="+je.toString());
+			 object.add("noticelist", je);
 			 
 			 response.setContentType("text/html;charset=utf-8");
 			 response.getWriter().append(object.toString());

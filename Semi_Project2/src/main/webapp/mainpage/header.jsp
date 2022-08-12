@@ -35,7 +35,7 @@
 		<div class="collapse navbar-collapse flex-row-reverse">
 			<ul class="navbar-nav mb-2 mb-lg-0 ">
 				<c:if test="${!empty id}">
-					<li class="nav-item"><a class="nav-link" href="#"><small>로그아웃</small></a></li>
+					<li class="nav-item"><a class="nav-link" href="logout.net"><small>로그아웃</small></a></li>
 					<c:if test="${id=='admin'}">
 						<li class="nav-item"><a class="nav-link" href="#"><small>공지사항</small></a></li>
 						<li class="nav-item"><a class="nav-link" href="#"><small>회원정보</small></a></li>
@@ -63,9 +63,9 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><small>커뮤니티</small></a>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">FAQ</a></li>
-						<li><a class="dropdown-item" href="#">공지사항</a></li>
-						<li><a class="dropdown-item" href="#">문의사항</a></li>
+						<li><a class="dropdown-item" href="faqlist.co">FAQ</a></li>
+						<li><a class="dropdown-item" href="noticelist.co">공지사항</a></li>
+						<li><a class="dropdown-item" href="qnalist.co">문의사항</a></li>
 						<li><a class="dropdown-item" href="reviewlist.pg">리뷰</a></li>
 						<li><a class="dropdown-item" href="#">중고거래</a></li>
 					</ul></li>

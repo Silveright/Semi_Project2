@@ -31,13 +31,16 @@ public class CommunityboardFrontController extends javax.servlet.http.HttpServle
 		Action action = null;
 		
 		switch(command) {
-		case "noticelist.co":
+		case "/noticelist.co":
 			action = new NoticeListAction();
 			break;
-		case "faqlist.co":
+		case "/noticeview.co":
+			action = new NoticeViewAction();
+			break;
+		case "/faqlist.co":
 			action = new FAQListAction();
 			break;
-		case "qnalist.co":
+		case "/qnalist.co":
 			action = new QnaListAction();
 			break;
 	

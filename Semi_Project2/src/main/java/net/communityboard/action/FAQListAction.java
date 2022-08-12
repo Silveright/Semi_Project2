@@ -14,8 +14,12 @@ public class FAQListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(false);
+		forward.setPath("community_board/FAQList.jsp");
+		
+		
+		return forward;
 	}
 
 }

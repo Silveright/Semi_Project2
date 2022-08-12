@@ -31,9 +31,6 @@ public class AdminFrontController extends javax.servlet.http.HttpServlet{
 		Action action = null;
 		
 		switch(command) {
-		case "/noticeview.com":
-			action = new NoticeViewAction();
-			break;
 		case "/noticewrite.com":
 			action = new NoticeWriteAction();
 			break;

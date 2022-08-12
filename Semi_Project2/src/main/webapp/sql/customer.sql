@@ -15,8 +15,9 @@ create table customer(
 
 	--seconhand_board 테이블 생성후에 추가해줄것
 	secondhand_code		number(5) references secondhand_board(secondhand_code) on delete cascade
+
+	select * from customer
 	
-select * from customer;
 
 --예시
 insert into customer

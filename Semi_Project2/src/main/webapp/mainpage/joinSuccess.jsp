@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-
-<link href="${pageContext.request.contextPath}/css/join.css" type="text/css" rel="stylesheet">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 <head>
 <jsp:include page="header.jsp" />
 <style>
 	.card {width: 700px;}
-	li span {width:80px; float:right; display: inline-block; text-align:center;}
-	.card ul {width: 300px; margin: 0 auto;}
+	li span {width:200px; float:right; display: inline-block; text-align:center;}
+	.card ul {width: 500px; margin: 0 auto;}
 	.card button {width: 100%; height: 58px}
 	.card {margin: 0 auto;}
 </style>
@@ -20,10 +19,10 @@
 			<h5 class="card-subtitle text-center mb-5" style="color: darkgray">THANK YOU!</h5>
 		</div>
 		<ul class="list-group list-group-flush">
-			<li class="list-group-item">아이디<span>id</span></li>
-			<li class="list-group-item">이름<span>name</span></li>
-			<li class="list-group-item">이메일<span>email</span></li>
-			<li class="list-group-item">휴대폰 번호<span>phone</span></li>
+			<li class="list-group-item">아이디<span>${join_result.id}</span></li>
+			<li class="list-group-item">이름<span>${join_result.name}</span></li>
+			<li class="list-group-item">이메일<span>${join_result.email}</span></li>
+			<li class="list-group-item">휴대폰 번호<span>${join_result.phone}</span></li>
 		</ul>
 		<div class="row g-2 m-5">
 			<div class="col-6">
