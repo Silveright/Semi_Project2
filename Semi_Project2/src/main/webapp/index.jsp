@@ -6,4 +6,4 @@
 
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<jsp:forward page="/main.net"/>
+<jsp:forward page="/purchaseAction.go"/>

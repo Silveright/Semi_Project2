@@ -2,6 +2,7 @@ package net.payment.db;
 
 public class MemberVO_SM {
 	
+	private String id;					// 아이디
 	private String name; 				// 회원명
 	private String post;				// 우편번호
 	private String address; 			// 주소
@@ -9,6 +10,12 @@ public class MemberVO_SM {
 	private String email; 				// 이메일 
 	private String tel; 				// 연락처 
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
