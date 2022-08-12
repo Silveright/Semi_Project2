@@ -290,8 +290,21 @@ $(document).ready(function(){
 			return; // 종료
 		}
 	}//goPurchase() end
-		
-
+	
+	function dispList(selectList) {
+	    var obj1 = document.getElementById("sc1_list"); // 상품1 리스트
+	    var obj2 = document.getElementById("sc2_list"); // 상품2 리스트
+	 
+	    if( selectList == "0" ) { // 상품1 리스트
+	        obj1.style.display = "block";	
+	        obj2.style.display = "none";
+	        alert(	obj.style.display ) ;
+	    } else { // 상품2 리스트
+	        obj1.style.display = "none";
+	        obj2.style.display = "block";
+	    }
+	}
+	
 </script>
 </head>
 <body>
@@ -440,12 +453,12 @@ $(document).ready(function(){
 
 					<div class="container-fluid border p-3 my-custom-container">
 
-
-					<input type="radio" id="huey" name="drone" value="huey" checked> <label
-						for="huey">무통장입금</label> 
-					<input type="radio" id="dewey"
-						name="drone" value="dewey"> <label for="dewey">카드결제</label>
-
+					<!-- 
+					<input type="radio" id="huey" name="drone" value="huey" checked> 
+					<label for="huey">무통장입금</label> 
+					<input type="radio" id="dewey" name="drone" value="dewey"> 
+					<label for="dewey">카드결제</label>
+				
 					<table class="table table-bordered ">
 					<tr>
 						<td class="table-active text-center" style="width: 20%">입금자명</td>
@@ -456,13 +469,44 @@ $(document).ready(function(){
 						<td><input type="text" name="post" value="XX은행 110-123-567890" class="my-1">
 						</td>
 					</tr>
-				</table>
+					</table>
+					-->
+					<input type="radio" name="choose" id="sc1" onclick="dispList('0');" checked> 무통장입금
+					<input type="radio" name="choose" id="sc2" onclick="dispList('1');"> 카드결제
+					
+					<div id="sc1_list" style="display:none">
+ 					<table class="table table-bordered ">
+					<tr>
+						<td class="table-active text-center" style="width: 20%">입금자명</td>
+						<td><input type="text" name='' value='${memberinfo.name}' ></td>
+					</tr>
+					<tr>
+						<td class="table-active text-center">입금은행</td>
+						<td><input type="text" name="post" value="XX은행 110-123-567890" class="my-1">
+						</td>
+					</tr>
+					</table>
 					<input type="radio" name="b" checked> <label
 						for="huey" >현금영수증 신청</label> 
 					<input type="radio" name="b"> <label for="dewey">신청 안 함</label>
+					
 					<a href="" onclick="window.open('payment.go','width=900,height=600',resizable=1);">
 					<button type="submit" class="btn btn-dark float-end">결제하기</button>
 					</a>
+					</div>
+					</div>
+					
+					<div id="sc2_list" style="display:none">
+					<table class="table table-bordered ">
+					<tr>
+					<td>
+					<a href="" onclick="window.open('payment.go','width=900,height=600',resizable=1);">
+					<button type="submit" class="btn btn-dark float-end">결제하기</button>
+					
+					</a>
+					</td>
+					</tr>
+					</table>
 					</div>
 					<br>
 	

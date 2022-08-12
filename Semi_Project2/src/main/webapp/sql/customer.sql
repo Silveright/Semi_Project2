@@ -20,7 +20,7 @@ select * from customer;
 
 --예시
 insert into customer
-values('sangmin', '1234', '이상민', '910405-1085417', 'M', '01234', '서울시 양천구 목동', '01066274242', 'sangmin@naver.com', sysdate, 'A' );
+values('sangmin', '1234', '이상민', '910405-1085417', 'M', '01234', '서울시 양천구 목동', '101동 101호', '01066274242', 'sangmin@naver.com', sysdate, 'A' );
 
 ALTER TABLE customer RENAME COLUMN phone TO tel
 
