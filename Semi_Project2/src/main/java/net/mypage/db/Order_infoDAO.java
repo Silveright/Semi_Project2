@@ -39,7 +39,7 @@ public class Order_infoDAO {
 				+ "				where p.product_code=oit.product_code "
 				+ "				and o.order_code=oit.order_code "
 				+ "				and o.id=?"
-				+ "				and oit.orderstate='배송 전' or oit.orderstate='배송 완료' "
+				+ "				 and (1=2 or oit.orderstate='배송 전' or oit.orderstate='배송 완료') "
 				+ "				order by o.order_date desc) j "
 				+ "		where rownum<=?) "
 				+ "	where rnum>=? and rnum<=?";
@@ -178,8 +178,7 @@ public class Order_infoDAO {
 			conn = ds.getConnection();
 			
 			String select_sql = "update order_item set "
-					+ "orderstate='배송 취소',"
-					+ "order"
+					+ "orderstate='배송 취소'"
 					+ "where orderitem_code = ? ";
 			//PreparedStatement 객체 얻기
 			pstmt = conn.prepareStatement(select_sql.toString());
@@ -308,13 +307,11 @@ public class Order_infoDAO {
 		try {
 			conn = ds.getConnection();
 			String select_sql = "select count(*) "
-					+ " from (select o.id, o.order_date, p.product_image, p.product_name, "
-					+ "		  oit.product_count, oit.product_price, oit.orderitem_code, oit.orderstate "
-					+ "		  from product p, order_info o, order_item oit "
-					+ "		  where p.product_code=oit.product_code "
-					+ "		  and o.order_code=oit.order_code "
-					+ "		  and o.id=?"
-					+ "		  and oit.orderstate='배송 전' or oit.orderstate='배송 완료')";
+					+ "   from product p, order_info o, order_item oit "
+					+ "   where p.product_code=oit.product_code "
+					+ "   and o.order_code=oit.order_code "
+					+ "   and o.id=? "
+					+ "   and (1=2 or oit.orderstate='배송 전' or oit.orderstate='배송 완료')";
 			//PreparedStatement 객체 얻기
 			pstmt = conn.prepareStatement(select_sql.toString());
 			pstmt.setString(1, id);
@@ -401,6 +398,45 @@ public class Order_infoDAO {
 			}
 		}//finally end
 		return x;
+	}
+
+	public int update_delivery(int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result =0;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String select_sql = "update order_item set "
+					+ "orderstate='배송 완료'"
+					+ "where orderitem_code = ? ";
+			//PreparedStatement 객체 얻기
+			pstmt = conn.prepareStatement(select_sql.toString());
+			pstmt.setInt(1, num);
+			result = pstmt.executeUpdate();
+			if(result==1) {
+				System.out.println("배송 완료");
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if(pstmt !=null)
+			try {
+					pstmt.close();
+			} catch (SQLException ex) {
+				System.out.println(ex.getMessage());
+				ex.printStackTrace();
+			}
+			if(conn != null)
+			try {
+					conn.close();//DB연결을 끊는다.
+			}catch (Exception ex) {
+				System.out.println(ex.getMessage());
+				ex.printStackTrace();
+			}
+		}//finally end
+		return result;
 	}
 
 }

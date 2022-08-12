@@ -14,5 +14,5 @@ create sequence addresslist_seq;
 select * from addresslist;
 
 drop table addresslist purge;
-
+drop sequence addresslist_seq
 --삭제하려면 id랑 배송지 번호 pk가 있어야 함...
