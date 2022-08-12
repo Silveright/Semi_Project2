@@ -34,7 +34,7 @@
 		</button>
 		<div class="collapse navbar-collapse flex-row-reverse">
 			<ul class="navbar-nav mb-2 mb-lg-0 ">
-				<c:if test="${!empty id}">
+				<c:if test="${!empty sessionScope.id}">
 					<li class="nav-item"><a class="nav-link" href="logout.net"><small>로그아웃</small></a></li>
 					<c:if test="${id=='admin'}">
 						<li class="nav-item"><a class="nav-link" href="noticelist.co"><small>공지사항</small></a></li>
@@ -49,11 +49,11 @@
 								<li><a class="dropdown-item" href="#">A third link</a></li>
 							</ul></li>
 					</c:if>
-					<c:if test="${!empty id && id != 'admin'}">
-						<li class="nav-item"><a class="nav-link" href="updateprofile.pg"><small>정보수정</small></a></li>
+					<c:if test="${!empty sessionScope.id && sessionScope.id != 'admin'}">
+						<li class="nav-item"><a class="nav-link" href="#"><small>정보수정</small></a></li>
 					</c:if>
 				</c:if>
-				<c:if test="${empty id}">
+				<c:if test="${empty sessionScope.id}">
 					<li class="nav-item"><a class="nav-link" href="login.net"><small>로그인</small></a></li>
 					<li class="nav-item"><a class="nav-link" href="join.net"><small>회원가입</small></a></li>
 				</c:if>

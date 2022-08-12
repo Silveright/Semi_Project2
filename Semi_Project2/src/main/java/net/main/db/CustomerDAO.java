@@ -118,8 +118,8 @@ public class CustomerDAO {
 			System.out.println("getConnection : insert()");
 			
 			String sql = "INSERT INTO customer "
-					   + "(id, password, name, jumin, gender, post, address, phone, email) "
-					   + " VALUES (?,?,?,?,?,?,?,?,?) ";
+					   + "(id, password, name, jumin, gender, post, address, phone, address_detail, email) "
+					   + " VALUES (?,?,?,?,?,?,?,?,?,?) ";
 							
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, c.getId());
@@ -130,7 +130,8 @@ public class CustomerDAO {
 			pstmt.setString(6, c.getPost());
 			pstmt.setString(7, c.getAddress());
 			pstmt.setString(8, c.getPhone());
-			pstmt.setString(9, c.getEmail());
+			pstmt.setString(9, c.getAddress_detail());
+			pstmt.setString(10, c.getEmail());
 			result = pstmt.executeUpdate(); 
 			
 		} catch (java.sql.SQLIntegrityConstraintViolationException e) {			
@@ -293,6 +294,7 @@ public class CustomerDAO {
 			if (rs.next()) { 
 				result = rs.getString("password");
 			}
+
 		} catch (Exception se) {
 			se.printStackTrace();
 		} finally {
@@ -360,5 +362,41 @@ public class CustomerDAO {
 		}
 		return result;
 	}
+
+	public int reset(String id, String newpass) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			con = ds.getConnection();
+		
+			String sql = "update customer set password=? where id=? ";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, newpass);
+			pstmt.setString(2, id);	
+			result = pstmt.executeUpdate();
+			System.out.println("result는" + result);
+
+			} catch (Exception ex) {
+				System.out.println("reset() 에러: " + ex);
+				ex.printStackTrace();
+			} finally {		
+				if (pstmt != null)
+				  try {
+					pstmt.close();
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+				if (con != null)
+				  try {
+					con.close();
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+			return result;
+		}
 	
 }

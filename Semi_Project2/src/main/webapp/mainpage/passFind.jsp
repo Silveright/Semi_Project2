@@ -17,7 +17,7 @@
 		<div class="card-body">
 			<h2 class="card-title text-center m-5" style="font-weight:bold">비밀번호 찾기</h2>
 		</div>
-		<form id="passfind" action="selfCerti.net" method="post">
+		<form id="passfind" action="selfCerti.net" method="post"> 
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item">인증수단
 					<span>
@@ -28,7 +28,7 @@
 			</ul>
 			<div id="page"></div>
 		</form>
-		<button form='passfind' class='btn btn-Dark mt-5 mb-5' '>확인</button>
+		<button form='passfind' class='btn btn-Dark mt-5 mb-5'>확인</button>
 	</div>
 		<jsp:include page="footer.jsp" />
 </body>

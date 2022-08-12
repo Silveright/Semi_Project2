@@ -8,7 +8,7 @@
 <link href="${pageContext.request.contextPath}/css/agree.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-	<form id="agree" action="joinSuccess.net" >
+	<form id="agree" action="${pageContext.request.contextPath}/joinSuccess.net" >
 		<div class="m-3">
 			이용약관, 개인정보 수집 및 이용, 위치정보 이용약관(필수), 프로모션 안내메일 수신(필수)에 <strong>모두 동의</strong>합니다.
 			<input type="checkbox" id="all-check" >
