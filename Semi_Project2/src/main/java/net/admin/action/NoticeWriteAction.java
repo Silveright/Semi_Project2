@@ -14,7 +14,10 @@ public class NoticeWriteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(false);
+		forward.setPath("adminpage/NoticeWrite.jsp");
 		return null;
 	}
 

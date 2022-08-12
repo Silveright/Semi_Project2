@@ -8,8 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.mypage.action.Action;
-import net.mypage.action.ActionForward;
 
 @WebServlet("*.co")
 public class CommunityboardFrontController extends javax.servlet.http.HttpServlet{
@@ -34,14 +32,17 @@ public class CommunityboardFrontController extends javax.servlet.http.HttpServle
 		case "/noticelist.co":
 			action = new NoticeListAction();
 			break;
-		case "/noticeview.co":
-			action = new NoticeViewAction();
+		case "/noticedetail.co":
+			action = new NoticeDetialAction();
 			break;
 		case "/faqlist.co":
 			action = new FAQListAction();
 			break;
 		case "/qnalist.co":
 			action = new QnaListAction();
+			break;
+		case "/qnadetail.co":
+			action = new QnaDetailAction();
 			break;
 	
 		}
