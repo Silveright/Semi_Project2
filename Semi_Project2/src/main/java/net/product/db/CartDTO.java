@@ -7,6 +7,29 @@ public class CartDTO {
     public int cart_count;
     public String opt_color;
 	public String opt_size;
+	public String product_name;
+	public int product_price;
+	public String product_image;
+
+	
+	public String getProduct_name() {
+		return product_name;
+	}
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+	public int getProduct_price() {
+		return product_price;
+	}
+	public void setProduct_price(int product_price) {
+		this.product_price = product_price;
+	}
+	public String getProduct_image() {
+		return product_image;
+	}
+	public void setProduct_image(String product_image) {
+		this.product_image = product_image;
+	}
 	
     public int getCart_code() {
 		return cart_code;

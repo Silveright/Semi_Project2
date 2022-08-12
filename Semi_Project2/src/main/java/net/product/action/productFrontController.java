@@ -43,6 +43,10 @@ public class productFrontController extends javax.servlet.http.HttpServlet{
 		case "/cart.do":
 			action = new ProductCartAction(); 
 			break;
+
+		case "/cartadd.do":
+			action = new ProductCartAddAction(); 
+			break;
 	
 		case "/accessories.do":
 			action = new CategoryAccAction(); 

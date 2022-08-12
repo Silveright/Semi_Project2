@@ -80,7 +80,7 @@
   </style>
 </head>
 <body>
-<form id="frm1">
+<form id="frm1" method="post">
 	<div class="container">
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">
@@ -97,7 +97,11 @@
          				  <img class='fakeimg' src="${pageContext.request.contextPath}/image/main/product/${product.product_image}.jpg" alt="${product.product_image}">
         				   <div class="col-sm-6">
                         
+                           <input type="hidden" name="img" value="${product.product_image}">
                            <input type="hidden" name="product_code" value="${product.product_code }">
+                           <input type="hidden" name="name" value="${product.product_name }">
+                           <input type="hidden" name="price" value="${product.product_price }">
+          				   
           				   <p>상품명</p>${product.product_name }
 						   <hr>
 						   <p>판매가</p>${product.product_price }
@@ -117,7 +121,7 @@
        				      <hr>
            
           				  <p>색상<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          				  <select name="size" id="size-select">
+          				  <select name="color" id="size-select">
        				          <option value="">--[필수] 사이즈를 선택해주세요--</option>
          				      <option value="black">블랙</option>
         				      <option value="white">화이트</option>

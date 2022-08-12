@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!-- CSS only -->
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -69,7 +71,7 @@ p{text-align:left}
 					</li>
 					
 				</ul>
-
+				<c:if test="${!empty cart }">
 				<div class="cart-content" id="mycartContent">
 					<div class="tab-pane fade show active" id="userinfo"
 						role="tabpanel" aria-labelledby="userinfo-tab">
@@ -77,7 +79,7 @@ p{text-align:left}
 							<br>
 			
 							<br>
-
+							
 							<table class="table">
 								<tr class="table-active">
 									<td class="table-image"><input type='checkbox' name='Allchoice' value='Allchoice' /></td>
@@ -88,30 +90,31 @@ p{text-align:left}
 									<td>합계</td>
 									<td align="center">선택</td>
 								</tr>
+								<c:forEach var="c" items="${cart }"  varStatus="vs">
 								<tr class="align-middle">
 									<td><input type='checkbox' name='choice' value='choice' /></td>   <!--  메뉴 체크박스 클릭시 아래 모든 체크박스 표시  -->
-									<td>${product.product_image }</td>
-									<td>${product.product_name }<br>
+									<td><img src="${pageContext.request.contextPath}/image/main/product/${c.product_image}.jpg" alt="${c.product_image}" width="77px"></td>
+									<td>${c.product_name }<br>
 									<button type="button" id="opt-change" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#optionModal">옵션변경</button>
 									</td>
-									<td><input type="text" name="p_num1" id="p_num1" size="2" maxlength="4" class="p_num" value="2">                           
-									<td>${product.product_price }</td>
-									<td>${product.product_price }</td> <!-- 곱하기 수량 -->
+									<td><input type="text" name="p_num1" id="p_num1" size="2" maxlength="4" class="p_num" value="${c.cart_count}">                           
+									<td>${c.product_price }</td>
+									<td>${c.product_price }</td> <!-- 곱하기 수량 -->
 									<td align="center">
 									
 							<!-- Button trigger modal -->
-                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal">
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal${vs.index }">
                               주문하기
                               </button>
-                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#moveModal">
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#moveModal${vs.index }">
                               관심상품으로
                               </button>
-                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#removeModal">
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#removeModal${vs.index }">
                               삭제
                               </button>
 
                               <!-- orderModal -->
-                              <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal fade" id="orderModal${vs.index }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
@@ -123,13 +126,13 @@ p{text-align:left}
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>
-                                      <button type="button" class="btn btn-primary">계속하기</button>  <!-- 결제창으로 이동 -->
+                                      <a href="purchaseAction.go?num=${ c.product_code}&id=${id}&p_num1=${c.cart_count}"><button type="button" class="btn btn-primary">계속하기</button></a>  <!-- 결제창으로 이동 -->
                                     </div>
                                   </div>
                                 </div>
                               </div>
                               <!-- moveModal  -->
-                              <div class="modal fade" id="moveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal fade" id="moveModal${vs.index }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
@@ -147,7 +150,7 @@ p{text-align:left}
                                 </div>
                               </div>
                               <!-- removeModal  -->
-                              <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal fade" id="removeModal${vs.index }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
@@ -159,7 +162,7 @@ p{text-align:left}
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>
-                                      <button type="button" class="btn btn-primary">삭제하기</button>    <!-- display none -->
+                                      <a href="cartdelte.go?id=${id }&code=${c.cart_code}"><button type="button" class="btn btn-primary">삭제하기</button></a>    <!-- display none -->
                                     </div>
                                   </div>
                                 </div>
@@ -172,33 +175,43 @@ p{text-align:left}
                                       <h5 class="modal-title" id="exampleModalLabel">옵션변경</h5>
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+                                    <form action="updatecart.do">
+                                    <input type="hidden" name="id" value="${id }">
+                                    <input type="hidden" name="cart_code" value="${c.cart_code }">
                                     <div class="modal-body">
                                       <p>상품명</p>
                                       <hr>
                                       <table class="select">
                                       <td><img src="../image/profile.png" width="150px"></td>
                                       <td><label for="select">필수 옵션&nbsp;</label></td>
-                                      <td><select name="select" id="cloth-select">
-                                         <option value="">--[필수] 옵션을 선택하세요--</option>
-                                         <option value="dog">red, M</option>
-                                         <option value="cat">black, L</option>
-                                         <option value="hamster">white, XL</option>
+                                      <td><select name="size" id="cloth-select">
+                                         <option value="">--[필수] 옵션을 선택하세요--</option><!-- 두가지 적용이 힘듦 색상만 변경가능하게 하던가 사이즈만 가능하게 하든가 해야함 -->
+                                         <option value="s">s</option>
+                                         <option value="m">m</option>
+                                         <option value="l">l</option>
                                      </select></td>
+                                     
                                       </table>
-                                    </div>
+                                    </div><%-- <a href="cartupdate.go?id=${id }&code=${c.cart_code}"> --%>
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">변경</button>      <!-- 변경된 옵션을 적용 -->
+                                    <button type="submit" class="btn btn-primary">변경</button><!-- select로 정한 값을 가져가려면 form으로 처리되어야함  -->      <!-- 변경된 옵션을 적용 -->
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                                    </div>                                 
+                                    </div> 
+                                                                    
+                                    </form>
                                   </div>	
                                 </div>
                               </div>
 							 </td>
+                             </c:forEach>
+                                     
 							</table>
+							
 						</div>
 					</div>
 					
 				</div>
+				</c:if>
 				<div class="select-btn">
 				   <button type="button" class="btn btn-orderAll" data-bs-dismiss="modal">전체 상품 주문</button>   
                    <button type="button" class="btn btn-deleteAll">장바구니 비우기</button>   <!-- display none -->
