@@ -31,6 +31,7 @@ create sequence product_seq start with 1 increment by 1;
 --	opt_size varchar2
 --)
 
+
 create table product_category(
 	category_code number(5),
 	class1 varchar2(20),

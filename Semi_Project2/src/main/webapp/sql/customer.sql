@@ -19,6 +19,7 @@ create table customer(
 	select * from customer
 	
 
+
 --예시
 insert into customer
 values('sangmin', '1234', '이상민', '910405-1085417', 'M', '01234', '서울시 양천구 목동', '101동 101호', '01066274242', 'sangmin@naver.com', sysdate, 'A' );
@@ -32,4 +33,5 @@ insert into customer
 values('sangmin', '1234', '이상민', '910405-1085417', 'M', '01234', '서울시 양천구 목동', '01066274242', 'sangmin@naver.com', sysdate, 'A' );
 insert into customer
 values('admin', '1234', '관리자', '111111-1111111', 'M', '01234', '서울시 종로구', '01012341234', 'admin@naver.com', sysdate, 'S' );
+
 
