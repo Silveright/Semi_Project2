@@ -6,35 +6,16 @@
 <head>
 <jsp:include page="../mainpage/header.jsp"/>
 <script src="js/jquery-3.6.0.js"></script>
+<script src ='${pageContext.request.contextPath}/js/updateprofile.js'></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> 
 <title>회원정보 수정</title>
  <style>
-  footer{position:fixed; 
-			bottom:0px; 
-			height:3rem;
-			background:#ccc;
-			width:100%; 
-			text-align:center;
-			line-height:3rem;}
-table td {
-  position: relative;
-}
-
-table td input {
-  position: absolute;
-  display: block;
-  top:0;
-  left:0;
-  margin: 0;
-  height: 100%;
-  width: 100%;
-  border: none;
-  padding: 10px;
-  box-sizing: border-box;
-}
+ .table>:not(caption)>*>* {
+    padding: 0;}
   </style>
 </head>
 <body>
-<form method='post' 
+<form method='post' id="myform"
 			  action='updateprofileProcess.pg'>
 	<div class="container">
 		<div class="row align-items-center justify-content-center">
@@ -58,27 +39,36 @@ table td input {
 					</tr>
 					<tr>
 						<td class="table-active text-center">이름</td>
-						<td><input type="text" name="name" value="${memberinfo.name }" class="form-control" ></td>
+						<td><input type="text" id='name' name="name" value="${memberinfo.name }" class="form-control" ></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">우편번호</td>
-						<td><input type="text" name="post" value="${memberinfo.post }" class="form-control"></td>
+						<td>
+						<div class="col-7">
+					        <div class="input-group">
+						<input type="text" class="form-control" id="post1" name="post" value="${memberinfo.post }">
+					    <button type="button" id="postcode" class="btn btn-dark">우편번호</button>
+						 </div>
+					    </div>
+						</td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">주소</td>
-						<td><input type="text" class="form-control" name="address1" value="${memberinfo.address }" ></td>
+						<td><input type="text" class="form-control" name="address1" id="address1" value="${memberinfo.address }" ></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">전화</td>
 						<td>
 							<div class="input-group ">
 							    <span class="input-group-text">010</span>
-							    <input type="text" name="tel" class="form-control p-2" value="${memberinfo.tel }">
-							  </div>
+							    <input type="text" name="tel" id="phone" class="form-control p-2" value="${memberinfo.tel }">
+							  </div><span id="message"></span>
 					</tr>
 					<tr>
 						<td class="table-active text-center">이메일</td>
-						<td><input type="text" name="email" value="${memberinfo.email }" class="form-control" ></td>
+						<td><input type="text" id="email" name="email" value="${memberinfo.email }" class="form-control" >
+						<span id="email_message"></span></td>
+						
 					</tr>
 				</table>
 				<br>
@@ -91,20 +81,5 @@ table td input {
 		</div>
 	</div>
 </form>
-<script>
-$(function(){
-	$("form").submit(function(){
-		if($('#pass').val()!=$('#check_pass').val()){
-			alert('비밀번호가 일치하지 않습니다.');
-			$('#check_pass').val('');
-			$('#check_pass').focus();
-			return false;
-		}
-	})
-	$("#cancel").click(function(){
-		history.back();
-	})
-})
-</script>
 </body>
 </html>

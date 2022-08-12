@@ -17,13 +17,14 @@ $(document).ready(function() {
 	if(selectedValue !='-1')
 		$("#viewcount").val(selectedValue);
 	
-	$("button").click(function(){
+	$(".search").click(function(){
 		if($('#search').val()==''){
 			alert("검색어를 입력하세요");
 			$('input').focus();
 			return false;
 		}
 	})
+
 	
 	$("#viewcount").change(function(){
 		selectedValue=$(this).val();
@@ -89,7 +90,7 @@ b{font-size:0.9em}
 								<c:if test="${r.review_subject.length()<20 }">
 								<c:out value="${r.review_subject }"/>
 								</c:if>
-								</a>
+								</a>[${r.cnt}]
 							</td>
 							<td>${r.review_name }</td>
 							<td>${r.review_date }</td>
@@ -151,14 +152,15 @@ b{font-size:0.9em}
 							<option value="1">내용</option>
 						</select>
 						 <input id="search" name="search_word" type="text"  placeholder="제목을 입력하세요" value="${search_word }">
-						<button class="btn btn-secondary" type="submit">검색</button>
+						<button class="btn btn-secondary" class="search" type="submit">검색</button>
 					</div>
 				</form>
 			</div>
 		</div>
 		</c:if>
 		<c:if test="${listcount==0 }">
- 		<font size=5>등록된 리뷰가 없습니다.</font>
+ 		<font size=5>등록된 리뷰가 없습니다.</font><br>
+ 		<button type="button" onclick="history.back()" class="btn btn-dark float-left back">뒤로가기</button>
  	</c:if>
 	</div>
 </body>

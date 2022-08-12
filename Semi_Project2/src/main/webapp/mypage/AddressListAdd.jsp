@@ -10,10 +10,11 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> 
 <Style>
 img{width:20px}
+
 </Style>
 </head>
 <body>
-	<form method='post' 
+	<form method='post' id="myform"
 			  action='addresslistaddprocess.pg?id=${id}'>
 	<div class="container">
 		<div class="row align-items-center justify-content-center">
@@ -26,19 +27,19 @@ img{width:20px}
 				<table class="table table-bordered ">
 					<tr>
 						<td class="table-active text-center" style="width: 20%">배송지명</td>
-						<td><input type="text" name='address_name' class="form-control"></td>
+						<td><input type="text" name='address_name' class="form-control" id="addressname"></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">수령인</td>
-						<td><input type="text" name='address_receiver' class="form-control"></td>
+						<td><input type="text" name='address_receiver' id='receiver' class="form-control"></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">휴대전화</td>
 						<td>
 						<div class="input-group ">
 							    <span class="input-group-text">010</span>
-							    <input type="text" name="address_phone" class="form-control p-2" value="${memberinfo.tel }">
-							  </div>
+							    <input type="text" name="address_phone" id='phone' class="form-control p-2">
+							  </div> <span id="message"></span>
 						</td>
 					</tr>
 					<tr>
@@ -54,7 +55,7 @@ img{width:20px}
 					</tr>
 					<tr>
 						<td class="table-active text-center">주소</td>
-						<td><input type="text" name="address1" class="form-control" id="address" ></td>
+						<td><input type="text" name="address1" class="form-control" id="address1" ></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">상세주소</td>

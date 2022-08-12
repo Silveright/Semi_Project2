@@ -8,7 +8,7 @@ public class Customer {
 	private String gender;
 	private String post;
 	private String address;
-	private String tel;
+	private String phone;
 	private String email;
 	private String register_date;	
 	private String grade;	
@@ -56,11 +56,11 @@ public class Customer {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getTel() {
-		return tel;
+	public String getPhone() {
+		return phone;
 	}
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public String getEmail() {
 		return email;
@@ -85,7 +85,7 @@ public class Customer {
 	}
 	public void setSecondhand_code(int secondhand_code) {
 		this.secondhand_code = secondhand_code;
-	}		
+	}
 	
 	
 }

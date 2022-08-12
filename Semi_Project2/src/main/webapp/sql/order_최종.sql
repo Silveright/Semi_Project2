@@ -7,6 +7,8 @@
 
 	--1) 주문 정보 테이블
    
+	select order_info_seq.nextval from order_info
+	
    create sequence order_info_seq
    alter sequence order_info_seq nocache
    create table order_info(--하나의 주문정보를 담는 테이블
@@ -44,6 +46,7 @@
 	insert into order_info values (order_info_seq.nextval,'id', '무통장 입금','서울아파트', '10동 10호', '11111', '홍길동','01012341234',50000,'문 앞에 놔주세요',sysdate)
 	--동시에 주문한 상품의 정보가 order_item 테이블에 삽입되어져야 한다. (주문상품코드(orderitem_code), 주문코드, 상품코드(product_code)>주문 상품의 product 테이블에 있는 상품코드, 상품 금액, 배송 상태> 주문 직후니까 무조건 '배송 전') 
 	insert into order_item values (order_item_seq.nextval, 1, 1, 2, 10000, '배송 전')--orderitem_code PK, order_code(order_info 테이블의 order_info_seq.nextval로 들어간 번호), 주문한 상품의 상품코드(product테이블의 상품코드),
+	insert into order_item values (order_item_seq.nextval, 1, 3, 2, 10000, '배송 전')--orderitem_code PK, order_code(order_info 테이블의 order_info_seq.nextval로 들어간 번호), 주문한 상품의 상품코드(product테이블의 상품코드),
 																					-- 상품의 가격(수량에 따라 달라져야 함), 주문 상태 (주문을 하면 배송 전이 들어가야 함) 
 	--한 건의 주문이 발생할 때 마다 order_info와 order_item 두 테이블의 주문 코드는 같아야 한다.
 	
@@ -51,6 +54,11 @@
 	insert into order_info values (order_info_seq.nextval,'id', '무통장 입금','서울아파트', '10동 10호', '11111', '홍길동','01012341234',50000,'문 앞에 놔주세요',sysdate)
 	insert into order_item values (order_item_seq.nextval, 2, 1, 1, 10000, '배송 전')
 
-	
+	select*from order_item
 --주문 페이지에서 담은 정보가 두 테이블로 insert 되어야 함
+
+	
+	update order_item set 
+	orderstate='배송 완료'
+	where orderitem_code = 1 
 	

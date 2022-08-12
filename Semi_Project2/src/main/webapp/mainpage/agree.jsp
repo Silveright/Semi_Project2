@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
+
 <html>
 <head>
 <jsp:include page="header.jsp" />
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <link href="${pageContext.request.contextPath}/css/agree.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-	<form id="agree" action="joinSuccess.net">
+	<form id="agree" action="joinSuccess.net" >
 		<div class="m-3">
-			이용약관, 개인정보 수집 및 이용, 위치정보 이용약관(선택), 프로모션 안내메일 수신(선택)에 <strong>모두 동의</strong>합니다.
-			<input type="checkbox" id="all-check">
+			이용약관, 개인정보 수집 및 이용, 위치정보 이용약관(필수), 프로모션 안내메일 수신(필수)에 <strong>모두 동의</strong>합니다.
+			<input type="checkbox" id="all-check" >
 		</div>
 
 		<hr class="my-3">
@@ -46,7 +48,7 @@
 			</textarea>
 			 
 			<p>
-				이용약관에 동의하십니까? <input type="checkbox">
+				이용약관에 동의하십니까? <input class="essential" type="checkbox">
 			</p>
 		</div>
 
@@ -84,7 +86,7 @@
 			</textarea>
 			 
 			<p>
-				개인정보 수집 및 이용에 동의하십니까? <input type="checkbox">
+				개인정보 수집 및 이용에 동의하십니까? <input class="essential" type="checkbox">
 			</p>
 		</div>
 
@@ -92,7 +94,7 @@
 
 		<div class="m-3">
 			<p>
-				<strong>[선택]쇼핑정보 수신 동의</strong>
+				<strong>[필수]쇼핑정보 수신 동의</strong>
 			</p>
 			<textarea>
 				제1조(목적)
@@ -122,7 +124,7 @@
 			</textarea>
 			 
 			<p>
-				이메일 수신에 동의하십니까? <input type="checkbox">
+				이메일 수신에 동의하십니까? <input class="essential" type="checkbox" ">
 			</p>
 		</div>
 
@@ -136,5 +138,18 @@
 	</form>
 	<jsp:include page="footer.jsp" />
 </body>
+<script>
+	$("#all-check").change(function(){
+		$('input:checkbox').prop('checked', $(this).is(':checked'));
+	});				
+	
+	$("#agree").on('submit',function(event){
+		if(!$('#all-check').is(":checked")) {	
+		 	alert("필수약관에 동의를 모두 체크하세요");
+			event.preventDefault();
+			return false;
+		} 
+	});
+</script>
 </html>
 

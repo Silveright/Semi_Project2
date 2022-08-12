@@ -36,8 +36,24 @@ public class MainFrontController extends javax.servlet.http.HttpServlet {
 			action = new MemberLoginAction(); 
 			break;
 		
+		case "/loginProcess.net":
+			action = new MemberLoginProcessAction(); 
+			break;
+			
+		case "/logout.net":
+			action = new MemberLogoutAction(); 
+			break;
+			
 		case "/join.net":
 			action = new MemberJoinAction(); 
+			break;
+			
+		case "/sendEmail.net":
+			action = new MemberSendEmailAction(); 
+			break;
+			
+		case "/emailcertiprocess.net":
+			action = new EmailCertiProcessAction(); 
 			break;
 			
 		case "/idcheck.net":
@@ -66,7 +82,7 @@ public class MainFrontController extends javax.servlet.http.HttpServlet {
 			
 		case "/selfCerti.net":
 			action = new MemberSelfCertiAction(); 
-			break;			
+			break;	
 			
 		case "/passFindSuccess.net":
 			action = new MemberPassFindSuccessAction(); 

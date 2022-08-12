@@ -6,7 +6,9 @@ create table customer(
 	gender				char(1),
 	post				varchar2(5),
 	address				varchar2(150),
+
 	tel			    	varchar2(11),   --변수명 phone, varcher(11)로 수정함 (01012345678)
+
 	email				varchar2(30),
 	register_date		date default sysdate,
 	grade				char(1)
@@ -14,8 +16,9 @@ create table customer(
 
 	--seconhand_board 테이블 생성후에 추가해줄것
 	secondhand_code		number(5) references secondhand_board(secondhand_code) on delete cascade
-	
-select * from customer;
 
-insert into customer
-values('id', '1234', '이상민', '910405-1085417', 'M', '01234', '서울시 양천구 목동', '01066274242', 'sangmin@naver.com', sysdate, 'A' );
+	select * from customer
+	
+
+--insert into customer
+--values('id', '1234', '이상민', '910405-1085417', 'M', '01234', '서울시 양천구 목동', '01066274242', 'sangmin@naver.com', sysdate, 'A' );
