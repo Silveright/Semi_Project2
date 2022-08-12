@@ -51,7 +51,7 @@
 		<p class="lead">주문번호 : 202208xxxxxx <br>주문일자 : <%= today%></p>
 		<hr class="my-4">
 		<p>고객님의 주문이 완료 되었습니다.</p>
-		 주문내역 및 배송에 관한 안내는 <a href="../mypage/OrderList.jsp" style="color: blue;">주문정보</a> 를 통하여 확인 가능합니다.
+		 주문내역 및 배송에 관한 안내는 <a href="OrderList.pg" style="color: blue;">주문정보</a> 를 통하여 확인 가능합니다.
 	</div>	
 </div>
 

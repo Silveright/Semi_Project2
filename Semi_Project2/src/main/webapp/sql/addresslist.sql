@@ -1,6 +1,6 @@
 create table addresslist(
 	addresslist_num number,
-	address_id varchar2(20),-- references customer(id) on delete cascade,
+	address_id varchar2(20) references customer(id) on delete cascade,
 	address_name varchar2(15),
 	address_receiver varchar2(15),
 	address_post varchar2(5),
@@ -10,6 +10,7 @@ create table addresslist(
 	primary key(addresslist_num)
 );
 create sequence addresslist_seq;
+alter sequence order_info_seq nocache
 
 select * from addresslist;
 

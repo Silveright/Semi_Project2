@@ -25,7 +25,8 @@ public class UpdateProfileProcessAction implements Action {
 		member.setName(request.getParameter("name"));
 		member.setPost(request.getParameter("post"));
 		member.setAddress(request.getParameter("address1"));
-		member.setTel(request.getParameter("tel"));
+		member.setAddress_detail(request.getParameter("address2"));
+		member.setPhone(request.getParameter("tel"));
 		member.setEmail(request.getParameter("email"));
 		//응답하는 데이터 타입이 html 타입이고
 		//charset=utf-8로 지정하면서 응답되는 데이터 처리를 한 부분이다.
@@ -35,7 +36,6 @@ public class UpdateProfileProcessAction implements Action {
 		CustomerDAO dao = new CustomerDAO();
 
 		int result = dao.update(member);
-		
 		response.setContentType("text/html;charset=utf-8");
 		out.println("<script>");
 		//업데이트가 된 경우

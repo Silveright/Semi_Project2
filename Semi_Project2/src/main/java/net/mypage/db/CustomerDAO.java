@@ -120,8 +120,9 @@ public class CustomerDAO {
 					+ "name =?, "
 					+ "password = ?, "
 					+ "post = ?, "
-					+ "address = ?, "
-					+ "tel = ?,"
+					+ "address = ?,"
+					+ "address_detail =?, "
+					+ "phone = ?,"
 					+ "email = ? "
 					+ "where id = ? ";
 			//PreparedStatement 객체 얻기
@@ -130,9 +131,10 @@ public class CustomerDAO {
 			pstmt.setString(2, m.getPassword());
 			pstmt.setString(3, m.getPost());
 			pstmt.setString(4, m.getAddress());
-			pstmt.setString(5, m.getTel());
-			pstmt.setString(6, m.getEmail());
-			pstmt.setString(7, m.getId());
+			pstmt.setString(5, m.getAddress_detail());
+			pstmt.setString(6, m.getPhone());
+			pstmt.setString(7, m.getEmail());
+			pstmt.setString(8, m.getId());
 			
 			result = pstmt.executeUpdate();
 		}catch(Exception ex) {
@@ -183,8 +185,9 @@ public class CustomerDAO {
 				m.setJumin(rs.getString("jumin"));
 				m.setGender(rs.getString("gender"));
 				m.setAddress(rs.getString("address"));
-				m.setTel(rs.getString("tel"));
+				m.setPhone(rs.getString("phone"));
 				m.setEmail(rs.getString("email"));
+				m.setAddress_detail(rs.getString("address_detail"));
 			}
 		}catch(Exception se) {
 			se.printStackTrace();

@@ -6,7 +6,7 @@ $(document).ready(function(){
 			
 	var checkphone=false;
 	var checkemail=false;
-	var pattern1 = /^\d{3,4}\d{4}$/;
+	var pattern1 = /^(?:(010\d{4})|(01[1|6|7|8|9]\d{3,4}))(\d{4})$/
 	var phone = $("#phone").val();
 	var pattern2 = /^\w+@\w+[.]\w{3}$/;
 	var email = $("#email").val();
@@ -84,10 +84,16 @@ $(document).ready(function(){
 				return false;
 			}
 			
-			var address = $.trim($('#address1').val());
-			if (address ==''){
+			var address1 = $.trim($('#address1').val());
+			if (address1 ==''){
 				alert('주소를 입력하세요');
 				$('#address1').focus();
+				return false;
+			}
+			var address2 = $.trim($('#address2').val());
+			if (address2 ==''){
+				alert('상세 주소를 입력하세요');
+				$('#address2').focus();
 				return false;
 			}
 

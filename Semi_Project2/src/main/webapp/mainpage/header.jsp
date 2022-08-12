@@ -50,7 +50,7 @@
 							</ul></li>
 					</c:if>
 					<c:if test="${!empty id && id != 'admin'}">
-						<li class="nav-item"><a class="nav-link" href="#"><small>정보수정</small></a></li>
+						<li class="nav-item"><a class="nav-link" href="updateprofile.pg"><small>정보수정</small></a></li>
 					</c:if>
 				</c:if>
 				<c:if test="${empty id}">

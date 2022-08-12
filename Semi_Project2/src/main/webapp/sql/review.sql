@@ -1,3 +1,6 @@
+drop sequence review_seq
+drop table review
+
 create table review(
 	review_num number,
 	review_name varchar2(30) references customer(id),
@@ -14,7 +17,26 @@ create table review(
 	primary key(review_num)
 );
 
+drop table review_comm purge
+create table review_comm(
+	num number primary key,
+	id varchar2(30) references customer(id),
+	content varchar2(200),
+	reg_date date,
+	comment_review_num number references review(review_num) on delete cascade,
+	--comm 테이블이 참조하는 보드 글 번호
+	comment_re_lev number(1) check(comment_re_lev in (0,1,2)),--원문이면 0 답글이면 1
+	comment_re_seq number,--원문이면 0, 1레벨이면 1레벨 시퀀스 +1
+	comment_re_ref number--원문은 자신 글번호, 답글이면 원문 글번호
+);
+--게시판 글 삭제시 참조 댓글도 삭제된다.
+drop sequence review_com_seq;
+--시퀀스 생성
+create sequence review_com_seq;
+alter sequence review_com_seq nocache
+
 create sequence review_seq;
+alter sequence review_seq nocache
 
 insert into review (review_num, review_subject, review_name, review_re_ref) VALUES (1,'처음','admin',1);
 insert into review (review_num, review_subject, review_name, review_re_ref) VALUES (2,'둘째','admin',2);
@@ -42,22 +64,6 @@ where rownum<=10)
 
  select * from review
  
-create table review_comm(
-	num number primary key,
-	id varchar2(30) references customer(id),
-	content varchar2(200),
-	reg_date date,
-	comment_review_num number references review(review_num) on delete cascade,
-	--comm 테이블이 참조하는 보드 글 번호
-	comment_re_lev number(1) check(comment_re_lev in (0,1,2)),--원문이면 0 답글이면 1
-	comment_re_seq number,--원문이면 0, 1레벨이면 1레벨 시퀀스 +1
-	comment_re_ref number--원문은 자신 글번호, 답글이면 원문 글번호
-);
---게시판 글 삭제시 참조 댓글도 삭제된다.
-drop sequence review_com_seq;
---시퀀스 생성
-create sequence review_com_seq;
-alter sequence review_com_seq nocache
 
 insert into review_comm(num, id, comment_review_num) values(1,'id',1);
 
@@ -130,4 +136,6 @@ ORDER BY review_re_ref DESC,
  review_re_seq ASC)
 where rownum<=10) 
  where rnum>=1 and rnum<=10
+ 
+ drop table admin purge
 

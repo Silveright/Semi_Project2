@@ -26,7 +26,7 @@ public class PaymentAction implements Action {
 //				String id = request.getParameter("id"); // 주소창에 넘어온 id
 				
 				HttpSession session = request.getSession();
-				String id = (String)session.getAttribute("loginid");
+				String id = (String)session.getAttribute("id");
 				if(id !=null ) {
 					
 					// 회원정보를 조회해서 뷰단에 보낸다.(getParameter로 넘어온 id를 이용)
