@@ -9,12 +9,12 @@
 <html>
 <head>
 <title>상품 상세보기</title>
+<script src="js/jquery-3.6.0.js"></script>
  <style>
-  .fakeimg {
+ .fakeimg {
     height: 440px;
     width: 320px;
-    background: #aaa;
-  }
+  } 
  b{font-size:1.5rem;}
  p{text-align:left;font-weight:bold;}
  .total td{width:42%}
@@ -94,10 +94,10 @@
 				
 				<div class="container">
       				<div class="row text-center">
-         				  <div class="fakeimg"></div>
-           
+         				  <img class='fakeimg' src="${pageContext.request.contextPath}/image/main/product/${product.product_image}.jpg" alt="${product.product_image}">
         				   <div class="col-sm-6">
-                           
+                        
+                           <input type="hidden" name="product_code" value="${product.product_code }">
           				   <p>상품명</p>${product.product_name }
 						   <hr>
 						   <p>판매가</p>${product.product_price }
@@ -126,9 +126,9 @@
            				  
            				  <table class="total">
            				    <td>${product.product_name }</td>
-           				    <td><input type="text" name="p_num1" id="p_num1" size="2" maxlength="4" class="p_num" value="2">
+           				    <td><input type="text" name="p_num1" id="p_num1" size="2" maxlength="4" class="p_num" value="1">
            				    </td>
-           				    <td>${product.product_price }</td><!-- 곱하기 수량 추가 -->        				    
+           				    <td ><div id="cal">${product.product_price }</div></td><!-- 곱하기 수량 추가 -->        				    
            				  </table><br>
            				  
        				      
@@ -141,6 +141,7 @@
                           <button type="button" class="btn btn-primary btn-light" data-bs-toggle="modal" data-bs-target="#CartModal">
                           장바구니 담기
                           </button>
+                         
           				  </div>       
          		    </div><br>
          		    
@@ -156,7 +157,7 @@
                                       관심상품에 추가하시겠습니까?
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-primary" onclick="location.href='wishList.jsp' ">확인</button>
+                                      <input type="submit" value="추가" class="btn btn-dark" onclick='btn_click("wishList");'>
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>                                 
                                     </div>
                                   </div>
@@ -174,7 +175,7 @@
                                       장바구니에 추가하시겠습니까?
                                     </div>
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" onclick="location.href='cart.jsp' ">추가</button>
+                                    <input type="submit" value="추가" class="btn btn-dark" onclick='btn_click("cart");'>
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
                                       
                                     </div>
@@ -229,11 +230,21 @@
     function btn_click(str){                             
         if(str=="purchase"){                                 
             frm1.action="${pageContext.request.contextPath}/purchaseAction.go";      
-        } else if(str=="delete"){      
-            frm1.action="/manage/delete";      
-        }  else {
-            //...
+        } else if(str=="cart"){      
+        	frm1.action="${pageContext.request.contextPath}/cart.do";      
+        }  else if(str=="wishList"){
+        	frm1.action="${pageContext.request.contextPath}/wishlist.do";
         }
+    }
+    
+    $("#p_num1").on("input", function(){
+    	  var price = ${product.product_price };
+    	  $("#cal").text(price* $(this).val())
+    })
+    
+   function go(url){
+    	$("form").attr("action", url);
+    	$("form").submit();
     }
 </script>
 </body>

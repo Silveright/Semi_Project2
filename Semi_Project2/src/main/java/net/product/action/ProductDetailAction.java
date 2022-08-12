@@ -17,7 +17,8 @@ public class ProductDetailAction implements Action {
 		ProductDAO dao = new ProductDAO();
 		ProductBean product = new ProductBean();
 		
-		int num = Integer.parseInt(request.getParameter("product_code"));
+		//int num = Integer.parseInt(request.getParameter("product_code"));
+		int num=1;
 		
 		product = dao.getDetail(num);
 		

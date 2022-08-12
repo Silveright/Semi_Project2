@@ -5,7 +5,9 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import net.product.db.CartDAO;
 import net.product.db.ProductBean;
 import net.product.db.ProductDAO;
 
@@ -14,29 +16,31 @@ public class ProductCartAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ProductDAO dao = new ProductDAO();
-		ProductBean product = new ProductBean();
 		
-		int num = Integer.parseInt(request.getParameter("product_code"));
 		
-		product = dao.getDetail(num);
+		HttpSession session = request.getSession();
+		session.setAttribute("id", "id");
 		
-		if(product==null) {
-			System.out.println("장바구니 보기 실패");
-			ActionForward forward = new ActionForward();
-			forward.setRedirect(false);
-			request.setAttribute("message", "상품 데이터를 읽지 못했습니다.");
-			forward.setPath("error/error.jsp");
-			return forward;
+		String id = (String)session.getAttribute("id");
+		
+		if(id!=null) {
+			//카트에 담기
+			CartDAO dao = new CartDAO();
+			CartDTO dto
+			//product_code=1&size=xs&size=black&p_num1=1&tabs=on&num=1&id=
+			dto.setProduct_code(request.getParameter("product_code"));
+			
+			
+		}else {
+			
+			//로그인 페이지로 이동해라
 		}
-		System.out.println("장바구니 성공");
 		
-		request.setAttribute("product", product);
 		
-		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
-		forward.setPath("product/cart.jsp");
-		return forward;
+		return null;
+		
+		
+		
 	}
 
 }
