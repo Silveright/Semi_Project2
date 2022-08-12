@@ -29,7 +29,13 @@ public class PaymentFrontController extends javax.servlet.http.HttpServlet{
 		
 		switch(command) {
 		case "/purchaseAction.go":
-			action = new purchaseAction();
+			action = new PurchaseAction();
+			break;
+		case "/payment.go":
+			action = new PaymentAction();
+			break;
+		case "/paymentcomplete.go":
+			action = new PaymentCompleteAction();
 			break;
 		}
 		

@@ -73,5 +73,6 @@ public class NoticeBean {
 	public void setNotice_content(String notice_content) {
 		this.notice_content = notice_content;
 	}
+	
 
 }

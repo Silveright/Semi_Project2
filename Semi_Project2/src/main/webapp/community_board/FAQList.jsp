@@ -60,9 +60,15 @@ tr td:first-child{width:5%;}
       FAQ
       <small class="text-muted">자주 묻는 질문</small>
     </h3>
-	<input name="search_word" type="text" placeholder="자주 묻는 질문 검색">
-    <button class="btn-search" type="submit">검색</button>
-    <button id="btn-all-close">FAQ 모두 닫기</button>
+	<div class="input-group">
+						<select id="viewcount" name="search_field">
+							<option value="0" selected>제목</option>
+							<option value="1">내용</option>
+						</select> <input name="search_word" type="text" placeholder="검색어를 입력하세요">
+						<button class="btn2 btn-secondary" type="submit">검색</button>
+					</div>
+						<button id="btn-all-close">FAQ 모두 닫기</button>
+				
     
     <table class="table table-bordered table-gray table-hover">
       <thead class="thead-light text-center">
@@ -162,10 +168,8 @@ tr td:first-child{width:5%;}
 			
 		</ul>
 		</div>
-  
- <div class="mt-5 p-4 bg-light text-center margin bottom">
-  <p>Footer</p>
-</div>
+
+
   
   <script>
  
