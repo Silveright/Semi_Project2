@@ -24,6 +24,7 @@
 			<h2 class="card-title text-center m-5" >본인확인 인증</h2>
 		</div>
 		<form id="self">
+		<input type="hidden" name="id" value="${requestScope.id}"/>		
 		<ul class="list-group list-group-flush">	
 			<c:if test = "${sessionScope.certi_type == 'e'}">					
 				<li class="list-group-item">본인확인 인증
@@ -34,18 +35,18 @@
 				<li class="list-group-item">이메일 
 					<span>
 						${sessionScope.email}
-						<input type="button" size="20" value="인증번호 받기" id="getcode" onClick="location.href='sendEmail.net?email=${sessionScope.email}'">>
+						<input type="button" size="20" value="인증번호 받기" id="getcode" onClick="location.href='${pageContext.request.contextPath}/sendEmail.net?email=${sessionScope.email}'">
 					</span>
 				</li>				
 				<li class="list-group-item" >인증번호 
 					<span>
-						<input id="code_input" type="text" size="14" >
+						<input id="code_input" type="text" size="18" >
 						<input id="codecheck" type="button" size="14" value="인증번호 확인" >
 					</span>
 				</li>				
 				<li class="list-group-item"><span>1회 발송된 인증번호의 유효 시간은 60분이며, 1회 인증번호 발송 후 30초 이후에 재전송이 가능합니다.</span></li>
 			</c:if>
-			<c:if test = "${param.certi == 'p'}">		
+			<c:if test = "${sessionScope.certi == 'p'}">		
 				<li class="list-group-item">본인확인 인증
 					<span>
 						<label><input type="radio" name="certi" value="e" checked>휴대폰</label>&nbsp
@@ -75,7 +76,7 @@
 <script>
 var emailcerticheck = false;
 
-$("#codecheck").on('click',function(event){
+$("#codecheck").on('click', function() {
 	$.ajax({
 		url : "${pageContext.request.contextPath}/emailcertiprocess.net",
 		data : {"code_input" : $('#code_input').val()},

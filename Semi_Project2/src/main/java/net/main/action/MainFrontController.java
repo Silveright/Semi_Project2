@@ -91,6 +91,10 @@ public class MainFrontController extends javax.servlet.http.HttpServlet {
 		case "/resetpass.net":
 			action = new MemberResetAction(); 
 			break;
+			
+		case "/resetpassSuccess.net":
+			action = new MemberResetSuccessAction(); 
+			break;
 		}
 	
 		forward = action.execute(request, response); 

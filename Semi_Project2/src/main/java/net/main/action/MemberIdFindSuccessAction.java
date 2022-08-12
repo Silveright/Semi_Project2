@@ -35,7 +35,7 @@ public class MemberIdFindSuccessAction implements Action{
 		if(id != "") {
 			String registerdate = cdao.dateFind(id);
 			System.out.println("registerdate=" + registerdate);
-
+			
 			request.setAttribute("id", id);
 			request.setAttribute("name", name);
 			request.setAttribute("registerdate", registerdate);			
@@ -44,6 +44,8 @@ public class MemberIdFindSuccessAction implements Action{
 			forward.setPath("mainpage/idFindSuccess.jsp");
 			forward.setRedirect(false); 
 			return forward;
+			
+			
 		} else {
 			String message = "해당하는 id가 없습니다. 다시 입력해주세요.";
 
@@ -56,6 +58,7 @@ public class MemberIdFindSuccessAction implements Action{
 			out.println("</script>");
 			out.close();
 			return null;
-		}
+		}	
+		
 	}
 }

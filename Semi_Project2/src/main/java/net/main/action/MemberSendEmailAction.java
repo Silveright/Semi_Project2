@@ -16,7 +16,8 @@ import org.apache.commons.lang3.RandomUtils;
 
 public class MemberSendEmailAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-				
+
+
 		String email = request.getParameter("email");
 		String receiver = "";
 		
@@ -75,10 +76,19 @@ public class MemberSendEmailAction implements Action{
 			
 			HttpSession session = request.getSession();		
 			session.setAttribute("certification", certification);
-			writer.println("<script>alert('인증메일이 정상적으로 전송되었습니다'); location.href='mainpage/selfCerti.jsp'; </script>"); 
+				
+			if(email.contains("@")) {
+				writer.println("<script>alert('인증메일이 정상적으로 전송되었습니다'); location.href='mainpage/selfCerti.jsp'; </script>"); 
+			} else {
+				writer.println("<script>alert('인증메일이 정상적으로 전송되었습니다'); history.back(); </script>"); 
+			}
 
 		}catch(Exception e) {
-			writer.println("<script>alert('전송할 수 없는 이메일입니다.'); location.href='mainpage/joinForm.jsp';</script>"); 
+			if(email.contains("@")) {
+				writer.println("<script>alert('전송할 수 없는 이메일입니다.'); location.href='mainpage/selfCerti.jsp';</script>"); 
+			} else {
+				writer.println("<script>alert('전송할 수 없는 이메일입니다.'); history.back(); </script>"); 
+			}
 			e.printStackTrace();
 		} finally {
 			writer.close();

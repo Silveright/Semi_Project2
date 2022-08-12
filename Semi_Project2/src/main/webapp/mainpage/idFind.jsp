@@ -17,7 +17,7 @@
 		<div class="card-body">
 			<h2 class="card-title text-center m-5">아이디 찾기</h2>
 		</div>
-		<form id="idFind">
+		<form id="idFind" method="post">
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item">인증수단
 					<span>
