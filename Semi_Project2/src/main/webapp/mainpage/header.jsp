@@ -35,7 +35,7 @@
 		<div class="collapse navbar-collapse flex-row-reverse">
 			<ul class="navbar-nav mb-2 mb-lg-0 ">
 				<c:if test="${!empty id}">
-					<li class="nav-item"><a class="nav-link" href="#"><small>로그아웃</small></a></li>
+					<li class="nav-item"><a class="nav-link" href="logout.net"><small>로그아웃</small></a></li>
 					<c:if test="${id=='admin'}">
 						<li class="nav-item"><a class="nav-link" href="#"><small>공지사항</small></a></li>
 						<li class="nav-item"><a class="nav-link" href="#"><small>회원정보</small></a></li>

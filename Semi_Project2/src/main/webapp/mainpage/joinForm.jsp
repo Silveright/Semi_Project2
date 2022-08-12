@@ -1,18 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import="java.util.Properties" %>
-<%@ page import="javax.mail.*" %>
-<%@ page import="javax.mail.internet.*" %>
+<%@ page import="java.util.Properties"%>
+<%@ page import="javax.mail.*"%>
+<%@ page import="javax.mail.internet.*"%>
 
 <html>
 <head>
-	<jsp:include page="header.jsp" />
-	<script src = "http://code.jquery.com/jquery-latest.js"></script>	
-	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> 
-	<script src="${pageContext.request.contextPath}/js/join.js" charset="utf-8"></script>
+<jsp:include page="header.jsp" />
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="${pageContext.request.contextPath}/js/join.js"
+	charset="utf-8"></script>
 <style>
-.card { width: 700px; margin:0 auto !important; border-top:none !important;}
-.card-subtitle {color: darkgray}
-#postcode { width: 218px; height: 58px }
+.card {
+	width: 700px;
+	margin: 0 auto !important;
+	border-top: none !important;
+}
+
+.card-subtitle {
+	color: darkgray
+}
+
+#postcode {
+	width: 218px;
+	height: 58px
+}
 </style>
 
 </head>
@@ -20,71 +33,72 @@
 	<div class="card">
 		<div class="card-body">
 			<h1 class="card-title text-center mt-5">회원가입</h1>
-			<h5 class="card-subtitle text-center mb-5">SIGN	UP</h5>
-			<form method="post" action = "agreeProcess.net" >
+			<h5 class="card-subtitle text-center mb-5">SIGN UP</h5>
+			<form method="post">
 				<div class="form-floating mb-1">
-					<input type="text" class="form-control" id="id" placeholder="dsf">
+					<input type="text" class="form-control" id="id" name="id">
 					<label for="id">아이디</label>
 				</div>
 
 				<div class="form-floating mb-1">
-					<input type="password" class="form-control" id="pass" placeholder="비밀번호">
+					<input type="password" class="form-control" id="pass" name="pass">
 					<label for="password">비밀번호</label>
 				</div>
 
 				<div class="form-floating mb-1">
-					<input type="password" class="form-control" id="pass_check"	placeholder="비밀번호 확인"> 
-					<label for="pass_check">비밀번호 확인</label>
+					<input type="password" class="form-control" id="pass_check"
+						name="pass_check"> <label for="pass_check">비밀번호 확인</label>
 				</div>
 
 				<div class="form-floating mb-1">
-					<input type="text" class="form-control" id="name" placeholder="이름">
+					<input type="text" class="form-control" id="name" name="name">
 					<label for="name">이름</label>
 				</div>
 
 				<div class="row g-2 mb-1">
 					<div class="col-md">
 						<div class="form-floating">
-							<input type="text" class="form-control" id="jumin1" placeholder="주민등록번호 앞자리"> 
+							<input type="text" class="form-control" id="jumin1" name="jumin1">
 							<label for="jumin1">주민등록번호 앞자리</label>
 						</div>
 					</div>
 					<div class="col-md">
 						<div class="form-floating">
-							<input type="text" class="form-control" id="jumin2" placeholder="주민등록번호 뒷자리"> 
+							<input type="text" class="form-control" id="jumin2" name="jumin2">
 							<label for="jumin2">주민등록번호 뒷자리</label>
 						</div>
 					</div>
 				</div>
 
 				<div class="form-floating mb-1">
-					<select class="form-select" id="gender" onFocus="this.initialSelect = this.selectedIndex;" 
-       						onChange="this.selectedIndex = this.initialSelect;">
+					<select class="form-select" id="gender" name="gender"
+						onFocus="this.initialSelect = this.selectedIndex;"
+						onChange="this.selectedIndex = this.initialSelect;">
 						<option value="m">남자</option>
 						<option value="f">여자</option>
-					</select> 
-					<label for="gender">성별</label>
+					</select> <label for="gender">성별</label>
 				</div>
 
 				<div class="row g-2 mb-1">
 					<div class="col-8">
 						<div class="form-floating">
-							<input type="text" class="form-control" id="post" placeholder="우편번호"> 
+							<input type="text" class="form-control" id="post" name="post">
 							<label for="post">우편번호</label>
 						</div>
 					</div>
 					<div class="col-4">
-						<button type="button" class="btn btn-dark" id="postcode">우편번호 검색</button>
+						<button type="button" class="btn btn-dark" id="postcode"
+							name="postcode">우편번호 검색</button>
 					</div>
 				</div>
 
 				<div class="form-floating mb-1">
-					<input type="text" class="form-control" id="address" placeholder="주소"> 
+					<input type="text" class="form-control" id="address" name="address">
 					<label for="address">주소</label>
 				</div>
 				<div class="form-floating mb-1">
-					<input type="text" class="form-control" id="address_detail" placeholder="상세주소"> 					
-					<label for="adress_detail">상세주소</label>
+					<input type="text" class="form-control" id="address_detail"
+						name="address_detail"> <label for="adress_detail">상세주소</label>
 				</div>
 
 				<div class="row g-2 mb-1">
@@ -96,8 +110,8 @@
 					</div>
 					<div class="col-9">
 						<div class="form-floating">
-							<input type="text" class="form-control" id="phone"
-								placeholder="휴대폰 번호"> <label for="phone">휴대폰 번호</label>
+							<input type="text" class="form-control" id="phone" name="phone">
+							<label for="phone">휴대폰 번호</label>
 						</div>
 					</div>
 				</div>
@@ -105,20 +119,20 @@
 				<div class="row g-2 mb-1">
 					<div class="col-4">
 						<div class="form-floating">
-							<input type="text" class="form-control" id="email"
-								placeholder="이메일 주소"> <label for="email">이메일 주소</label>
+							<input type="text" class="form-control" id="email" name="email">
+							<label for="email">이메일 주소</label>
 						</div>
 					</div>
 					<span style="width: 15px; padding: 25px 0 0 0">@</span>
 					<div class="col-4">
 						<div class="form-floating">
-							<input type="text" class="form-control" id="domain" placeholder="도메인"> 
+							<input type="text" class="form-control" id="domain" name="domain">
 							<label for="domain">도메인</label>
 						</div>
 					</div>
 					<div class="col-4 mb-1" style="width: 31%">
 						<div class="form-floating">
-							<select class="form-select" id="sel_domain">
+							<select class="form-select" id="sel_domain" name="sel_domain">
 								<option value=""></option>
 								<option value="naver.com">naver.com</option>
 								<option value="gmail.com">gmail.com</option>
@@ -131,39 +145,39 @@
 				</div>
 
 				<div class="mb-2">
-					<button type="button" class="btn btn-Secondary"
-						style="width: 100%; height: 50px">이메일로 인증코드 전송</button>
+					<!-- HTML5,IE9 이후부터는 이것도 가능 formaction="/manage/update"> -->
+					<button type="submit" class="btn btn-Secondary"  id="sendEmail"
+							onclick="javascript: form.action='sendEmail.net'" style="width: 100%; height: 50px">이메일로 인증코드 전송</button>
 				</div>
 
 				<div class="row g-2 mb-3">
 					<div class="col-8">
 						<div class="form-floating">
-							<input type="text" class="form-control" id="certification"
-								placeholder="이메일로 전송된 인증코드를 입력하세요"> <label
-								for="certification">인증코드 입력</label>
+							<input type="text" class="form-control" id="certification" name="certification"> 
+							<label for="certification">인증코드 입력</label>
 						</div>
 					</div>
 					<div class="col-4">
 						<div class="form-floating">
-							<button type="button" class="btn btn-dark" style="width: 218px; height: 58px"
-									onclick="location.href='${pageContext.request.contextPath}/emailcertiprocess.net'">인증코드 확인</button>
+							<button class="btn btn-dark" style="width: 218px; height: 58px" 
+									type="button" id="emailcertiprocess">인증코드 확인</button>
 						</div>
 					</div>
 				</div>
 
-				<hr class="my-4">	
-				
+
+				<hr class="my-4">
+
 				<div class="row g-2 m-3">
 					<div class="col-6">
-						<button class="btn btn-success signupbtn" type="submit"
-							style="width: 100%; height: 58px">회원가입</button>
+						<button type="submit" class="btn btn-success signupbtn" 
+								id="signup" style="width: 100%; height: 58px" >회원가입</button>
 					</div>
 					<div class="col-6">
-						<button class="btn btn-danger cancelbtn" type="reset"
-							style="width: 100%; height: 58px">뒤로 가기</button>
+						<button class="btn btn-danger cancelbtn" type="reset" 
+								style="width: 100%; height: 58px" >다시 작성</button>
 					</div>
 				</div>
-				
 			</form>
 		</div>
 	</div>

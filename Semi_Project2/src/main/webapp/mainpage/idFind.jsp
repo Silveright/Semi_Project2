@@ -17,21 +17,23 @@
 		<div class="card-body">
 			<h2 class="card-title text-center m-5">아이디 찾기</h2>
 		</div>
-		<ul class="list-group list-group-flush">
-			<li class="list-group-item">인증수단
-				<span>
-					<label><input type="radio" name="certi" value="e" checked>이메일</label>&nbsp
-					<label><input type="radio" name="certi" value="p">휴대폰 번호</label>
-				</span>
-			</li>	
-		</ul>	
-		<form id="page"></form>	
-		<button form="page" class='btn btn-Dark mt-5 mb-5' style='width: 80%; height: 58px; margin:0 auto'>확인</button>		
+		<form id="idFind">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">인증수단
+					<span>
+						<label><input type="radio" name="certi" value="e" checked>이메일</label>&nbsp
+						<label><input type="radio" name="certi" value="p">휴대폰 번호</label>
+					</span>
+				</li>	
+			</ul>
+			<div id="page"></div>	
+		</form>		
+		<button form="idFind" class='btn btn-Dark mt-5 mb-5' style='width: 80%; height: 58px; margin:0 auto'>확인</button>				
 	</div>
 		<jsp:include page="footer.jsp" />
 </body>
 <script>
-	$("#page").load("${pageContext.request.contextPath}/mainpage/emailcerti.jsp", function(){
+	$("form ul+div").load("${pageContext.request.contextPath}/mainpage/emailcerti.jsp", function(){
 		$("#idshow").hide();
 	});	
 	
@@ -49,7 +51,7 @@
 		}
 	});
 	
-	$("#page").attr("action", "idFindSuccess.net")
+	$("#idFind").attr("action", "idFindSuccess.net")
 </script>
 
 </html>
