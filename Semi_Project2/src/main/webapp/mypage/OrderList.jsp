@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <title>주문내역</title>
 <style>
 a{text-decoration:none}
@@ -57,13 +58,11 @@ a{text-decoration:none}
 									<td>수량</td>
 									<td>상품구매금액</td>
 									<td>주문상태</td>
-									<td align="center">취소/리뷰쓰기</td>
+									<td align="center">취소</td>
 								</tr>
 								<!-- foreach문 시작 -->
 								<c:forEach var="l" items="${list }"  varStatus="vs">
 								<c:if test="${l.orderstate=='배송 완료'||l.orderstate=='배송 전' }">
-								<c:set var="sum" value="2500"/>
-								<fmt:formatNumber  value="${sum+l.product_price}" pattern="#,###" />
 								
 								<tr class="align-middle">
 									<td>${l.order_date}</td>
@@ -79,6 +78,10 @@ a{text-decoration:none}
 											<button type="button" class="ms-3 btn btn-small btn-danger my-1"
 												data-bs-toggle="modal" data-bs-target="#myModal${vs.index }">
 												주문취소</button><br>
+											<a href="deliveryok.pg?num=${ l.orderitem_code}&id=${id}">
+											<button type="button" class="ms-3 btn btn-small btn-outline-dark my-1" id="deliveryok" >
+												배송완료 처리</button>
+											</a>
 											</c:if> 
 											<c:if test="${l.orderstate=='배송 완료'}"> 
 											<a href="reviewwrite.pg?num=${ l.product_code}"><button type="button" class="ms-3 btn btn-small btn-primary"
@@ -175,5 +178,14 @@ a{text-decoration:none}
 			</div>
 		</div>
 	</div>
+	<script>
+	$("#userinfo > div > table > tbody >tr > td:nth-child(7) > div.container.justify-content-center > a > #deliveryok").click(function(event){
+		var answer = confirm("배송 완료로 변경하시겠습니까?");
+		console.log(answer);
+		if(!answer){
+			event.preventDefault();
+		}
+	})
+	</script>
 </body>
 </html>

@@ -1,5 +1,8 @@
 $(document).ready(function(){
-	
+	$("#cancel").click(function(){
+		location.href="reviewlist.pg";
+		})
+		
 	$("form[name=reviewform]").submit(function(){
 		if($.trim($("#review_pass").val())==""){
 			alert("비밀번호를 입력하세요");

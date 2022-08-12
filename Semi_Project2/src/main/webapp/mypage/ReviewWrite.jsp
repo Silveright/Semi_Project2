@@ -5,6 +5,8 @@
 <head>
 <title>리뷰작성</title>
 <jsp:include page="../mainpage/header.jsp"/>
+<script src="js/jquery-3.6.0.js"></script>
+<script src="js/reviewwriteform.js"></script>
 </head>
 <style>
 table td {
@@ -27,7 +29,7 @@ img{width:20px}
 </head>
 <body>
 	<div class="container">
-	<form action="reviewaddaction.pg" method="post" enctype="multipart/form-data" name="boardform">
+	<form action="reviewaddaction.pg" method="post" enctype="multipart/form-data" name="reviewform">
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">
 				<div>
@@ -51,22 +53,22 @@ img{width:20px}
 					</tr>
 					<tr>
 						<td class="table-active text-center">구매제품</td>
-						<td><input type="text" name="review_product" id="review_product" class="form-control"></td>
+						<td><input type="text" readOnly name="review_product" value="${product.product_name }" id="review_product" class="form-control"></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">첨부파일</td>
-						<td><label for="upfile"> <img src="${pageContext.request.contextPath}/image/attach.png"
+						<td><label for="upfile"> <img src="${pageContext.request.contextPath}/image/mypage/attach.png"
 								alt="파일첨부">
 						</label> <input type="file" id="upfile" name="review_file"> <span
 							id="filevalue"></span></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">비밀번호</td>
-						<td><input type="password" name="review_pass" class="form-control"></td>
+						<td><input type="password" name="review_pass" id="review_pass" class="form-control"></td>
 					</tr>
 				</table>
 				<div style="text-align: center">
-					<button type="reset" class="btn btn-light float-right ml-1"
+					<button type="button" id="cancel" class="btn btn-light float-right ml-1"
 						data-mdb-ripple-color="dark " style="width: 90px">취소</button>
 					<button type="submit" class="btn btn-dark float-right ml-1">등록하기</button>
 				</div>

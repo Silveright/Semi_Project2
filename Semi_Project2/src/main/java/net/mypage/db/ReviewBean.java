@@ -13,7 +13,16 @@ public class ReviewBean {
 	private int review_readcount;//글의 조회수
 	private String review_date;
 	private String product_name;
+	private int cnt;
 	
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
 	public String getProduct_name() {
 		return product_name;
 	}
