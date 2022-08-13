@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.communityboard.db.NoticeBean;
 import net.communityboard.db.NoticeDAO;
 
-public class NoticeDetialAction implements Action {
+public class NoticeDetailAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)

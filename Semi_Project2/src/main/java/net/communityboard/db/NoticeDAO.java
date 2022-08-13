@@ -310,7 +310,7 @@ public class NoticeDAO {
 				notice.setNotice_re_ref(rs.getInt("notice_re_ref"));
 				notice.setNotice_re_lev(rs.getInt("notice_re_lev"));
 				notice.setNotice_re_seq(rs.getInt("notice_re_seq"));
-				notice.setNotice_date(rs.getString("notice_daet"));
+				notice.setNotice_date(rs.getString("notice_date"));
 				notice.setNotice_readcount(rs.getInt("notice_readcount"));
 			}
 		}catch (Exception ex) {
@@ -340,6 +340,62 @@ public class NoticeDAO {
 		return notice;
 		
 	}//getDetail() 메서드 end
+
+
+
+	public boolean noticeInsert(NoticeBean notice) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result =0;
+		try {
+			conn = ds.getConnection();
+			
+			String max_sql = "(select nvl(max(notice_num),0)+1 from notice)";
+			
+			//원문글의 BOARD_RE_REF는 자신의 글번호가된다.
+			String sql = "insert into notice "
+					+ "	   (notice_num, notice_id, notice_title,"
+					+ " 	notice_content , notice_file, notice_re_ref,"
+					+ "		notice_re_lev, notice_re_seq, notice_readcount)"
+					+ "  values(" + max_sql  + ", ?, ?,"
+					+ "		    ?, ?,"+  max_sql + ","
+					+ "		    ?,?,?)";
+			//새로운 글을 등록한다.
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, notice.getNotice_id());
+			pstmt.setString(2, notice.getNotice_title());
+			pstmt.setString(3, notice.getNotice_content());
+			pstmt.setString(4, notice.getNotice_file());
+			//원문의 경우 BOARD_RE_LEV, BOARD_RE_SEQ 필드 값은 0
+			pstmt.setInt(5, 0);
+			pstmt.setInt(6, 0);
+			pstmt.setInt(7, 0);//Readcount
+			
+			result = pstmt.executeUpdate();
+			if(result==1) {
+				System.out.println("데이터 삽입 완료");
+				return true;
+			}
+				
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			System.out.println("boardInsert() 에러: " +ex);
+		} finally {
+				if(pstmt !=null)
+					try{
+						pstmt.close();
+					} catch(SQLException ex) {
+						
+						ex.printStackTrace();
+					}
+				if(conn != null)
+			try {
+					conn.close();//DB연결을 끊는다.
+			}catch (SQLException ex) {
+			}
+		}//finally
+		return false;
+	}
 
 
 

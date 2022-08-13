@@ -38,22 +38,22 @@ table td input {
 				<table class="table table-bordered ">
 					<tr>
 						<td class="table-active text-center" style="width: 20%">작성자</td>
-						<td><input type="text" class="form-control" name="writer"></td>
+						<td><input type="text" value="${boarddata.notice_id }" class="form-control" name="writer"></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">제목</td>
-						<td><input type="text" class="form-control" name="subject"></td>
+						<td><input type="text" value="${boarddata.notice_title }" class="form-control" name="subject"></td>
 					</tr>
 					<tr>
 						<td colspan="2"><textarea rows="10" cols="50" name="content"
-								class="form-control"></textarea></td>
+				class="form-control">${boarddata.notice_content }</textarea></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">첨부파일</td>
-						<td>첨부파일명</td>
+						<td>${boarddata.notice_file }</td>
 					</tr>
 				</table>
-					<button type="button" class="btn btn-dark float-left">글목록</button>
+					<button type="button" onclick="history.back()" class="btn btn-dark float-left">글목록</button>
 					<button type="button" class="btn btn-dark float-end">수정</button>
 			</div>
 		</div>

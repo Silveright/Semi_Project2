@@ -38,16 +38,9 @@
 					<li class="nav-item"><a class="nav-link" href="logout.net"><small>로그아웃</small></a></li>
 					<c:if test="${id=='admin'}">
 						<li class="nav-item"><a class="nav-link" href="noticelist.co"><small>공지사항</small></a></li>
-						<li class="nav-item"><a class="nav-link" href="memberinfo.com"><small>회원정보</small></a></li>
+						<li class="nav-item"><a class="nav-link" href="memberlist.com"><small>회원정보</small></a></li>
 						<li class="nav-item"><a class="nav-link" href="qnalist.co"><small>문의처리</small></a></li>
 						<li class="nav-item"><a class="nav-link" href="faqlist.co"><small>FAQ</small></a></li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Dropdown</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">Link</a></li>
-								<li><a class="dropdown-item" href="#">Another link</a></li>
-								<li><a class="dropdown-item" href="#">A third link</a></li>
-							</ul></li>
 					</c:if>
 					<c:if test="${!empty sessionScope.id && sessionScope.id != 'admin'}">
 						<li class="nav-item"><a class="nav-link" href="updateprofile.pg"><small>정보수정</small></a></li>
