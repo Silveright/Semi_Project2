@@ -21,12 +21,13 @@ public class MemberAgreeProcessAction implements Action{
 		String jumin1 = request.getParameter("jumin1");
 		String jumin2 = request.getParameter("jumin2");
 		String jumin = jumin1 + "-" + jumin2;
-		
+				
 		String gender = request.getParameter("gender");
+		System.out.println("gender=" + gender);
 		String post = request.getParameter("post");
 		
 		String address = request.getParameter("address");
-		String address_detail = request.getParameter("adress_detail");
+		String address_detail = request.getParameter("address_detail");
 		
 		String phone_back = request.getParameter("phone");
 		String phone = "010" + phone_back;

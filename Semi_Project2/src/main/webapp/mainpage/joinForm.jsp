@@ -73,7 +73,7 @@
 				<div class="form-floating mb-1">
 					<select class="form-select" id="gender" name="gender"
 						onFocus="this.initialSelect = this.selectedIndex;"
-						onChange="this.selectedIndex = this.initialSelect;">
+						onChange="this.selectedIndex = this.initialSelect; submit();">
 						<option value="m">남자</option>
 						<option value="f">여자</option>
 					</select> <label for="gender">성별</label>
