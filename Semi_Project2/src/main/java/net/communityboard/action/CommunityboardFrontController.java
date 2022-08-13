@@ -33,7 +33,7 @@ public class CommunityboardFrontController extends javax.servlet.http.HttpServle
 			action = new NoticeListAction();
 			break;
 		case "/noticedetail.co":
-			action = new NoticeDetialAction();
+			action = new NoticeDetailAction();
 			break;
 		case "/faqlist.co":
 			action = new FAQListAction();
@@ -41,9 +41,15 @@ public class CommunityboardFrontController extends javax.servlet.http.HttpServle
 		case "/qnalist.co":
 			action = new QnaListAction();
 			break;
-		case "/qnadetail.co":
-			action = new QnaDetailAction();
+		case "/noticewrite.co":
+			action = new NoticeWriteAction();
 			break;
+		case "/noticeadd.co":
+			action = new NoticeAddAction();
+			break;
+		//case "/qnadetail.co":
+			//action = new QnaDetailAction();
+			//break;
 	
 		}
 		

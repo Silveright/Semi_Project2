@@ -78,7 +78,7 @@
 							</td>
 							<td>
 							
-							<a href="reviewdetail.pg?num=${n.notice_num }">
+							<a href="noticedetail.co?num=${n.notice_num }">
 							<c:if test="${n.notice_title.length()>=20 }">
 							<c:out value="${n.notice_title.substring(0,20) }..."/>
 								</c:if>
@@ -142,9 +142,6 @@
 				</div>
 		
 					<form action="noticelist.co" method="post">
-					<c:if test="${!empty id && id == 'admin'}">
-					<button type="submit" class="btn1 btn-dark">공지 추가</button>
-					</c:if>
 					<div class="input-group">
 						<select id="viewcount" name="search_field">
 							<option value="0" selected>제목</option>
@@ -152,6 +149,7 @@
 						</select> <input name="search_word" type="text" placeholder="검색어를 입력하세요">
 						<button class="btn2 btn-secondary" type="submit">검색</button>
 					</div>
+				<a href="noticewrite.co"><button type="button" class="btn1 btn-dark">공지 추가</button></a>
 				</form>
 			</div>
 		</div>
@@ -160,7 +158,10 @@
 <%-- 게시글이 없는 경우--%>
 
  <c:if test="${listcount == 0 }">
-	<font size=5>등록된 글이 없습니다.</font>
+	<font size=5>등록된 글이 없습니다.</font><br>
+	<c:if test="${id == 'admin'}">
+	<a href="noticewrite.co"><button type="button" class="btn1 btn-dark">공지 추가</button></a>
+	</c:if>
  </c:if>
 </div>
 

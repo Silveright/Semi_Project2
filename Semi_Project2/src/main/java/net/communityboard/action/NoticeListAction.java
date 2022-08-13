@@ -148,9 +148,8 @@ public class NoticeListAction implements Action {
 		ActionForward forward = new ActionForward();
 		NoticeDAO ndao = new NoticeDAO();
 		
-		String id= "admin";//request.getParameter("id");
-        HttpSession session = request.getSession();
-        session.setAttribute("id", id);
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
 		
 		//로그인 성공시 파라미터 page가 없어요. 그래서 초기값이 필요합니다.
 		int page=1; //보여줄 page

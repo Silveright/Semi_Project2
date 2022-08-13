@@ -35,7 +35,7 @@ h1 {
 			<hr style="height: 2px; opacity: 1; border-width: 0; background-color: black; margin: 0 auto">
 			<br>
 			
-		<form action="#" method="post"
+		<form action="noticeadd.co" method="post"
 			enctype="multipart/form-data" name="Modify">
 			<input type="hidden" name="board_num">
 			
@@ -47,8 +47,8 @@ h1 {
 			</div>
 			
 			<div class="form-group">
-				<label for="board_name">작성자</label> <input type="text"
-					class="form-control">
+				<label for="board_name">작성자</label> <input type="text" readonly
+				 name="board_name"	class="form-control" value="${id }">
 			</div>
 
 			<div class="form-group">
@@ -59,7 +59,8 @@ h1 {
 			<%--원문글인 경우에만 파일 첨부 수정 가능합니다. --%>
 				<div class="form-group">
 					<label for="board_file">파일 첨부</label> <label for="upfile">
-						<img src="#" alt="파일 첨부" width="20px">
+						<img src="${pageContext.request.contextPath}/image/mypage/attach.png"
+								alt="파일첨부">
 					</label> <input type="file" id="upfile" name="board_file"> <span
 						id="filevalue"></span> 
 					<img src="image/remove.png" alt="파일삭제" width="10px" class="remove">
