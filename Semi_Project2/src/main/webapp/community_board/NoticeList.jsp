@@ -54,7 +54,7 @@
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">
 				<div>
-					<b>공지사항</b>
+					<b>공지사항${id }</b>
 				</div>
 				<hr
 					style="height: 2px; opacity: 1; border-width: 0; background-color: black; margin: 0 auto">
@@ -149,7 +149,9 @@
 						</select> <input name="search_word" type="text" placeholder="검색어를 입력하세요">
 						<button class="btn2 btn-secondary" type="submit">검색</button>
 					</div>
+				<c:if test="${id=='admin'}">
 				<a href="noticewrite.co"><button type="button" class="btn1 btn-dark">공지 추가</button></a>
+				</c:if>
 				</form>
 			</div>
 		</div>
@@ -159,7 +161,7 @@
 
  <c:if test="${listcount == 0 }">
 	<font size=5>등록된 글이 없습니다.</font><br>
-	<c:if test="${id == 'admin'}">
+	<c:if test="${id=='admin'}">
 	<a href="noticewrite.co"><button type="button" class="btn1 btn-dark">공지 추가</button></a>
 	</c:if>
  </c:if>
