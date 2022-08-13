@@ -17,7 +17,8 @@ create table customer(
 	secondhand_code		number(5) references secondhand_board(secondhand_code) on delete cascade
 
 	select * from customer
-	
+		
+	drop table customer
 
 
 --예시

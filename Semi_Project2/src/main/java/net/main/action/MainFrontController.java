@@ -92,9 +92,9 @@ public class MainFrontController extends javax.servlet.http.HttpServlet {
 			action = new MemberResetAction(); 
 			break;
 			
-			case "/resetpassSuccess.net":
-				action = new MemberResetSuccessAction(); 
-				break;
+		case "/resetpassSuccess.net":
+			action = new MemberResetSuccessAction(); 
+			break;
 		}
 	
 		forward = action.execute(request, response); 
@@ -120,5 +120,3 @@ public class MainFrontController extends javax.servlet.http.HttpServlet {
 			doProcess(request, response);
 		}
 	}
-
-

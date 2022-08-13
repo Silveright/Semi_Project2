@@ -9,10 +9,12 @@ public class Customer {
 	private String post;
 	private String address;
 	private String phone;
+	private String address_detail;
 	private String email;
 	private String register_date;	
 	private String grade;	
 	private int secondhand_code;
+	
 	
 	public String getId() {
 		return id;
@@ -62,6 +64,12 @@ public class Customer {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	public String getAddress_detail() {
+		return address_detail;
+	}
+	public void setAddress_detail(String address_detail) {
+		this.address_detail = address_detail;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -86,6 +94,6 @@ public class Customer {
 	public void setSecondhand_code(int secondhand_code) {
 		this.secondhand_code = secondhand_code;
 	}
-	
+
 	
 }

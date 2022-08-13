@@ -1,6 +1,7 @@
 package net.main.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +25,8 @@ public class MemberAgreeProcessAction implements Action{
 		String gender = request.getParameter("gender");
 		String post = request.getParameter("post");
 		
-		String address_front = request.getParameter("address");
-		String adress_detail = request.getParameter("adress_detail");
-		String address = address_front + adress_detail;
+		String address = request.getParameter("address");
+		String address_detail = request.getParameter("adress_detail");
 		
 		String phone_back = request.getParameter("phone");
 		String phone = "010" + phone_back;
@@ -51,17 +51,35 @@ public class MemberAgreeProcessAction implements Action{
 		c.setPost(post);
 		c.setAddress(address);
 		c.setPhone(phone);
+		c.setAddress_detail(address_detail);
 		c.setEmail(email);
+		
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
 		
 		CustomerDAO dao = new CustomerDAO();
 		int result = dao.insert(c);
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("join_result", c);
+		if(result == 0) {
+			System.out.println("회원 가입 실패입니다.");
+			ActionForward forward = new ActionForward();	
+			forward.setRedirect(false);
+			request.setAttribute("message", "회원 가입 실패입니다.");
+			forward.setPath("error/error.jsp");
+			return forward;		
+		}
 		
-		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);    
-		forward.setPath("mainpage/agree.jsp");
-		return forward; 
+		out.println("<script>");
+		if(result == 1) { 
+			out.println("location.href='mainpage/agree.jsp';");
+			HttpSession session = request.getSession();
+			session.setAttribute("join_result", c);
+		} else if (result == -1) {
+			out.println("alert('아이디가 중복되었습니다. 다시 입력하세요');");
+			out.println("history.back()"); 
+		}
+		out.println("</script>");
+		out.close();
+		return null;
 	}
 }
