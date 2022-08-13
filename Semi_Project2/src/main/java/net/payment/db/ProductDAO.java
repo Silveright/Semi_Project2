@@ -75,7 +75,7 @@ public class ProductDAO {
 		return list;
 	}
 
-	public ProductBean getDetail(int num) {
+	public ProductBean getDetail(int num, String color, String size) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -99,6 +99,8 @@ public class ProductDAO {
 				p.setCategory_code(rs.getInt("category_code"));
 				p.setProduct_price(rs.getInt("product_price"));
 				p.setProduct_image(rs.getString("product_image"));
+				p.setProduct_color(color);
+				p.setProduct_size(size);
 				System.out.println("상품 정보 읽기 성공");
 			}
 		} catch (Exception ex) {

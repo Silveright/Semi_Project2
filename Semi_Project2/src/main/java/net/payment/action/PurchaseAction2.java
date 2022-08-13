@@ -27,9 +27,12 @@ public class PurchaseAction2 implements Action {
 		//상품 번호 파라미터 값을 num변수에 저장
 		int num = Integer.parseInt(request.getParameter("num"));
 		
-		
 		//상품 내용을 DAO에서 읽은 후 얻은 결과를 저장한다.
-		p = dao.getDetail(num);
+		System.out.println(request.getParameter("color"));
+		System.out.println(request.getParameter("size"));
+		String color=request.getParameter("color");
+		String size=request.getParameter("size");
+		p = dao.getDetail(num,color,size);
 		
 		Customer c = new Customer();
 		CustomerDAO cdao = new CustomerDAO();

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>리뷰작성</title>
+<title>리뷰 작성</title>
 <jsp:include page="../mainpage/header.jsp"/>
 <script src="js/jquery-3.6.0.js"></script>
 <script src="js/reviewwriteform.js"></script>

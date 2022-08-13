@@ -61,7 +61,7 @@ img{width:20px}
 				<div style="text-align: center">
 					<button type="submit" class="btn btn-dark">등록</button>
 					<button type="reset" class="btn btn-light"
-						data-mdb-ripple-color="dark" style="width: 90px">취소</button>
+						data-mdb-ripple-color="dark" style="width: 90px" onclick="history.back()">취소</button>
 				</div>
 			</div>
 		</div>

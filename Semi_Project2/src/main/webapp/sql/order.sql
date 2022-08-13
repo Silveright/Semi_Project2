@@ -205,13 +205,46 @@ select * from order_item;
    and o.id='id'
    and oit.orderstate='배송 전';
 
+   --------------------------------------------------------
    select count(*)
    from product p, order_info o, order_item oit
    where p.product_code=oit.product_code
    and o.order_code=oit.order_code
    and o.id='id'
    and oit.orderstate='배송 취소';
-  
+
+   
+   select count(*)
+   from product p, order_info o, order_item oit
+   where p.product_code=oit.product_code
+   and o.order_code=oit.order_code
+   and o.id='id'
+   and (1=2 or oit.orderstate='배송 전' or oit.orderstate='배송 완료');
+   
+   
+   select * 
+	from
+	(select rownum rnum, j.* 
+	from (select o.id, o.order_date, p.product_image, p.product_name, p.product_code, 
+	oit.product_count, oit.product_price, oit.orderitem_code, oit.orderstate 
+		from product p, order_info o, order_item oit 
+			where p.product_code=oit.product_code 
+				and o.order_code=oit.order_code 
+			and o.id=id
+			order by o.order_date desc) j 
+		where rownum<=1) 
+		where rnum>=1 and rnum<=10
+	
+	select * from order_item
+   
+   --------------------------------------------------------
+  select board.*, nvl(cnt,0) cnt
+			  		from board left outer join(select comment_board_num,count(*) cnt
+		 									from comm
+		  									group by comment_board_num)
+		 		on board_num=comment_board_num
+			  		order by board_re_ref desc, 
+			  		board_re_seq asc
 
 	select o.id, o.order_date, p.product_image, p.product_name, 
 	oit.product_count, oit.product_price, oit.orderitem_code, oit.orderstate 
@@ -444,5 +477,17 @@ select * from order_item;
 	where j.order_code =2
 	
 	select * from customer;
+	
+	select count(*)
+	 from (select o.id, o.order_date, p.product_image, p.product_name, 
+	oit.product_count, oit.product_price, oit.orderitem_code, oit.orderstate 
+	from product p, order_info o, order_item oit 
+	where p.product_code=oit.product_code 
+	and o.order_code=oit.order_code 
+	and o.id=id
+	and oit.orderstate='배송 전' or oit.orderstate='배송 완료')
+	
+	select * from order_info
+	select * from product
 	
              

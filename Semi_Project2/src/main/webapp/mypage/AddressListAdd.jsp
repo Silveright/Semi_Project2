@@ -37,7 +37,6 @@ img{width:20px}
 						<td class="table-active text-center">휴대전화</td>
 						<td>
 						<div class="input-group ">
-							    <span class="input-group-text">010</span>
 							    <input type="text" name="address_phone" id='phone' class="form-control p-2">
 							  </div> <span id="message"></span>
 						</td>
@@ -65,7 +64,7 @@ img{width:20px}
 				<br>
 				<div style="text-align: center">
 					<button type="submit" class="btn btn-dark">등록</button>
-					<button type="reset" class="btn btn-light"
+					<button type="reset" class="btn btn-light" onclick="history.back()"
 						data-mdb-ripple-color="dark" style="width: 90px">취소</button>
 				</div>
 			</div>

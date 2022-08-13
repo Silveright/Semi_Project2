@@ -34,7 +34,7 @@ public class Order_infoDAO {
 		String board_list_sql = "select * "
 				+ "	from(select rownum rnum, j.* "
 				+ "		 from (select o.id, o.order_date, p.product_image, p.product_name, p.product_code, "
-				+ "				oit.product_count, oit.product_price, oit.orderitem_code, oit.orderstate "
+				+ "				oit.product_count, oit.product_price, oit.orderitem_code, oit.orderstate, o.order_cost  "
 				+ "				from product p, order_info o, order_item oit "
 				+ "				where p.product_code=oit.product_code "
 				+ "				and o.order_code=oit.order_code "
@@ -70,6 +70,7 @@ public class Order_infoDAO {
 				orderlist.setOrderitem_code(rs.getInt("orderitem_code"));
 				orderlist.setProduct_price(rs.getInt("product_price"));
 				orderlist.setProduct_code(rs.getInt("product_code"));
+				orderlist.setOrder_cost(rs.getInt("order_cost"));
 				list.add(orderlist);//값을 담은 객체를 리스트에 저장
 			}
 		} catch(Exception e) {
@@ -106,7 +107,7 @@ public class Order_infoDAO {
 		String board_list_sql =  "select * "
 				+ "	from(select rownum rnum, j.* "
 				+ "		 from (select o.id, o.order_date, p.product_image, p.product_name, p.product_code, "
-				+ "				oit.product_count, oit.product_price, oit.orderitem_code, oit.orderstate "
+				+ "				oit.product_count, oit.product_price, oit.orderitem_code, oit.orderstate, o.order_cost  "
 				+ "				from product p, order_info o, order_item oit "
 				+ "				where p.product_code=oit.product_code "
 				+ "				and o.order_code=oit.order_code "
@@ -141,6 +142,7 @@ public class Order_infoDAO {
 				orderlist.setOrderitem_code(rs.getInt("orderitem_code" ));
 				orderlist.setId(rs.getString("id"));
 				orderlist.setProduct_price(rs.getInt("product_price"));
+				orderlist.setOrder_cost(rs.getInt("order_cost"));
 				list.add(orderlist);//값을 담은 객체를 리스트에 저장
 			}
 		} catch(Exception e) {
@@ -247,6 +249,49 @@ public class Order_infoDAO {
 				System.out.println(ex.getMessage());
 				ex.printStackTrace();
 			}
+		}//finally end
+		return x;
+	}
+
+	public int getcount2(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int x =0;
+		
+		try {
+			conn = ds.getConnection();
+			String sql = "select count(*)"
+					+ "   from product p, order_info o, order_item oit"
+					+ "   where p.product_code=oit.product_code"
+					+ "   and o.order_code=oit.order_code"
+					+ "   and o.id= ?"
+					+ "   and oit.orderstate='배송 완료' ";
+			System.out.println(sql);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				x=rs.getInt(1);
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			System.out.println("getcount2() 에러: " +ex);
+		} finally {
+			if(rs !=null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+					System.out.println(ex.getMessage());
+					ex.printStackTrace();
+				}
+			if(pstmt != null)
+				try {
+					pstmt.close();//DB연결을 끊는다.
+				}catch (Exception ex) {
+					System.out.println(ex.getMessage());
+					ex.printStackTrace();
+				}
 		}//finally end
 		return x;
 	}

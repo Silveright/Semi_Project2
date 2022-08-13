@@ -68,7 +68,7 @@ a{text-decoration:none;}
 										<td><img src="${pageContext.request.contextPath}/image/main/product/${c.product_image}.jpg" alt="${c.product_image}" width="77px"></td>
 										<td>${c.product_name}</td>
 										<td>${c.product_count}</td>
-										<td><fmt:formatNumber value="${c.product_price}" pattern="#,###" /></td>
+										<td><fmt:formatNumber value="${c.order_cost}" pattern="#,###" /></td>
 										<td>${c.orderstate}</td>
 										</tr>
 										</c:forEach>

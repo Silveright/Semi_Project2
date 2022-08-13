@@ -37,8 +37,8 @@ body>div.container>div>div>div.container.custom>div:nth-child(2) {
 						<small class="p-3 text-center">배송 완료</small> <small
 							class="p-4 text-center">배송 준비중</small> <small
 							class="p-4 text-center">배송 중</small> <br>
-						<br> <small class="p-5 text-center">0</small> <small
-							class="p-5 text-center">${delivery}</small> <small class="p-5 text-center">0</small>
+						<br><small class="p-5 text-center">${delivery2}</small> <a href="orderlist.pg" style="text-decoration:none; color:black"><small
+							class="p-5 text-center">${delivery}</small></a> <small class="p-5 text-center">0</small>
 					</div>
 					<br>
 				</div>

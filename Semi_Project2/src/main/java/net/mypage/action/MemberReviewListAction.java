@@ -7,7 +7,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import net.mypage.db.ReviewBean;
 import net.mypage.db.ReviewDAO;
@@ -19,7 +19,8 @@ public class MemberReviewListAction implements Action {
 			throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
 		ReviewDAO dao = new ReviewDAO();
-		
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
 		//로그인 성공 시 파라미터 page가 없어 초기값 설정이 필요하다.
 		int page=1;//보여줄 page
 		int limit =10;
@@ -33,7 +34,6 @@ public class MemberReviewListAction implements Action {
 		int index=-1;//search_field에 존재하지 않는 값으로 초기화>>전체 회원 조회됨
 		
 		String search_word="";
-		String id = request.getParameter("id");
 		/*
 		메뉴-관리자-회원정보 클릭한 경우(member_list.net)
 		또는 메뉴-관리자-회원정보 클릭후 페이지를 클릭한 경우
@@ -42,7 +42,7 @@ public class MemberReviewListAction implements Action {
 		if(request.getParameter("search_word")==null
 					|| request.getParameter("search_word").equals("")) {
 			///총 리스트 수를 받아온다.
-			listcount = dao.getListCount();
+			listcount = dao.getListCount(id);
 			list=dao.getList(page,limit,id);
 		}else {//검색 클릭시
 			index=Integer.parseInt(request.getParameter("search_field"));
@@ -99,6 +99,7 @@ public class MemberReviewListAction implements Action {
 			request.setAttribute("totallist", list);
 			request.setAttribute("search_field", index);
 			request.setAttribute("search_word", search_word);
+			System.out.println("총 글 수"+listcount);
 			
 		forward.setRedirect(false);
 		forward.setPath("mypage/MemberReviewList.jsp");

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>리뷰보기</title>
+<title>리뷰 수정</title>
 <jsp:include page="../mainpage/header.jsp"/>
 <script src="js/jquery-3.6.0.js"></script>
 <script src="js/reviewmodifyform.js"></script>
@@ -30,7 +30,6 @@ table td input {
 }
 </style>
 </head>
-<title>MVC 게시판</title>
 </head>
 <body>
 <form action="reviewmodifyprocess.pg" method="post" enctype="multipart/form-data" name="modifyform">

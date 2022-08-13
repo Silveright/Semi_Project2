@@ -332,6 +332,7 @@ $(document).ready(function(){
 									<td>상품구매금액</td>
 									<td>배송비</td>
 									<td>합계</td>
+									<td>옵션</td>
 								</tr>
 								<tr class="align-middle">
 									<td><img src="${pageContext.request.contextPath}/image/main/product/${p.product_image}.jpg" alt="${p.product_image}" width="77px"></td>
@@ -349,7 +350,11 @@ $(document).ready(function(){
 									<fmt:formatNumber  value="${sum+total_product}" pattern="#,###" /> 
 									<input type="hidden" name="totalprice" value="${sum+total_product }"><!-- 결제 시 결제화면에 담아갈 총금액 정보-->
 									</td>
-
+								<td>
+									${p.product_color}[${p.product_size}]
+									<input type="hidden" name="size" value="${p.product_size}">
+									<input type="hidden" name="color" value="${p.product_color}">
+								</td>
 										
 							</table>
 							<br>

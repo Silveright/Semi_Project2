@@ -40,7 +40,7 @@
 									<td>${a.address_name }</td>
 									<td>${a.address_receiver }</td>
 									<td>
-									010-${ fn:substring(a.address_phone, 0,4) }-${ fn:substring(a.address_phone, 4, 8) }
+									${ fn:substring(a.address_phone, 0,3) }-${ fn:substring(a.address_phone, 3,7) }-${ fn:substring(a.address_phone, 7, 11) }
 									</td>
 									<td>${a.address_post }</td>
 									<td>${a.address1 }</td>

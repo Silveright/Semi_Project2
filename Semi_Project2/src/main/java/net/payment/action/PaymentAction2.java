@@ -47,18 +47,21 @@ public class PaymentAction2 implements Action {
 					System.out.println(phone);
 					info.setReceiver_phone(phone);
 					
-					int result = infodao.infoinsert(info) ;
-					System.out.println("orderinfo 결과는 "+result);
 					
 					Order_Item item = new Order_Item();
+					System.out.println(request.getParameter("count"));
 					item.setProduct_count(Integer.parseInt(request.getParameter("count")));
 					item.setProduct_code(Integer.parseInt(request.getParameter("product_code")));
 					item.setProduct_price(Integer.parseInt(request.getParameter("totalproductprice")));
 					item.setProduct_image(request.getParameter("product_image"));
 					item.setProduct_name(request.getParameter("product_name"));
-					int result2 = infodao.iteminset(item);
+					item.setProduct_size(request.getParameter("size"));
+					item.setProduct_color(request.getParameter("color"));
 					
-					if(result==0||result2==0) {
+					int result = infodao.infoinsert(info,item) ;
+					System.out.println("orderinfo 결과는 "+result);
+
+					if(result==0) {
 						System.out.println("주문처리 실패");
 						forward.setPath("error/error.jsp");
 						request.setAttribute("message", "주문 실패입니다.");
