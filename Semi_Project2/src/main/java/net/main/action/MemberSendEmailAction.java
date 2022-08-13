@@ -38,7 +38,7 @@ public class MemberSendEmailAction implements Action{
 		}		
 		System.out.println("받는 사람 = " + receiver);		
 		
-		String sender = "dlswjd1118@naver.com";
+		String sender = "bullard90@naver.com";
 		String subject = "안녕하세요 Online Shop입니다";
 		int certification = RandomUtils.nextInt(100000, 1000000);
 		String content = "<h1>Code : <h1>" + "<strong>" + certification + "</strong>";  
