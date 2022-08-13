@@ -120,5 +120,3 @@ public class MainFrontController extends javax.servlet.http.HttpServlet {
 			doProcess(request, response);
 		}
 	}
-
-
