@@ -81,7 +81,8 @@ $(function(){
 					
 					var c = Number($("#jumin2").val().substring(0,1));
 					var index = (c-1)%2; 
-					$("#gender>option").eq(index).prop("selected", true).attr("disabled", true);
+					$("#gender>option").eq(index).prop("selected", true);
+					$("#gender>option").not(":selected").attr("disabled", true);
 					$('#gender+label').css('color', 'green');					
 					$("#post").focus();
 			} else {
