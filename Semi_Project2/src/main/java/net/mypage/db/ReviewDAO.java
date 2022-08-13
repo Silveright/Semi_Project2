@@ -69,6 +69,51 @@ public class ReviewDAO {
 		}//finally end
 		return x;
 	}
+	public int getListCount(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int x =0;//db에 해당 아이디가 존재하지 않는 경우
+		
+		try {
+			conn = ds.getConnection();
+			String select_sql = "select count(*) from review"
+					+ " where review_name =?";
+			//PreparedStatement 객체 얻기
+			pstmt = conn.prepareStatement(select_sql.toString());
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				x=rs.getInt(1);
+			}
+		}catch(Exception se) {
+			System.out.println("getListCount()에러:" +se);
+			se.printStackTrace();
+		} finally {
+			if (rs!=null)
+				try {
+					rs.close();
+				}catch(SQLException e) {
+					System.out.println(e.getMessage());
+				}
+			if(pstmt != null)
+				try {
+					pstmt.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+					System.out.println(e.getMessage());
+				}
+			if(conn!=null)
+				try {
+					conn.close();
+				}catch(Exception e) {
+					e.printStackTrace();
+					System.out.println(e.getMessage());
+				}
+		}//finally end
+		return x;
+	}
 
 	public List<ReviewBean> getList(int page, int limit) {
 		Connection conn= null;
@@ -697,17 +742,21 @@ public class ReviewDAO {
 		//page:페이지 limit: 페이지 당 목록 수 board_re_ref desc, board_re_seq asc에 의해 정렬한것을
 		//조건절에 맞는 rnum의 범위만큼 가져오는 쿼리문
 		String board_list_sql = "select * "
-				+ "from "
-				+ "(select rownum rnum, review_num, review_name,  "
-				+ "review_pass, review_subject,review_content,  "
-				+ "review_file, review_re_ref, review_re_lev,  review_re_seq,  "
-				+ "review_readcount, review_date from  "
-				+ "(SELECT * FROM review "
-				+ "where review_name=? "
-				+ "ORDER BY review_re_ref DESC,"
-				+ " review_re_seq ASC)"
-				+ "where rownum<=?) "
-				+ " where rnum>=? and rnum<=?";
+				+ "from (select rownum rnum, j.* "
+				+ "	from ( "
+				+ "	SELECT review.*, nvl(cnt,0) as cnt "
+				+ "	FROM review left outer join(select comment_review_num, count(*) cnt "
+				+ "								from review_comm "
+				+ "								group by comment_review_num"
+				+ "								) "
+				+ "								on review_num = comment_review_num "
+				+ "	where review_name=? "
+				+ "								order by review_re_ref desc, "
+				+ "	review_re_seq asc "
+				+ "	) j "
+				+ "	where rownum<=? "
+				+ "	) "
+				+ "where rnum>=? and rnum<=?";
 		
 		List<ReviewBean> list = new ArrayList<ReviewBean>();
 		//한 페이지당 10개씩 목록인 경우 1페이지, 2페이지, 3페이지, 4페이지...
@@ -737,6 +786,7 @@ public class ReviewDAO {
 				r.setReview_re_seq(rs.getInt("review_re_seq"));
 				r.setReview_readcount(rs.getInt("review_readcount"));
 				r.setReview_date(rs.getString("review_date"));
+				r.setCnt(rs.getInt("cnt"));
 				list.add(r);//값을 담은 객체를 리스트에 저장
 			}
 		} catch(Exception e) {

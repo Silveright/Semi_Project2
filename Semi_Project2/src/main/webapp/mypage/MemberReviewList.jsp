@@ -80,7 +80,7 @@ $(document).ready(function() {
 								<c:if test="${r.review_subject.length()<20 }">
 								<c:out value="${r.review_subject }"/>
 								</c:if>
-								</a>
+								</a>[${r.cnt}]
 							</td>
 					<td>${r.review_name }</td>
 					<td>${r.review_date }</td>
@@ -151,8 +151,9 @@ $(document).ready(function() {
 		</div>
 		</c:if>
 		<c:if test="${listcount==0 }">
- 		<font size=5>등록된 리뷰가 없습니다.</font>
- 	</c:if>
+ 		<font size=5>등록된 리뷰가 없습니다.</font><br>
+ 		<button type="button" class="btn btn-dark" onClick="history.back()">뒤로가기</button>
+ 		</c:if>
 	</div>
 	</body>
 </html>

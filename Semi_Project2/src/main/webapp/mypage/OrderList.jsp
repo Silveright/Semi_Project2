@@ -69,7 +69,7 @@ a{text-decoration:none}
 									<td><img src="${pageContext.request.contextPath}/image/main/product/${l.product_image}.jpg" alt="${p.product_image}" width="77px"></td>
 									<td>${l.product_name }</td>
 									<td>${l.product_count }</td>
-									<td><fmt:formatNumber value="${l.product_price}" pattern="#,###" /></td>
+									<td><fmt:formatNumber value="${l.order_cost}" pattern="#,###" /></td>
 									<td>${l.orderstate }</td>
 									<td align="center"><!-- td 내부 모달 -->
 

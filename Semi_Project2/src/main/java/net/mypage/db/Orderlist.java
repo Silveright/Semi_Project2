@@ -11,7 +11,14 @@ public class Orderlist {
 	private int product_price;
 	private int product_count;
 	private int orderitem_code;
+	private int order_cost;
 	
+	public int getOrder_cost() {
+		return order_cost;
+	}
+	public void setOrder_cost(int order_cost) {
+		this.order_cost = order_cost;
+	}
 	public int getProduct_code() {
 		return product_code;
 	}

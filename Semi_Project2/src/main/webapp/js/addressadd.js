@@ -8,10 +8,10 @@ $(document).ready(function(){
 					
 					$("#message").empty();
 					
-					var pattern = /^\d{3,4}\d{4}$/;
+					var pattern = /^(?:(010\d{4})|(01[1|6|7|8|9]\d{3,4}))(\d{4})$/;
 					var phone = $("#phone").val();
 					if(!pattern.test(phone)){
-						$("#message").css('color', 'red').html("영문자 숫자 _로 5~12자 가능합니다.");
+						$("#message").css('color', 'red').html("전화번호 형식에 맞지 않습니다.");
 						checkphone=false;
 					}else{
 						$("#message").css('color', 'green').html("전화번호 형식에 맞습니다.");

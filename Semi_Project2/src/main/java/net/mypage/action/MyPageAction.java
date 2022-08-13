@@ -28,6 +28,7 @@ public class MyPageAction implements Action {
 		Order_infoDAO dao = new Order_infoDAO();
 		
 		int delivery = dao.getcount1(id);
+		int delivery2 = dao.getcount2(id);
 		
 		if(id==null) {
 			String message="로그인이 필요한 기능입니다.";
@@ -43,6 +44,7 @@ public class MyPageAction implements Action {
 			forward.setRedirect(false);//주소변경없이 jsp페이지의 내용을 보여준다.
 			forward.setPath("mypage/Mypage.jsp");
 			request.setAttribute("delivery",delivery);
+			request.setAttribute("delivery2",delivery2);
 			return forward;
 		}
 	}

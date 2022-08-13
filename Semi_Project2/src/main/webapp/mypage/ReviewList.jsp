@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
 <jsp:include page="../mainpage/header.jsp"/>
 <style>
 a{text-decoration:none; color:black}
@@ -40,7 +39,7 @@ $(document).ready(function() {
 input{border:1px solid black}
 b{font-size:0.9em}
 </style>
-<title>MVC 게시판</title>
+<title>리뷰 게시판</title>
 </head>
 <body>
 <br>

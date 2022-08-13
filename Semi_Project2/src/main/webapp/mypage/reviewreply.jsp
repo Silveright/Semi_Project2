@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>리뷰작성</title>
+<title>리뷰 답글 작성</title>
 <jsp:include page="../mainpage/header.jsp"/>
 </head>
 <style>
@@ -23,7 +23,7 @@ table td input {
 }
 img{width:20px}
 </style>
-<title>리뷰작성</title>
+<title>리뷰 답글 작성</title>
 </head>
 <body>
 	<div class="container">

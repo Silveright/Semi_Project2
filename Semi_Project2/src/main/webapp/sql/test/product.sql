@@ -68,3 +68,10 @@ create table cart( -- 장바구니
 create sequence cart_seq;
 drop table cart
 alter sequence cart_seq nocache
+
+insert into cart values (cart_seq.nextval, 'id', 1, 2, 'black' , 's')
+insert into cart values (cart_seq.nextval, 'id', 2, 1, 'white' , 's')
+
+select * from cart, product 
+where cart.product_code = product.product_code
+and id ='id';

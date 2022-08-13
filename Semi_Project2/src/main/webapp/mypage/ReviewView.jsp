@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>리뷰보기</title>
+<title>리뷰 보기</title>
 <jsp:include page="../mainpage/header.jsp"/>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="js/reviewview.js"></script>
@@ -31,7 +31,7 @@ table td input {
 }
 </style>
 </head>
-<title>MVC 게시판</title>
+<title>리뷰 게시판</title>
 </head>
 <body>
 	<input type="hidden" id="loginid" value="${id }" name="loginid">
@@ -65,7 +65,7 @@ ${reviewdata.review_content}
 					<c:if test="${reviewdata.review_re_lev==0}">
 					<tr>
 						<td class="table-active text-center">구매제품</td>
-						<td><input type="text" class="form-control" value=${reviewdata.product_name } name="subject" ReadOnly></td>
+						<td>${reviewdata.product_name }</td>
 					</tr>
 					</c:if>
 					<tr>
@@ -73,7 +73,7 @@ ${reviewdata.review_content}
 						<td class="table-active text-center">첨부파일</td>
 						<c:if test="${!empty reviewdata.review_file }">
 						<td><img src="${pageContext.request.contextPath}/image/mypage/down.png" width="10px">
-						<a href="reviewfiledown.pg?filename=${reviewdata.review_file}">${reviewdata.review_file}</a></td>
+						<a href="reviewfiledown.pg?filename=${reviewdata.review_file}" style="color:blue">${reviewdata.review_file}</a></td>
 						</c:if>
 					</c:if>
 					</tr>
@@ -82,10 +82,11 @@ ${reviewdata.review_content}
 					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">삭제하기</button>
 					<a href="reviewmodify.pg?num=${reviewdata.review_num}"><button type="button" class="btn btn-dark">수정하기</button></a>
 				</c:if>
+					<c:if test="${!empty id }">
 					<a href="reviewreplyview.pg?num=${reviewdata.review_num }">
 					<button type="button" class="btn btn-dark float-sm-end ms-1">답변달기</button>
-					</a>
-					<a href="reviewlist.pg"><button type="button" class="btn btn-dark float-sm-end">글목록</button></a>
+					</a></c:if>
+					<a href="reviewlist.pg"><button type="button" class="btn btn-dark float-sm-end">글목록</button></a><br><br><br>
 					<div class="modal" id="myModal">
 											<div class="modal-dialog">
 												<div class="modal-content">

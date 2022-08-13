@@ -86,6 +86,7 @@
 								<tr class="table-active">
 									<td>이미지</td>
 									<td>상품명</td>
+									<td>옵션</td>
 									<td>수량</td>
 									<td>상품구매금액</td>
 									<td>배송비</td>
@@ -94,6 +95,7 @@
 								<tr class="align-middle">
 									<td><img src="${pageContext.request.contextPath}/image/main/product/${order_item.product_image}.jpg" alt="${order_item.product_image}" width="77px"></td>
 									<td>${order_item.product_name}</td>
+									<td>${order_item.product_color}[${order_item.product_size }]</td>
 								 <td>${order_item.product_count }</td>
 								<td><fmt:formatNumber  value="${order_item.product_price }" pattern="#,###" /></td>
 								<td><fmt:formatNumber  value="2500" pattern="#,###" /></td>

@@ -8,6 +8,20 @@ public class Order_Item {
 	private String orderstate;
 	private int product_code;
 	private String product_image;
+	private String product_size;
+	private String product_color;
+	public String getProduct_color() {
+		return product_color;
+	}
+	public void setProduct_color(String product_color) {
+		this.product_color = product_color;
+	}
+	public String getProduct_size() {
+		return product_size;
+	}
+	public void setProduct_size(String product_size) {
+		this.product_size = product_size;
+	}
 	public String getProduct_image() {
 		return product_image;
 	}

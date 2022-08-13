@@ -1,10 +1,12 @@
+	select * from order_info
+	select * from order_item
 	------------------정리본-----------------------
 	drop sequence order_item_seq;
 	drop table order_item purge;
 	drop table order_info purge;
     drop sequence order_info_seq;
 	최종 주문 정보 테이블
-
+	
 	--1) 주문 정보 테이블
    
 	select order_info_seq.nextval from order_info
@@ -42,6 +44,8 @@
     FOREIGN KEY (product_code) REFERENCES product(product_code)
 	);
 	
+	select * from order_info
+	select max(order_code) from order_info;
 	--1)첫번째 주문이 이루어지는 경우
 	--주문이 이루어지면 order_info에 데이터 삽입이 이루어지고(주문코드, 아이디, 결제방식, 주소1, 주소2, 우편번호, 이름, 전화번호, 총액, 배송메세지, 주문일)
 	insert into order_info values (order_info_seq.nextval,'test', '무통장 입금','서울아파트', '10동 10호', '11111', '홍길동','01012341234',50000,'문 앞에 놔주세요',sysdate)
@@ -76,7 +80,7 @@
    from
 		(select rownum rnum, j.* 
 		from (select o.id, o.order_date, p.product_image, p.product_name, p.product_code, 
-			  oit.product_count, oit.product_price, oit.orderitem_code, oit.orderstate 
+			  oit.product_count, oit.product_price, oit.orderitem_code, oit.orderstate, o.order_cost 
 		      from product p, order_info o, order_item oit 
 			  where p.product_code=oit.product_code 
 			  and o.order_code=oit.order_code 
@@ -110,5 +114,56 @@
     from product p, order_info o, order_item oit
     where p.product_code=oit.product_code
     and o.order_code=oit.order_code
-    and o.id='id'
+    and o.id='java'
+	
+    select count(*)  
+	from product p, order_info o, order_item oit   
+	where p.product_code=oit.product_code   
+	and o.order_code=oit.order_code   and o.id='java'  
+	and oit.orderstate='배송 전' 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	"select * "
+				+ "from "
+				+ "(select rownum rnum, review_num, review_name,  "
+				+ "review_pass, review_subject,review_content,  "
+				+ "review_file, review_re_ref, review_re_lev,  review_re_seq,  "
+				+ "review_readcount, review_date from  "
+				+ "(SELECT * FROM review "
+				+ "where review_name=? "
+				+ "ORDER BY review_re_ref DESC,"
+				+ " review_re_seq ASC)"
+				+ "where rownum<=?) "
+				+ " where rnum>=? and rnum<=?";
+	
+				
+				
+	select *  
+from (select rownum rnum, j.* 
+	from (
+	SELECT review.*, nvl(cnt,0) as cnt 
+	FROM review left outer join(select comment_review_num, count(*) cnt 
+								from review_comm 
+								group by comment_review_num
+								) 
+								on review_num = comment_review_num 
+	where review_name='test'
+								order by review_re_ref desc, 
+	review_re_seq asc 
+	) j 
+	where rownum<=10 
+	)
+where rnum>=1 and rnum<=10
+	
+	
+	
 	

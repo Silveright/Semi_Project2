@@ -6,6 +6,20 @@ public class ProductBean {
 	private int product_price;
 	private String product_image;
 	private int category_code;
+	private String product_size;
+	public String getProduct_size() {
+		return product_size;
+	}
+	public void setProduct_size(String product_size) {
+		this.product_size = product_size;
+	}
+	public String getProduct_color() {
+		return product_color;
+	}
+	public void setProduct_color(String product_color) {
+		this.product_color = product_color;
+	}
+	private String product_color;
 	
 	public int getProduct_code() {
 		return product_code;
