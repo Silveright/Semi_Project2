@@ -235,7 +235,7 @@
         if(str=="purchase"){                                 
             frm1.action="${pageContext.request.contextPath}/purchaseAction.go";      
         } else if(str=="cart"){      
-        	frm1.action="${pageContext.request.contextPath}/cart.do";      
+        	frm1.action="${pageContext.request.contextPath}/cartadd.do";      
         }  else if(str=="wishList"){
         	frm1.action="${pageContext.request.contextPath}/wishlist.do";
         }
