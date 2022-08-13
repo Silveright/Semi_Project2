@@ -125,8 +125,8 @@ p{text-align:left}
                                       주문하기로 이동하시겠습니까?
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>
-                                      <a href="purchaseAction.go?num=${ c.product_code}&id=${id}&p_num1=${c.cart_count}"><button type="button" class="btn btn-primary">계속하기</button></a>  <!-- 결제창으로 이동 -->
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>        
+                                      <a href="purchaseAction.go?num=${ c.product_code}&p_num1=${c.cart_count}&color=${c.opt_color}&size=${c.opt_size}"></a>
                                     </div>
                                   </div>
                                 </div>
