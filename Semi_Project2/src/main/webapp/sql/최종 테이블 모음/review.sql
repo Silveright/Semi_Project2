@@ -1,6 +1,10 @@
+select * from review;
+drop table review_comm purge
+drop sequence review_com_seq;
+
 drop sequence review_seq
 drop table review
-select * from review;
+--1. 리뷰테이블 생성
 create table review(
 	review_num number,
 	review_name varchar2(30) references customer(id),
@@ -16,8 +20,13 @@ create table review(
 	review_date date default sysdate,
 	primary key(review_num)
 );
-delete from review
-drop table review_comm purge
+--시퀀스 생성
+create sequence review_com_seq;
+alter sequence review_com_seq nocache
+
+create sequence review_seq;
+alter sequence review_seq nocache
+--2. 리뷰 댓글 테이블 생성
 create table review_comm(
 	num number primary key,
 	id varchar2(30) references customer(id),
@@ -30,22 +39,15 @@ create table review_comm(
 	comment_re_ref number--원문은 자신 글번호, 답글이면 원문 글번호
 );
 --게시판 글 삭제시 참조 댓글도 삭제된다.
-drop sequence review_com_seq;
---시퀀스 생성
-create sequence review_com_seq;
-alter sequence review_com_seq nocache
-
-create sequence review_seq;
-alter sequence review_seq nocache
 
 insert into review (review_num, review_subject, review_name, review_re_ref) VALUES (1,'처음','admin',1);
 insert into review (review_num, review_subject, review_name, review_re_ref) VALUES (2,'둘째','admin',2);
 insert into review (review_num, review_subject, review_name, review_re_ref) VALUES (3,'셋째','admin',3);
 
-delete from review;
+delete from review_comm;
 drop table review purge;
 drop sequence review_seq;
-select * from review;
+select * from review_comm;
 select review_pass from review where review_num =1;
 
 

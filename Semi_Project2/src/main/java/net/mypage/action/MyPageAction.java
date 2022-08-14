@@ -36,7 +36,7 @@ public class MyPageAction implements Action {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('"+message+"');");
-			out.println("history.back();");
+			out.println("location.href='login.net';");
 			out.println("</script>");
 			out.close();
 			return null;

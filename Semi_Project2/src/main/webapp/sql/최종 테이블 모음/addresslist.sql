@@ -6,11 +6,11 @@ create table addresslist(
 	address_post varchar2(5),
 	address_phone varchar2(14),
 	address1 varchar2(150),
-	address2 varchar2(50),
+	address2 varchar2(100),
 	primary key(addresslist_num)
 );
 create sequence addresslist_seq;
-alter sequence order_info_seq nocache
+alter sequence addresslist_seq nocache
 
 select * from addresslist;
 
