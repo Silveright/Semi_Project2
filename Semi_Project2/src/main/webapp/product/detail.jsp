@@ -110,7 +110,7 @@
 						   <hr>  
          				   
          				   <p>사이즈<span>&nbsp;&nbsp;</span>
-         				   <select name="size" id="size-select">
+         				   <select name="size" id="size-select" required>
          				      <option value="">--[필수] 사이즈를 선택해주세요--</option>
         				      <option value="xs">xs</option>
         				      <option value="s">s</option>
@@ -121,7 +121,7 @@
        				      <hr>
            
           				  <p>색상<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          				  <select name="color" id="size-select">
+          				  <select name="color" id="size-select" required>
        				          <option value="">--[필수] 사이즈를 선택해주세요--</option>
          				      <option value="black">블랙</option>
         				      <option value="white">화이트</option>
@@ -230,6 +230,7 @@
 		<input type="hidden" name="id" value="${id}">
 		
 </form>
+<jsp:include page="../mainpage/footer.jsp" />
 <script>
     function btn_click(str){                             
         if(str=="purchase"){                                 
