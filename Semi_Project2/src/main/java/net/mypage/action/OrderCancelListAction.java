@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.mypage.db.Order_infoDAO;
 import net.mypage.db.Orderlist;
@@ -16,7 +17,8 @@ public class OrderCancelListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
-		String id = request.getParameter("id");
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
 		
 		int page=1;//보여줄 page
 		int limit =5;//한 페이지에 보여줄 게시판 목록의 수

@@ -15,8 +15,11 @@
   </style>
 </head>
 <body>
+				<br>
 <form method='post' id="myform"
 			  action='updateprofileProcess.pg'>
+			  <input type="hidden" value=${memberinfo.gender } name="gender">
+			  
 	<div class="container">
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">
@@ -84,5 +87,8 @@
 		</div>
 	</div>
 </form>
+<br>
+<br>
+<jsp:include page="../mainpage/footer.jsp" />
 </body>
 </html>

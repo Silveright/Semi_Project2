@@ -12,6 +12,20 @@ public class Orderlist {
 	private int product_count;
 	private int orderitem_code;
 	private int order_cost;
+	private String product_color;
+	private String product_size;
+	public String getProduct_color() {
+		return product_color;
+	}
+	public void setProduct_color(String product_color) {
+		this.product_color = product_color;
+	}
+	public String getProduct_size() {
+		return product_size;
+	}
+	public void setProduct_size(String product_size) {
+		this.product_size = product_size;
+	}
 	
 	public int getOrder_cost() {
 		return order_cost;

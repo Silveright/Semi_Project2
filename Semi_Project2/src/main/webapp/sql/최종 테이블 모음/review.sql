@@ -1,6 +1,6 @@
 drop sequence review_seq
 drop table review
-
+select * from review;
 create table review(
 	review_num number,
 	review_name varchar2(30) references customer(id),
@@ -16,7 +16,7 @@ create table review(
 	review_date date default sysdate,
 	primary key(review_num)
 );
-
+delete from review
 drop table review_comm purge
 create table review_comm(
 	num number primary key,
@@ -138,4 +138,22 @@ where rownum<=10)
  where rnum>=1 and rnum<=10
  
  drop table admin purge
+ 
+ select *  
+from (select rownum rnum, j.* 
+	from (
+	SELECT review.*, nvl(cnt,0) as cnt 
+	FROM review left outer join(select comment_review_num, count(*) cnt 
+								from review_comm 
+								group by comment_review_num
+								) 
+								on review_num = comment_review_num 
+	where review_name='test'
+								order by review_re_ref desc, 
+	review_re_seq asc 
+	) j 
+	where rownum<=10 
+	)
+where rnum>=1 and rnum<=10
+	
 

@@ -46,11 +46,18 @@ $(document).ready(function(){
 				return false;
 			}
 			
+			if(post1.length!=5){
+				alert("우편번호는 다섯 자리입니다.")
+				$("#post1").focus();
+				return false;
+			}
+
 			if(!$.isNumeric($("#post1").val())){
 				alert("우편번호는 숫자만 입력 가능합니다.")
 				$("#post1").val("").focus();
 				return false;
 			}
+			
 
 			if(!$.isNumeric($("#phone").val())){
 				alert("전화번호는 숫자만 입력 가능합니다.")

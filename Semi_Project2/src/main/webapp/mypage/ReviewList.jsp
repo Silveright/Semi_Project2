@@ -38,6 +38,13 @@ $(document).ready(function() {
 <style>
 input{border:1px solid black}
 b{font-size:0.9em}
+footer{position:fixed; 
+			bottom:0px; 
+			height:3rem;
+			background:#ccc;
+			width:100%; 
+			text-align:center;
+			}
 </style>
 <title>리뷰 게시판</title>
 </head>
@@ -158,9 +165,12 @@ b{font-size:0.9em}
 		</div>
 		</c:if>
 		<c:if test="${listcount==0 }">
- 		<font size=5>등록된 리뷰가 없습니다.</font><br>
- 		<button type="button" onclick="history.back()" class="btn btn-dark float-left back">뒤로가기</button>
+		<section class="py-5">
+ 		<font size=5>등록된 리뷰가 없습니다.</font><br><br>
+ 		<a href="main.net"><button type="button" class="btn btn-dark float-left back">메인으로</button></a>
+ 		</section>
  	</c:if>
 	</div>
+	<jsp:include page="../mainpage/footer.jsp" />
 </body>
 </html>

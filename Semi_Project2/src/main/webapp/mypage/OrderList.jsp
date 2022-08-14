@@ -13,7 +13,7 @@ a{text-decoration:none}
 </style>
 </head>
 <body>
-
+<section class="py-5">
 	<div class="container">
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">
@@ -31,7 +31,7 @@ a{text-decoration:none}
 							role="tab" aria-controls="userinfo" aria-selected="true">주문내역조회</button>
 					</li>
 					<li class="nav-item" role="presentation">
-						<a href="ordercancellist.pg?id=${id}"><button class="nav-link" id="myreview-tab" data-bs-toggle="tab"
+						<a href="ordercancellist.pg"><button class="nav-link" id="myreview-tab" data-bs-toggle="tab"
 							data-bs-target="#myreview" type="button" role="tab"
 							aria-controls="myreview" aria-selected="false">주문취소내역</button></a><!-- 눌렀을 때 새페이지로 이동?? 거기서 바로 취소내역 탭열리게 하려면..?  -->
 					</li>
@@ -58,6 +58,7 @@ a{text-decoration:none}
 									<td>수량</td>
 									<td>상품구매금액</td>
 									<td>주문상태</td>
+									<td>상품 옵션</td>
 									<td align="center">취소</td>
 								</tr>
 								<!-- foreach문 시작 -->
@@ -71,6 +72,8 @@ a{text-decoration:none}
 									<td>${l.product_count }</td>
 									<td><fmt:formatNumber value="${l.order_cost}" pattern="#,###" /></td>
 									<td>${l.orderstate }</td>
+									<td>
+									${l.product_color}[${l.product_size }]</td>
 									<td align="center"><!-- td 내부 모달 -->
 
 										<div class="container justify-content-center">
@@ -80,7 +83,7 @@ a{text-decoration:none}
 												주문취소</button><br>
 											<a href="deliveryok.pg?num=${ l.orderitem_code}&id=${id}">
 											<button type="button" class="ms-3 btn btn-small btn-outline-dark my-1" id="deliveryok" >
-												배송완료 처리</button>
+												배송완료</button>
 											</a>
 											</c:if> 
 											<c:if test="${l.orderstate=='배송 완료'}"> 
@@ -168,6 +171,7 @@ a{text-decoration:none}
 				</div>
 							</c:if>
 							<c:if test="${empty list}">
+							
 							<h3>주문내역이 없습니다.</h3>
 							<a href="main.net"><button type="button" class="btn btn-primary float-end">쇼핑하러가기</button>
 							</a>
@@ -187,5 +191,10 @@ a{text-decoration:none}
 		}
 	})
 	</script>
+	<br>
+<br>
+<br>
+</section>
+<jsp:include page="../mainpage/footer.jsp" />
 </body>
 </html>

@@ -8,6 +8,16 @@
 <title>배송주소록 관리</title>
 <jsp:include page="../mainpage/header.jsp"/>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src ='${pageContext.request.contextPath}/js/addresslist.js'></script>
+<style>
+footer{position:fixed; 
+			bottom:0px; 
+			height:3rem;
+			background:#ccc;
+			width:100%; 
+			text-align:center;
+			}
+</style>
 </head>
 <body>
 	<br>
@@ -51,7 +61,7 @@
 								</c:forEach>
 							</table>
 								<c:if test="${list.size() <5 }">
-								<a href="addresslistadd.pg?id=${id}">
+								<a href="addresslistadd.pg">
 								<button class="btn btn-secondary float-end">등록하기</button>
 								</a>
 								</c:if>
@@ -61,29 +71,13 @@
 							</c:if>
 							<c:if test="${empty list}">
 							<h1>등록된 배송지가 없습니다.</h1>
-							<a href="addresslistadd.pg?id=${id}">
+							<a href="addresslistadd.pg">
 							<button class="btn btn-secondary float-end">등록하기</button>
 							</a>
 							</c:if>
 					</div>
 			</div>
 	</div>
-<script>
-$("#addblock").click(function(){
-	alert("주소는 5개까지 등록 가능합니다.")
-})
-$("tr > td.text-center > a:nth-child(2) > button").click(function(event){
-		var answer = confirm("정말 삭제하시겠습니까?");
-		console.log(answer);
-		if(!answer){
-			event.preventDefault();
-		}
-	})
-/*  function phoneFormat(){    
-var str = $('tr:nth-child(n+2) > td:nth-child(3)').text().trim();        
- var phone = str.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");   
- $('tr:nth-child(n+2) > td:nth-child(3)').text(phone);}
-phoneFormat(); */
-</script>
+	<jsp:include page="../mainpage/footer.jsp" />
 </body>
 </html>

@@ -47,7 +47,7 @@ body>div.container>div>div>div.container.custom>div:nth-child(2) {
 				<div class="row d-flex justify-content-center">
 					<div class="col-lg-2 col-md-6" style="width: 20%">
 						<div class="h-100 p-4 bg-light border rounded-3">
-							<a href="orderlist.pg?id=${id}"><img src="${pageContext.request.contextPath}/image/mypage/search.png" alt="Chicago"
+							<a href="orderlist.pg"><img src="${pageContext.request.contextPath}/image/mypage/search.png" alt="Chicago"
 								class="mx-auto rounded d-block" style="width: 65px"></a> <br>
 							<h6 class="text-center">주문내역 조회</h6>
 						</div>
@@ -55,7 +55,7 @@ body>div.container>div>div>div.container.custom>div:nth-child(2) {
 
 					<div class="col-lg-2 col-md-6" style="width: 20%">
 						<div class="h-100 p-4 bg-light border rounded-3">
-							<a href="updateprofile.pg?id=${id}"><img src="${pageContext.request.contextPath}/image/mypage/profile.png" alt="Chicago"
+							<a href="updateprofile.pg"><img src="${pageContext.request.contextPath}/image/mypage/profile.png" alt="Chicago"
 								class="mx-auto rounded d-block" style="width: 90px"></a>
 							<h6 class="text-center">회원정보 수정</h6>
 						</div>
@@ -79,7 +79,7 @@ body>div.container>div>div>div.container.custom>div:nth-child(2) {
 
 					<div class="col-lg-2 col-md-6" style="width: 20%">
 						<div class="h-100 p-4 bg-light border rounded-3">
-							<a href="addresslist.pg?id=${id}"><img src="${pageContext.request.contextPath}/image/mypage/delivery-truck.png" alt="Chicago"
+							<a href="addresslist.pg"><img src="${pageContext.request.contextPath}/image/mypage/delivery-truck.png" alt="Chicago"
 								class="mx-auto rounded d-block" style="width: 65px"></a> <br>
 							<h6 class="text-center">배송주소록 관리</h6>
 						</div>
@@ -99,7 +99,7 @@ body>div.container>div>div>div.container.custom>div:nth-child(2) {
             </div>
             <div class="modal-body">
                 <p>보러갈 게시판을 선택해주세요</p>
-              <a href="memberreviewlist.pg?id=${id}"><button type="button" class="btn btn-primary  me-3">내 리뷰 보러가기</button></a>
+              <a href="memberreviewlist.pg"><button type="button" class="btn btn-primary  me-3">내 리뷰 보러가기</button></a>
                <a href="memberboardlist.pg?id=${id}"><button type="button" class="btn btn-primary">내 중고거래 글 보러가기</button></a>
             </div>
             <div class="modal-footer">
@@ -108,5 +108,9 @@ body>div.container>div>div>div.container.custom>div:nth-child(2) {
         </div>
     </div>
 </div>
+<br>
+<br>
+<br>
+<jsp:include page="../mainpage/footer.jsp" />
 </body>
 </html>

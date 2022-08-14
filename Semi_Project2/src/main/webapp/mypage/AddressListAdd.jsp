@@ -15,7 +15,7 @@ img{width:20px}
 </head>
 <body>
 	<form method='post' id="myform"
-			  action='addresslistaddprocess.pg?id=${id}'>
+			  action='addresslistaddprocess.pg'>
 	<div class="container">
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">
@@ -71,5 +71,8 @@ img{width:20px}
 		</div>
 	</div>
 </form>
+<br>
+<br>
+<jsp:include page="../mainpage/footer.jsp" />
 </body>
 </html>

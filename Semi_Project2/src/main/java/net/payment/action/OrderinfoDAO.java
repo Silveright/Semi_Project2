@@ -101,12 +101,14 @@ public class OrderinfoDAO {
 			
 			String orderitem_sql = "insert into order_item "
 					+ "  	values(order_info_seq.nextval, "+num+","
-							+ "		?, ?, ?, '배송 전')";
+							+ "		?, ?, ?, '배송 전',?,?)";
 			
 			pstmt=conn.prepareStatement(orderitem_sql);
 			pstmt.setInt(1, item.getProduct_code());
 			pstmt.setInt(2, item.getProduct_count());
 			pstmt.setInt(3, item.getProduct_price());
+			pstmt.setString(4, item.getProduct_color());
+			pstmt.setString(5, item.getProduct_size());
 			
 			result1 = pstmt.executeUpdate();
 			if(result1==1) {
@@ -168,12 +170,14 @@ public class OrderinfoDAO {
 			//원문글의 BOARD_RE_REF는 자신의 글번호가된다.
 			String sql = "insert into order_item "
 					+ "  	values(order_info_seq.nextval, "+num+","
-							+ "		?, ?, ?, '배송 전')";
+							+ "		?, ?, ?, '배송 전',?,?)";
 			//새로운 글을 등록한다.
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, item.getProduct_code());
 			pstmt.setInt(2, item.getProduct_count());
 			pstmt.setInt(3, item.getProduct_price());
+			pstmt.setString(4, item.getProduct_color());
+			pstmt.setString(5, item.getProduct_size());
 			
 			result = pstmt.executeUpdate();
 			if(result==1) {
@@ -213,11 +217,6 @@ public class OrderinfoDAO {
 				}
 			}//finally
 		return result;
-	}
-
-	public Orderlist getorderdetail(String id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

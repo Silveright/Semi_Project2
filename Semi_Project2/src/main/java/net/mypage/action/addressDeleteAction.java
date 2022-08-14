@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.mypage.db.AddressDAO;
 
@@ -15,7 +16,8 @@ public class addressDeleteAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		AddressDAO mdao = new AddressDAO();
-		String id = request.getParameter("id");
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
 		ActionForward forward = new ActionForward();
 		int num = Integer.parseInt(request.getParameter("num"));
 		response.setContentType("text/html;charset=utf-8");
@@ -27,7 +29,7 @@ public class addressDeleteAction implements Action {
 			 * out.println("</script>"); 왜 안되지??
 			 */
 			forward.setRedirect(true);
-			forward.setPath("addresslist.pg?id="+id);//이동할 경로 지정
+			forward.setPath("addresslist.pg");//이동할 경로 지정
 			return forward;
 		}else {
 			out.println("<script>");
