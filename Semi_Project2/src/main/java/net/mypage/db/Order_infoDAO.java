@@ -33,7 +33,7 @@ public class Order_infoDAO {
 		
 		String board_list_sql = "select * "
 				+ "	from(select rownum rnum, j.* "
-				+ "		 from (select o.id, o.order_date, p.product_image, p.product_name, p.product_code, "
+				+ "		 from (select o.id, o.order_date, p.product_image, p.product_name, oit.product_color, oit.product_size,  p.product_code, "
 				+ "				oit.product_count, oit.product_price, oit.orderitem_code, oit.orderstate, o.order_cost  "
 				+ "				from product p, order_info o, order_item oit "
 				+ "				where p.product_code=oit.product_code "
@@ -71,6 +71,8 @@ public class Order_infoDAO {
 				orderlist.setProduct_price(rs.getInt("product_price"));
 				orderlist.setProduct_code(rs.getInt("product_code"));
 				orderlist.setOrder_cost(rs.getInt("order_cost"));
+				orderlist.setProduct_color(rs.getString("product_color"));
+				orderlist.setProduct_size(rs.getString("product_size"));
 				list.add(orderlist);//값을 담은 객체를 리스트에 저장
 			}
 		} catch(Exception e) {
@@ -106,7 +108,7 @@ public class Order_infoDAO {
 		
 		String board_list_sql =  "select * "
 				+ "	from(select rownum rnum, j.* "
-				+ "		 from (select o.id, o.order_date, p.product_image, p.product_name, p.product_code, "
+				+ "		 from (select o.id, o.order_date, p.product_image, p.product_name, oit.product_color, oit.product_size, p.product_code, "
 				+ "				oit.product_count, oit.product_price, oit.orderitem_code, oit.orderstate, o.order_cost  "
 				+ "				from product p, order_info o, order_item oit "
 				+ "				where p.product_code=oit.product_code "
@@ -143,6 +145,8 @@ public class Order_infoDAO {
 				orderlist.setId(rs.getString("id"));
 				orderlist.setProduct_price(rs.getInt("product_price"));
 				orderlist.setOrder_cost(rs.getInt("order_cost"));
+				orderlist.setProduct_color(rs.getString("product_color"));
+				orderlist.setProduct_size(rs.getString("product_size"));
 				list.add(orderlist);//값을 담은 객체를 리스트에 저장
 			}
 		} catch(Exception e) {

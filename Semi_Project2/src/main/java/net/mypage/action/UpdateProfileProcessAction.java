@@ -28,6 +28,7 @@ public class UpdateProfileProcessAction implements Action {
 		member.setAddress_detail(request.getParameter("address2"));
 		member.setPhone(request.getParameter("tel"));
 		member.setEmail(request.getParameter("email"));
+		member.setGender(request.getParameter("gender"));
 		//응답하는 데이터 타입이 html 타입이고
 		//charset=utf-8로 지정하면서 응답되는 데이터 처리를 한 부분이다.
 		response.setContentType("text/html;charset=utf-8");

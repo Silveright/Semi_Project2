@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.mypage.db.AddressBean;
 import net.mypage.db.AddressDAO;
@@ -20,7 +21,8 @@ public class addresslistAction implements Action {
 		
 		
 		List<AddressBean> list = null;
-		String id = request.getParameter("id");
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
 		
 		list=dao.getList(id);
 		request.setAttribute("list", list);

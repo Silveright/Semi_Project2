@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.mypage.db.AddressBean;
 import net.mypage.db.AddressDAO;
@@ -16,7 +17,9 @@ public class AddresslistAddProcessAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		AddressBean address = new AddressBean();
-		address.setAddress_id(request.getParameter("id"));
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		address.setAddress_id(id);
 		address.setAddress_name(request.getParameter("address_name"));
 		address.setAddress_receiver(request.getParameter("address_receiver"));
 		address.setAddress_phone(request.getParameter("address_phone"));
@@ -44,7 +47,7 @@ public class AddresslistAddProcessAction implements Action {
 		
 		//Redirect여부를 true로 설정
 		forward.setRedirect(true);
-		forward.setPath("addresslist.pg?id="+address.getAddress_id());//이동할 경로 지정
+		forward.setPath("addresslist.pg");//이동할 경로 지정
 		return forward;
 	}
 

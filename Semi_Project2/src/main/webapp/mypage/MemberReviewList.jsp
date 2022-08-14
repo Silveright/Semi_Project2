@@ -10,6 +10,13 @@
 input{border:1px solid black}
 b{font-size:0.9em}
 a{text-decoration:none; color:black}
+footer{position:fixed; 
+			bottom:0px; 
+			height:3rem;
+			background:#ccc;
+			width:100%; 
+			text-align:center;
+			}
 </style>
 <script>
 $(document).ready(function() { 
@@ -37,6 +44,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+<section class="py-5">
 <br>
 <div class="container">
 <c:if test="${listcount > 0 }">
@@ -155,5 +163,10 @@ $(document).ready(function() {
  		<button type="button" class="btn btn-dark" onClick="history.back()">뒤로가기</button>
  		</c:if>
 	</div>
+</section>	
+		<br>
+<br>
+<br>
+<jsp:include page="../mainpage/footer.jsp" />
 	</body>
 </html>

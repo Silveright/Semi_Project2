@@ -12,7 +12,7 @@ a{text-decoration:none;}
 </style>
 </head>
 <body>
-
+<section class="py-5">
 	<div class="container">
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">
@@ -26,7 +26,7 @@ a{text-decoration:none;}
 				<%-- <c:if test="${!empty list || !empty cancel }">  --%>
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item" role="presentation">
-						<a href="orderlist.pg?id=${id }"><button class="nav-link " id="userinfo-tab"
+						<a href="orderlist.pg"><button class="nav-link " id="userinfo-tab"
 							data-bs-toggle="tab" data-bs-target="#userinfo" type="button"
 							role="tab" aria-controls="userinfo" aria-selected="true">주문내역조회</button></a>
 					</li>
@@ -61,6 +61,7 @@ a{text-decoration:none;}
 										<td>수량</td>
 										<td>상품구매금액</td>
 										<td>주문상태</td>
+										<td>상품 옵션</td>
 									</tr>
 									<c:forEach var="c" items="${list }"  varStatus="vs">
 									<tr class="align-middle">
@@ -70,6 +71,8 @@ a{text-decoration:none;}
 										<td>${c.product_count}</td>
 										<td><fmt:formatNumber value="${c.order_cost}" pattern="#,###" /></td>
 										<td>${c.orderstate}</td>
+										<td>
+									${c.product_color}[${c.product_size }]</td>
 										</tr>
 										</c:forEach>
 								</table>
@@ -137,5 +140,10 @@ a{text-decoration:none;}
 			</div>
 		</div>
 	</div>
+	</section>
+	<br>
+<br>
+<br>
+<jsp:include page="../mainpage/footer.jsp" />
 </body>
 </html>

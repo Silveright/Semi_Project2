@@ -38,6 +38,7 @@ table td input {
 	<div class="container">
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">
+				<br>
 				<div>
 					<b>리뷰 보기</b>
 				</div>
@@ -70,8 +71,8 @@ ${reviewdata.review_content}
 					</c:if>
 					<tr>
 					<c:if test="${reviewdata.review_re_lev==0}">
-						<td class="table-active text-center">첨부파일</td>
 						<c:if test="${!empty reviewdata.review_file }">
+						<td class="table-active text-center">첨부파일</td>
 						<td><img src="${pageContext.request.contextPath}/image/mypage/down.png" width="10px">
 						<a href="reviewfiledown.pg?filename=${reviewdata.review_file}" style="color:blue">${reviewdata.review_file}</a></td>
 						</c:if>
