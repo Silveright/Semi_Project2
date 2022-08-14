@@ -126,7 +126,8 @@ p{text-align:left}
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>        
-                                      <a href="purchaseAction.go?num=${ c.product_code}&p_num1=${c.cart_count}&color=${c.opt_color}&size=${c.opt_size}"></a>
+                                      <a href="purchaseAction.go?num=${ c.product_code}&p_num1=${c.cart_count}&color=${c.opt_color}&size=${c.opt_size}">
+                                      <button type="button" class="btn btn-primary">주문하기</button></a>
                                     </div>
                                   </div>
                                 </div>
