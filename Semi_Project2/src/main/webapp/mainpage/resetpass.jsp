@@ -18,10 +18,10 @@
 		<div class="card-body">
 			<h2 class="card-title text-center m-5" style="font-weight:bold">비밀번호 재설정</h2>
 		</div>
-		<form id="reset" method="post" action="login.net">
-		<input type="hidden" name="id" value="${requestScope.id}"/>				
+		<form id="reset" method="post" action="resetpassSuccess.net">
+		<input type="hidden" id= "checkid" name="checkid" value="${sessionScope.checkid}">			
 		<ul class="list-group list-group-flush">
-			<li class="list-group-item">아이디<span>${requestScope.id}</span></li>		
+	  		<li class="list-group-item">아이디<span>${sessionScope.checkid}</span></li>
 			
 			<li class="list-group-item">새 비밀번호 
 				<span><input id="newpass" name="newpass" type="password" size=36></span>

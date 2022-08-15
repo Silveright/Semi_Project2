@@ -60,6 +60,10 @@ public class MainFrontController extends javax.servlet.http.HttpServlet {
 			action = new EmailCertiProcessAction(); 
 			break;
 			
+		case "/phonecertiprocess.net":
+			action = new PhoneCertiProcessAction(); 
+			break;
+			
 		case "/idcheck.net":
 			action = new MemberIdCheckAction(); 
 			break;

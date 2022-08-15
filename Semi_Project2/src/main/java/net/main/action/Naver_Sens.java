@@ -19,7 +19,7 @@ import org.json.simple.JSONObject;
 
 public class Naver_Sens {
 		@SuppressWarnings("unchecked")
-		public void send_msg(String tel, String rand) {
+		public void send_msg(String tel, int rand) {
 	        String hostNameUrl = "https://sens.apigw.ntruss.com";     		// 호스트 URL
 	        String requestUrl= "/sms/v2/services/";                   		// 요청 URL
 	        String requestUrlType = "/messages";                      		// 요청 URL
@@ -37,13 +37,14 @@ public class Naver_Sens {
 	        JSONObject toJson = new JSONObject();
 		    JSONArray  toArr = new JSONArray();
 
-		    toJson.put("content","Going 본인인증 ["+rand+"]");		// 난수와 함께 전송
+		    toJson.put("content","인증코드 : ["+rand+"]");		// 난수와 함께 전송
 		    toJson.put("to",tel);
 		    toArr.add(toJson);
 		    
 		    bodyJson.put("type","SMS");	// 메시지 Type (sms | lms)
 		    bodyJson.put("contentType","COMM");
 		    bodyJson.put("countryCode","82");
+		    bodyJson.put("content","인증");
 		    bodyJson.put("from","01099863158");	// 발신번호 * 사전에 인증/등록된 번호만 사용할 수 있습니다.		
 		    bodyJson.put("messages", toArr);		
 		    
