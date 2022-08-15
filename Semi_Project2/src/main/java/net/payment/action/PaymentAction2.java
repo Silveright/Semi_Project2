@@ -27,15 +27,10 @@ public class PaymentAction2 implements Action {
 					info.setDelivery_message(request.getParameter("deliveryMsg"));
 					info.setId(id);
 					info.setOrder_cost(Integer.parseInt(request.getParameter("totalprice")));
-					String card = request.getParameter("card");
-					String bank = request.getParameter("deposit");
+					String payment = request.getParameter("choose");
 					
-					System.out.println(request.getParameter("card"));
-					System.out.println(request.getParameter("deposit"));
-					if(card!=null) {
-						info.setPayment_option(card);
-					}else if(card==null) {
-						info.setPayment_option(bank);
+					info.setPayment_option(payment);
+					if(payment=="무통장 입금") {
 						info.setDepositor(request.getParameter("depositor"));
 					}
 					info.setPost(request.getParameter("post"));
