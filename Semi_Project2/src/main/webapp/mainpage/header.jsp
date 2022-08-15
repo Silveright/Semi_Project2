@@ -51,7 +51,7 @@
 					<li class="nav-item"><a class="nav-link" href="join.net"><small>회원가입</small></a></li>
 				</c:if>
 				<li class="nav-item"><a class="nav-link" href="cart.do?id=${id }"><small>장바구니</small></a></li>
-				<li class="nav-item"><a class="nav-link" href="wishlist.do"><small>관심상품</small></a></li>
+				<li class="nav-item"><a class="nav-link" href="wishlist.do?id=${id }"><small>관심상품</small></a></li>
 				<li class="nav-item"><a class="nav-link" href="mypage.pg"><small>마이페이지</small></a></li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><small>커뮤니티</small></a>
@@ -78,13 +78,13 @@
 
 <div class="container-fluid border">
 	<ul class="nav justify-content-center">
-		<li class="nav-item"><a class="nav-link text-body" href="#">상의</a>
+		<li class="nav-item"><a class="nav-link text-body" href="top.do">상의</a>
 		</li>
-		<li class="nav-item"><a class="nav-link text-body" href="#">하의</a>
+		<li class="nav-item"><a class="nav-link text-body" href="bottom.do">하의</a>
 		</li>
-		<li class="nav-item"><a class="nav-link text-body" href="#">아우터</a>
+		<li class="nav-item"><a class="nav-link text-body" href="outer.do">아우터</a>
 		</li>
-		<li class="nav-item"><a class="nav-link text-body" href="#">악세서리</a>
+		<li class="nav-item"><a class="nav-link text-body" href="accessories.do">악세서리</a>
 		</li>
 	</ul>
 </div>

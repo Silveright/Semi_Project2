@@ -86,6 +86,12 @@ var certi_type = '${sessionScope.certi_type}';
 if (certi_type == "e") {
 	var certicheck = false;
 	$("#codecheck").on('click', function() {
+		let count = 0;
+		count++;
+		console.log(count);
+		if (count>1){
+		$("#codecheck").disabled = true;
+		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/emailcertiprocess.net",
 			data : {"code_input" : $('#code_input').val()},
@@ -103,7 +109,8 @@ if (certi_type == "e") {
 		           certicheck = false;
 		        }
 			})
-		});
+		};
+	})
 }
 
 if (certi_type == "p") {
@@ -127,6 +134,7 @@ if (certi_type == "p") {
 		        }
 			})
 		});
+	
 	}
 
 $('#self').on('submit',		
