@@ -118,6 +118,42 @@ public class CartDAO {
 			}
 		}//finally
 		return result;
+	}
+
+	public int deleteCart(String id, int cart_code) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result =0;
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "delete from cart "
+					+ "   where id = ? "
+			        + "   and cart_code = ?";
+
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				pstmt.setInt(2, cart_code);
+		
+				result = pstmt.executeUpdate();
+				
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+				if(pstmt !=null)
+					try{
+						pstmt.close();
+					} catch(SQLException ex) {
+						
+						ex.printStackTrace();
+					}
+				if(conn != null)
+			try {
+					conn.close();//DB연결을 끊는다.
+			}catch (SQLException ex) {
+			}
+		}//finally
+		return result;
 	}	
 	
 	

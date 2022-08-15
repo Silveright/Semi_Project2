@@ -160,7 +160,7 @@ p{text-align:left}
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>
-                                      <a href="cartdelte.do?id=${id }&code=${c.cart_code}"><button type="button" class="btn btn-primary">삭제하기</button></a>    <!-- display none -->
+                                      <a href="cartdelete.do?id=${id }&cart_code=${c.cart_code}"><button type="button" class="btn btn-primary">삭제하기</button></a>    <!-- display none -->
                                     </div>
                                   </div>
                                 </div>
