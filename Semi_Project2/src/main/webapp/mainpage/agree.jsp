@@ -48,7 +48,7 @@
 			</textarea>
 			 
 			<p>
-				이용약관에 동의하십니까? <input class="essential" type="checkbox">
+				이용약관에 동의하십니까? <input class="essential" type="checkbox" id="check-1">
 			</p>
 		</div>
 
@@ -86,7 +86,7 @@
 			</textarea>
 			 
 			<p>
-				개인정보 수집 및 이용에 동의하십니까? <input class="essential" type="checkbox">
+				개인정보 수집 및 이용에 동의하십니까? <input class="essential" type="checkbox" id="check-2">
 			</p>
 		</div>
 
@@ -124,7 +124,7 @@
 			</textarea>
 			 
 			<p>
-				이메일 수신에 동의하십니까? <input class="essential" type="checkbox" ">
+				이메일 수신에 동의하십니까? <input class="essential" type="checkbox" id="check-3">
 			</p>
 		</div>
 
@@ -144,11 +144,14 @@
 	});				
 	
 	$("#agree").on('submit',function(event){
-		if(!$('#all-check').is(":checked")) {	
+		if($('#all-check').is(":checked")) {
+			return true;
+		} else if ($('#check-1, #check-2, #check-3').is(':checked')) {
+			return true;
+		} else {			
 		 	alert("필수약관에 동의를 모두 체크하세요");
 			event.preventDefault();
-			return false;
-		} 
+		}		
 	});
 </script>
 </html>

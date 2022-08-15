@@ -18,7 +18,7 @@
 		<div class="card-body">
 			<h2 class="card-title text-center m-5" style="font-weight:bold">비밀번호 재설정</h2>
 		</div>
-		<form id="reset" method="post" action="${pageContext.request.contextPath}/resetpassSuccess.net">
+		<form id="reset" method="post" action="login.net">
 		<input type="hidden" name="id" value="${requestScope.id}"/>				
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item">아이디<span>${requestScope.id}</span></li>		
@@ -26,9 +26,7 @@
 			<li class="list-group-item">새 비밀번호 
 				<span><input id="newpass" name="newpass" type="password" size=36></span>
 			</li>		
-			
-			<li class="list-group-item"><span>(영문 대소문자/숫자/특수문자 중 3가지 이상 조합, 8자~16자)</span></li>
-			
+						
 			<li class="list-group-item">새 비밀번호 확인
 				<span><input id="newpasscheck" type="password" size=36></span>
 			</li>					
