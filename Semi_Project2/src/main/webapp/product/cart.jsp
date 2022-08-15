@@ -60,13 +60,14 @@ p{text-align:left}
 					style="height: 2px; opacity: 1; background-color: black; margin: 0 auto">
 				<br>
 
+				<c:if test="${!empty cart }">
+				<section class="py-5">
 				<ul class="nav nav-tabs" id="cartTab" role="cartlist">
 					<li class="nav-item" role="presentation">
 						<button class="nav-link active">장바구니 정보</button>
 					</li>
 					
 				</ul>
-				<c:if test="${!empty cart }">
 				<div class="cart-content" id="mycartContent">
 					<div class="tab-pane fade show active" id="userinfo"
 						role="tabpanel" aria-labelledby="userinfo-tab">
@@ -208,11 +209,24 @@ p{text-align:left}
 					</div>
 					
 				</div>
-				</c:if>
 				<div class="select-btn">
 				   <button type="button" class="btn btn-orderAll" data-bs-dismiss="modal">전체 상품 주문</button>   
                    <button type="button" class="btn btn-deleteAll">장바구니 비우기</button>   <!-- display none -->
 				</div>
+				</section>
+				</c:if>
+				<c:if test="${empty id }">
+				<section class="py-5">
+				<h1>장바구니 기능은 로그인을 해주세요</h1>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				</section>
+				</c:if>
 			</div>
 		</div>
 	</div>
