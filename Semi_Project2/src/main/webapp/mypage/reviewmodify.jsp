@@ -84,5 +84,9 @@ table td input {
 		</div>
 	</div>
 	</form>
+	<br>
+	<br>
+	<br>
+	<jsp:include page="../mainpage/footer.jsp" />
 </body>
 </html>
