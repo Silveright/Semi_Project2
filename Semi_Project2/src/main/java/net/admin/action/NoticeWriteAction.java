@@ -6,19 +6,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.mypage.action.Action;
-import net.mypage.action.ActionForward;
-
 public class NoticeWriteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
+		forward.setRedirect(false);//포워딩 방식으로 주소가 바뀌지 않는다.
 		forward.setPath("adminpage/NoticeWrite.jsp");
-		return null;
+		return forward;
 	}
 
 }

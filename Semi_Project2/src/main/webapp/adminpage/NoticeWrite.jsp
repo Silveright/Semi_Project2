@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-
 <jsp:include page="../mainpage/header.jsp"/>
+
 <html>
 <title>공지 글 작성</title>
 <head>
+<script src="js/jquery-3.6.0.js"></script>
+<script src="js/noticewriteform.js"></script>
 <style>
 h1 {
 	font-size: 1.5rem;
@@ -21,6 +23,8 @@ h1 {
 
 .sub {float:right;}
 
+img{width:20px;}
+
 </style>
 </head>
 <body>
@@ -35,7 +39,7 @@ h1 {
 			<hr style="height: 2px; opacity: 1; border-width: 0; background-color: black; margin: 0 auto">
 			<br>
 			
-		<form action="noticeadd.co" method="post"
+		<form action="noticeadd.com" method="post"
 			enctype="multipart/form-data" name="Modify">
 			<input type="hidden" name="board_num">
 			

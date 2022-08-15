@@ -8,8 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.mypage.action.Action;
-import net.mypage.action.ActionForward;
+
 
 @WebServlet("*.com")
 public class AdminFrontController extends javax.servlet.http.HttpServlet{
@@ -34,19 +33,34 @@ public class AdminFrontController extends javax.servlet.http.HttpServlet{
 		case "/noticewrite.com":
 			action = new NoticeWriteAction();
 			break;
-		case "/faqwrite.com":
-			action = new FAQWriteAction();
+		case "/noticeadd.com":
+			action = new NoticeAddAction();
 			break;
-		case "/qnareply.com":
-			action = new QnaReplyAction();
-			break;
+//		case "/qnareply.com":
+//			action = new QnaReplyAction();
+//			break;
 		case "/memberlist.com":
 			action = new MemberListAction();
 			break;
 		case "/memberinfo.com":
 			action = new MemberInfoAction();
 			break;
-		
+		case "/noticedelete.com":
+			action = new NoticeDeleteAction();
+			break;
+		case "/noticemodifyview.com":
+			action = new NoticeModifyView();
+			break;
+		case "/noticemodifyaction.com":
+			action = new NoticeModifyAction();
+			break;
+		case "/memberdelete.com":
+			action = new MemberDeleteInfoAction();
+			break;
+//		case "/memberupdateinfo.com":
+//			action = new MemberUpdateAction();
+//			break;
+//		
 		}
 		
 		forward = action.execute(request, response);

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../mainpage/header.jsp"/>
 <html>
 <head>
@@ -27,7 +28,7 @@ table td input {
 	<div class="container-fluid border text-center" >
     </div>
  <br>
-	<div class="container">
+	<div class="container" >
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">
 				<div>
@@ -38,29 +39,30 @@ table td input {
 				<table class="table table-bordered ">
 					<tr>
 						<td class="table-active text-center" style="width: 20%">작성자</td>
-						<td><input type="text" value="${boarddata.notice_id }" class="form-control" name="writer"></td>
+						<td><input type="text" value="${boarddata.notice_id }" class="form-control" name="writer" readOnly></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">제목</td>
-						<td><input type="text" value="${boarddata.notice_title }" class="form-control" name="subject"></td>
+						<td><input type="text" value="${boarddata.notice_title }" class="form-control" name="subject" readOnly></td>
 					</tr>
 					<tr>
 						<td colspan="2"><textarea rows="10" cols="50" name="content"
-				class="form-control">${boarddata.notice_content }</textarea></td>
+				class="form-control" readOnly>${boarddata.notice_content }</textarea></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">첨부파일</td>
 						<td>${boarddata.notice_file }</td>
 					</tr>
 				</table>
-					<button type="button" onclick="history.back()" class="btn btn-dark float-left">글목록</button>
-					<button type="button" class="btn btn-dark float-end">수정</button>
+					<a href="noticelist.co"><button type="button" class="btn btn-dark float-left">글목록</button></a>
+					<c:if test="${id=='admin'}">
+					<a href="noticemodifyview.com?num=${boarddata.notice_num}"><button type="button" class="btn btn-dark float-right">수정</button></a>
+					<a href="noticedelete.com?num=${boarddata.notice_num}"><button type="button" class="btn btn-danger float-end">삭제</button></a>
+					</c:if>
 			</div>
 		</div>
 	</div>
 	
-<div class="mt-5 p-4 bg-light text-center margin bottom">
-  <p>Footer</p>
-</div>
+
 </body>
 </html>
