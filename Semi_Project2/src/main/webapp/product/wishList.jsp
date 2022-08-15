@@ -60,13 +60,13 @@ p{text-align:left}
 					style="height: 2px; opacity: 1; background-color: black; margin: 0 auto">
 				<br>
 
-				<ul class="nav nav-tabs" id="wishTab" role="tablist">
+				<ul class="nav nav-tabs" id="wishTab" role="=wishlist">
 					<li class="nav-item" role="presentation">
 						<button class="nav-link active">관심 상품 정보</button>
 					</li>
 					
 				</ul>
-
+                <c:if test="${!empty wishlist }">
 				<div class="wish-content" id="mywishContent">
 					<div class="tab-pane fade show active" id="userinfo"
 						role="tabpanel" aria-labelledby="userinfo-tab">
@@ -84,10 +84,11 @@ p{text-align:left}
 									<td>합계</td>
 									<td align="center">선택</td>
 								</tr>
+								<c:forEach var="w" items="${wishlist }" varStatus="vs2">
 								<tr class="align-middle">
 									<td><input type='checkbox' name='choice' value='choice' /></td>
-									<td>${product.product_image }</td>
-									<td>${product.product_name }<br>
+									<td><img src="${pageContext.request.contextPath}/image/main/product/${w.product_image }.jpg" alt="${w.product_image}" width="77px"></td>
+									<td>${w.product_name }<br>
 									<button type="button" id="opt-change" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#optionModal">옵션변경</button>
 									</td>
 									<td>${product.product_price }</td>
@@ -95,18 +96,18 @@ p{text-align:left}
 									<td align="center">
 									
 							<!-- Button trigger modal -->
-                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal">
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal${vs2.index }">
                               주문하기
                               </button>
-                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#moveModal">
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#moveModal${vs2.index }">
                               장바구니로
                               </button>
-                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#removeModal">
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#removeModal${vs2.index }">
                               삭제
                               </button>
 
                               <!-- orderModal -->
-                              <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal fade" id="orderModal${vs2.index }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
@@ -117,14 +118,15 @@ p{text-align:left}
                                       주문하기로 이동하시겠습니까?
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>
-                                      <button type="button" class="btn btn-primary" >계속하기</button>  <!-- 결제창 링크로 이동 -->
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>        
+                                      <a href="purchaseAction.go?num=${ w.product_code}&color=${w.opt_color}&size=${w.opt_size}">
+                                      <button type="button" class="btn btn-primary">주문하기</button></a>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                               <!-- moveModal  -->
-                              <div class="modal fade" id="moveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal fade" id="moveModal${vs2.index }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
@@ -136,13 +138,14 @@ p{text-align:left}
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>
-                                      <button type="button" class="btn btn-primary">계속하기</button>  <!-- 장바구니로 데이터를 넘겨줌 -->
+                                      <a href="cart.do?num=${ w.product_code}&p_num1=1&color=${w.opt_color}&size=${w.opt_size}">
+                                      <button type="button" class="btn btn-primary">이동하기</button></a>  
                                     </div>
                                   </div>
                                 </div>
                               </div>
                               <!-- removeModal  -->
-                              <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal fade" id="removeModal${vs2.index}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
@@ -154,7 +157,7 @@ p{text-align:left}
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>
-                                      <button type="button" class="btn btn-primary">삭제하기</button>   <!-- 장바구니에서 display none  -->
+                                      <a href="wishlistdelte.do?id=${id }&code=${w.cart_code}"><button type="button" class="btn btn-primary">삭제하기</button></a>
                                     </div>
                                   </div>
                                 </div>
@@ -175,25 +178,30 @@ p{text-align:left}
                                       <td><label for="select">필수 옵션&nbsp;</label></td>
                                       <td><select name="select" id="cloth-select">
                                          <option value="">--[필수] 옵션을 선택하세요--</option>
-                                         <option value="dog">red, M</option>
-                                         <option value="cat">black, L</option>
-                                         <option value="hamster">white, XL</option>
+                                         <option value="s">s</option>
+                                         <option value="m">m</option>
+                                         <option value="l">l</option>
                                      </select></td>
+                                     
                                       </table>
-                                    </div>
+                                    </div><%-- <a href="wishlistupdate.do?id=${id }&code=${c.cart_code}"> --%>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">변경</button>  <!-- 변경된 옵션을 저장 -->
                                       <button type="button" class="btn btn-primary">취소</button>
                                     </div>
+                                    
+                                    
                                   </div>	
                                 </div>
                               </div>
 							 </td>
+							 </c:forEach>
 							</table>
 						</div>
 					</div>
 					
 				</div>
+				</c:if>
 				<div class="select-btn">
 				   <button type="button" class="btn btn-orderAll" data-bs-dismiss="modal">전체 상품 주문</button> <!--  체크된 상품들을 모두 결제창으로 -->
                    <button type="button" class="btn btn-deleteAll">관심상품 비우기</button> <!--  체크된 상품들을 display none -->
@@ -201,5 +209,6 @@ p{text-align:left}
 			</div>
 		</div>
 	</div>
+	<jsp:include page="../mainpage/footer.jsp" />
 </body>
 </html>

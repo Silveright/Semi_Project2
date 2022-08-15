@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <!-- CSS only -->
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <jsp:include page="../mainpage/header.jsp"/>
 <!DOCTYPE html>
 <html>
@@ -145,7 +140,8 @@ p{text-align:left}
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>
-                                      <button type="button" class="btn btn-primary">계속하기</button>   <!-- 데이터를 관심상품으로 넘김 -->
+                                      <a href="wishlist.do?num=${ c.product_code}&color=${c.opt_color}&size=${c.opt_size}">
+                                      <button type="button" class="btn btn-primary">이동하기</button></a>   
                                     </div>
                                   </div>
                                 </div>
@@ -155,7 +151,7 @@ p{text-align:left}
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                      <h5 class="modal-title" id="exampleModalLabel">삭제</h5>
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -163,7 +159,7 @@ p{text-align:left}
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>
-                                      <a href="cartdelte.go?id=${id }&code=${c.cart_code}"><button type="button" class="btn btn-primary">삭제하기</button></a>    <!-- display none -->
+                                      <a href="cartdelte.do?id=${id }&code=${c.cart_code}"><button type="button" class="btn btn-primary">삭제하기</button></a>    <!-- display none -->
                                     </div>
                                   </div>
                                 </div>
@@ -220,5 +216,6 @@ p{text-align:left}
 			</div>
 		</div>
 	</div>
+	<jsp:include page="../mainpage/footer.jsp" />
 </body>
 </html>
