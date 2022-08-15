@@ -91,7 +91,7 @@ p{text-align:left}
 								<tr class="align-middle">
 									<td><input type='checkbox' name='choice' value='choice' /></td>
 									<td><img src="${pageContext.request.contextPath}/image/main/product/${w.product_image }.jpg" alt="${w.product_image}" width="77px"></td>
-									<td>${w.product_name }<br>
+									<td>${w.product_name }<br>${w.opt_color }, ${w.opt_size}<br>
 									<button type="button" id="opt-change" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#optionModal">옵션변경</button>
 									</td>
 									<td>${w.product_price }</td>
@@ -122,7 +122,7 @@ p{text-align:left}
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>        
-                                      <a href="purchaseAction.go?num=${ w.product_code}&p_num1=1&color=${w.opt_color}&size=${w.opt_size}">
+                                      <a href="purchaseAction.go?num=${w.product_code}&p_num1=1&color=${w.opt_color}&size=${w.opt_size}">
                                       <button type="button" class="btn btn-primary">주문하기</button></a>
                                     </div>
                                   </div>
@@ -141,7 +141,7 @@ p{text-align:left}
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>
-                                      <a href="cart.do?num=${ w.product_code}&p_num1=1&color=${w.opt_color}&size=${w.opt_size}">
+                                      <a href="cart.do?num=${w.product_code}&p_num1=1&color=${w.opt_color}&size=${w.opt_size}">
                                       <button type="button" class="btn btn-primary">이동하기</button></a>  
                                     </div>
                                   </div>
@@ -173,26 +173,37 @@ p{text-align:left}
                                       <h5 class="modal-title" id="exampleModalLabel">옵션변경</h5>
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form action="updatewishlist.do">
+                                    <form action="wishlistupdate.do">
                                     <input type="hidden" name="id" value="${id }">
                                     <input type="hidden" name="wishlist_code" value="${w.wishlist_code }">
                                     <div class="modal-body">
-                                      <p>상품명</p>
+                                      <p>${w.product_name }</p>
                                       <hr>
-                                      <table class="select">
-                                      <td><img src="../image/profile.png" width="150px"></td>
-                                      <td><label for="select">필수 옵션&nbsp;</label></td>
-                                      <td><select name="select" id="cloth-select">
-                                         <option value="">--[필수] 옵션을 선택하세요--</option>
+                                      <div>
+                                      <img src="${pageContext.request.contextPath}/image/main/product/${w.product_image}.jpg" alt="${w.product_image}" width="200px">
+                                      </div><br>
+                                      <div>
+                                      필수 옵션[사이즈] : 
+                                      <select name="size" id="size-select">
+                                         <option value="">--사이즈를 선택하세요--</option>
+                                         <option value="xs">xs</option>
                                          <option value="s">s</option>
                                          <option value="m">m</option>
                                          <option value="l">l</option>
-                                     </select></td>
-                                     
-                                      </table>
+                                         <option value="l">xl</option>
+                                      </select>
+                                      <br><br>
+                                      필수 옵션[색상]  :
+                                      <select name="color" id="color-select">
+                                         <option value="">-- 색상을 선택하세요 --</option>
+                                         <option value="black">black</option>
+                                         <option value="white">white</option>
+                                         <option value="blue">blue</option>
+                                      </select>
+                                      </div>
                                     </div><%-- <a href="wishlistupdate.do?id=${id }&code=${c.wishlist_code}"> --%>
                                     <div class="modal-footer">  
-                                      <button type="button" class="btn btn-primary">변경</button>
+                                      <button type="submit" class="btn btn-primary">변경</button>
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
                                     </div>
                                     
@@ -215,7 +226,7 @@ p{text-align:left}
 				</c:if>
 				<c:if test="${empty id }">
 				<section class="py-5">
-				<h1>장바구니 기능은 로그인을 해주세요</h1>
+				<h1>관심상품 기능은 로그인을 해주세요</h1>
 				<br>
 				<br>
 				<br>

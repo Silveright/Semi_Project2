@@ -51,6 +51,10 @@ public class productFrontController extends javax.servlet.http.HttpServlet{
 		case "/cartdelete.do":
 			action = new ProductCartDeleteAction(); 
 			break;
+			
+		case "/cartupdate.do":
+			action = new ProductCartUpdateAction(); 
+			break;
 	
 		case "/accessories.do":
 			action = new CategoryAccAction(); 
@@ -87,8 +91,11 @@ public class productFrontController extends javax.servlet.http.HttpServlet{
 		case "/wishlistdelete.do":
 			action = new ProductWishlistDeleteAction(); 
 			break;
+			
+		case "/wishlistupdate.do":
+			action = new ProductWishlistUpdateAction(); 
+			break;
 		}
-		
 		
 		forward = action.execute(request, response);
 		
