@@ -120,6 +120,7 @@ ${reviewdata.review_content}
 												</div>
 											</div>
 										</div>
+										
 					<div class="comment-area">
 			<div class="comment-head">
 				<h3 class="comment-count">
@@ -132,6 +133,7 @@ ${reviewdata.review_content}
 			</div><!-- comment-head end-->
 			<ul class="comment-list">
 			</ul>
+			<c:if test="${!empty id }">
 			<div class="commnet-write">
 				<div class="comment-write-area">
 					<b class="comment-write-area-name" >${id}</b> <span
@@ -145,6 +147,7 @@ ${reviewdata.review_content}
 					<div class="button btn-register" >등록</div>
 				</div>
 			</div><%--commnet-write end--%>
+			</c:if>
 		</div><%-- comment-area end--%>
 										
 			</div>
