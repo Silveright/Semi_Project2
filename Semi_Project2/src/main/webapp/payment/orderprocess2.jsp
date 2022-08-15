@@ -478,25 +478,30 @@ $(document).ready(function(){
 					</tr>
 					</table>
 					-->
-					<input type="radio" name="deposit" value="무통장 입금" id="sc1" onclick="dispList('0');" checked> 무통장입금
+					<input type="radio" name="choose" value="무통장 입금" id="sc1" onclick="dispList('0');" checked> 무통장입금
+					<input type="radio" name="choose" value="카드 결제" id="sc2" onclick="dispList('1');"> 카드결제
+					<!-- <input type="radio" name="deposit" value="무통장 입금" id="sc1" onclick="dispList('0');" checked> 무통장입금
 					<input type="radio" name="card" value="카드 결제" id="sc2" onclick="dispList('1');"> 카드결제
-					
+					 -->
 					<div id="sc1_list" style="display:none">
  					<table class="table table-bordered ">
 					<tr>
 						<td class="table-active text-center" style="width: 20%">입금자명</td>
-						<td><input type="text" name='depositor' value='${memberinfo.name}' ></td>
+						<td><input type="text" name='' value='${memberinfo.name}' ></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">입금은행</td>
-						<td><input type="text" name="bank" value="XX은행 110-123-567890" class="my-1">
+						<td><input type="text" name="post" value="XX은행 110-123-567890" class="my-1">
 						</td>
 					</tr>
 					</table>
 					<input type="radio" name="b" checked> <label
 						for="huey" >현금영수증 신청</label> 
 					<input type="radio" name="b"> <label for="dewey">신청 안 함</label>
+					
+					
 					<button type="submit" class="btn btn-dark float-end">결제하기</button>
+				
 					</div>
 					</div>
 					
@@ -504,7 +509,9 @@ $(document).ready(function(){
 					<table class="table table-bordered ">
 					<tr>
 					<td>
+					
 					<button type="submit" class="btn btn-dark float-end">결제하기</button>
+					
 					</td>
 					</tr>
 					</table>
