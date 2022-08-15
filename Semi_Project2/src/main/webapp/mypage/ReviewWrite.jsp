@@ -76,5 +76,9 @@ img{width:20px}
 		</div>
 		</form>
 	</div>
+	<br>
+	<br>
+	<br>
+	<jsp:include page="../mainpage/footer.jsp" />
 </body>
 </html>
