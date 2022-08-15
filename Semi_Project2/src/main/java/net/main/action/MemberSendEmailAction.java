@@ -17,7 +17,6 @@ import org.apache.commons.lang3.RandomUtils;
 public class MemberSendEmailAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
 		String email = request.getParameter("email");
 		String receiver = "";
 		
@@ -82,6 +81,9 @@ public class MemberSendEmailAction implements Action{
 			} else {
 				writer.println("<script>alert('인증메일이 정상적으로 전송되었습니다'); history.back(); </script>"); 
 			}
+			
+	        PrintWriter out = response.getWriter();
+	        out.print("인증코드를 전송하였습니다");
 
 		}catch(Exception e) {
 			if(email.contains("@")) {

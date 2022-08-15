@@ -24,7 +24,6 @@
 			<h2 class="card-title text-center m-5" >본인확인 인증</h2>
 		</div>
 		<form id="self">
-		<input type="hidden" name="id" value="${requestScope.id}"/>		
 		<ul class="list-group list-group-flush">	
 			<c:if test = "${sessionScope.certi_type == 'e'}">					
 				<li class="list-group-item">본인확인 인증
@@ -35,7 +34,8 @@
 				<li class="list-group-item">이메일 
 					<span>
 						${sessionScope.email}
-						<input type="button" size="20" value="인증번호 받기" id="getcode" onClick="location.href='${pageContext.request.contextPath}/sendEmail.net?email=${sessionScope.email}'">
+						<input type="button" size="20" value="인증번호 받기" 
+							   onClick="location.href='${pageContext.request.contextPath}/sendEmail.net?email=${sessionScope.email}'">
 					</span>
 				</li>				
 				<li class="list-group-item" >인증번호 
@@ -55,11 +55,16 @@
 				<li class="list-group-item">핸드폰 번호 
 					<span>
 						${sessionScope.phone}
-						<input type="button" value="인증번호 받기" onClick="location.href='${pageContext.request.contextPath}/sendPhone.net?phone=${sessionScope.phone}'">
+						<input type="button" value="인증번호 받기" id="getcode"
+								onClick="location.href='${pageContext.request.contextPath}/sendPhone.net?phone=${sessionScope.phone}'">
+								
 					</span>
 				</li>						
 				<li class="list-group-item">인증번호 
-					<span><input id="code_input" type="text" size=36></span>
+					<span>
+						<input id="code_input" type="text" size=18>
+						<input id="codecheck" type="button" size="14" value="인증번호 확인" >					
+					</span>
 				</li>			
 				<li class="list-group-item"><span>1회 발송된 인증번호의 유효 시간은 60분이며, 1회 인증번호 발송 후 30초 이후에 재전송이 가능합니다.</span></li>					
 			</c:if>		
@@ -77,39 +82,59 @@
 		<jsp:include page="footer.jsp" />
 </body>
 <script>
-var emailcerticheck = false;
+var certi_type = '${sessionScope.certi_type}';
+if (certi_type == "e") {
+	var certicheck = false;
+	$("#codecheck").on('click', function() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/emailcertiprocess.net",
+			data : {"code_input" : $('#code_input').val()},
+			success : function(resp) {
+				if(resp == 1) {			
+					alert('인증확인을 성공했습니다'); 
+					certicheck = true;
+				} else {
+					alert('인증코드가 틀렸습니다'); 
+					certicheck = false;
+				}
+			},
+			error : function(errMsg) {
+		           alert("오류가 났습니다. 다시한번 시도해주세요");
+		           certicheck = false;
+		        }
+			})
+		});
+}
 
-$("#codecheck").on('click', function() {
-	$.ajax({
-		url : "${pageContext.request.contextPath}/emailcertiprocess.net",
-		data : {"code_input" : $('#code_input').val()},
-		success : function(resp) {
-			if(resp == 1) {			
-				alert('인증확인을 성공했습니다'); 
-				emailcerticheck = true;
-			} else {
-				alert('인증코드가 틀렸습니다'); 
-				emailcerticheck = false;
-			}
-		},
-		error : function(errMsg) {
-	           alert("오류가 났습니다. 다시한번 시도해주세요");
-			   emailcerticheck = false;
-	        }
-		})
-	});
+if (certi_type == "p") {
+	var certicheck = false;
+	$("#codecheck").on('click', function() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/phonecertiprocess.net",
+			data : {"code_input" : $('#code_input').val()},
+			success : function(resp) {
+				if(resp == 1) {			
+					alert('인증확인을 성공했습니다'); 
+					certicheck = true;
+				} else {
+					alert('인증코드가 틀렸습니다'); 
+					certicheck = false;
+				}
+			},
+			error : function(errMsg) {
+		           alert("오류가 났습니다. 다시한번 시도해주세요");
+		           certicheck = false;
+		        }
+			})
+		});
+	}
 
 $('#self').on('submit',		
 		function() {			
 			$('#self').attr("action","${pageContext.request.contextPath}/resetpass.net");		
 			
-			if(!emailcerticheck){
+			if(!certicheck){
 				alert("인증코드를 입력하세요");
-				return false;
-			}			
-			
-			if(!codecheck){
-				alert("이메일 인증을 다시하세요");
 				return false;
 			}			
 		});	

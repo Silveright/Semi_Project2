@@ -17,7 +17,7 @@ public class MemberResetSuccessAction implements Action{
 
 		
 		String newpass = request.getParameter("newpass");
-		String id = request.getParameter("id");
+		String id = request.getParameter("checkid");
 		System.out.println("newpass=" + newpass);
 		System.out.println("id="+ id);
 		int result = 0;

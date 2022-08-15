@@ -14,14 +14,15 @@ import net.main.db.CustomerDAO;
 public class MemberSelfCertiAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String id = request.getParameter("id");
-		request.setAttribute("id", id);
+		HttpSession session = request.getSession();
+		String checkid = request.getParameter("checkid");
+		session.setAttribute("checkid", checkid);
 
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String certi_type = request.getParameter("certi");
-		System.out.println("id=" + id);
+		System.out.println("checkid=" + checkid);
 		System.out.println("name=" + name);
 		System.out.println("email=" + email);
 		System.out.println("phone=" + phone);
@@ -30,10 +31,9 @@ public class MemberSelfCertiAction implements Action{
 		CustomerDAO cdao = new CustomerDAO();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		HttpSession session = request.getSession();
 		
 		if(certi_type.equals("e")) {
-			String result = cdao.passFindEmail(id, name, email);
+			String result = cdao.passFindEmail(checkid, name, email);
 			System.out.println("result=" + result);
 				if(result != "") {
 					session.setAttribute("email", email);
@@ -53,7 +53,7 @@ public class MemberSelfCertiAction implements Action{
 			}
 		
 		if(certi_type.equals("p")) {
-			String result = cdao.passFindPhone(id, name, phone);
+			String result = cdao.passFindPhone(checkid, name, phone);
 			System.out.println("result=" + result);
 				if(result != "") {
 					session.setAttribute("phone", phone);

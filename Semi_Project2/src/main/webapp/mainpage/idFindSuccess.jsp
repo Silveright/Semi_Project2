@@ -41,7 +41,4 @@
 	</div>
 		<jsp:include page="footer.jsp" />
 </body>
-<% 
-  session.invalidate();
-%>
 </html>
