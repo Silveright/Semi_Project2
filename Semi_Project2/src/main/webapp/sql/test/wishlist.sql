@@ -9,3 +9,5 @@ create table wishlist( -- 관심상품
 
 drop sequence wishlist_seq
 create sequence wishlist_seq nocache
+
+select * from wishlist;

@@ -1,10 +1,9 @@
 package net.product.db;
 
-public class CartDTO {
-	public int cart_code;
-    public String id;     
+public class WishlistDTO {
+	public int wishlist_code;
+    public String id;      
     public int product_code;
-    public int cart_count;
     public String opt_color;
 	public String opt_size;
 	public String product_name;
@@ -31,11 +30,11 @@ public class CartDTO {
 		this.product_image = product_image;
 	}
 	
-    public int getCart_code() {
-		return cart_code;
+    public int getwishlist_code() {
+		return wishlist_code;
 	}
-	public void setCart_code(int cart_code) {
-		this.cart_code = cart_code;
+	public void setwishlist_code(int cart_code) {
+		this.wishlist_code = cart_code;
 	}
 	public String getId() {
 		return id;
@@ -48,12 +47,6 @@ public class CartDTO {
 	}
 	public void setProduct_code(int product_code) {
 		this.product_code = product_code;
-	}
-	public int getCart_count() {
-		return cart_count;
-	}
-	public void setCart_count(int cart_count) {
-		this.cart_count = cart_count;
 	}
 	public String getOpt_color() {
 		return opt_color;

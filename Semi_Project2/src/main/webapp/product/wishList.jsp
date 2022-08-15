@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../mainpage/header.jsp"/>
 <!DOCTYPE html>
 <html>
@@ -59,6 +60,9 @@ p{text-align:left}
 				<hr
 					style="height: 2px; opacity: 1; background-color: black; margin: 0 auto">
 				<br>
+				
+				<c:if test="${!empty wishlist }">
+				<section class="py-5">
 
 				<ul class="nav nav-tabs" id="wishTab" role="=wishlist">
 					<li class="nav-item" role="presentation">
@@ -66,7 +70,6 @@ p{text-align:left}
 					</li>
 					
 				</ul>
-                <c:if test="${!empty wishlist }">
 				<div class="wish-content" id="mywishContent">
 					<div class="tab-pane fade show active" id="userinfo"
 						role="tabpanel" aria-labelledby="userinfo-tab">
@@ -84,30 +87,30 @@ p{text-align:left}
 									<td>합계</td>
 									<td align="center">선택</td>
 								</tr>
-								<c:forEach var="w" items="${wishlist }" varStatus="vs2">
+								<c:forEach var="w" items="${wishlist }" varStatus="vs">
 								<tr class="align-middle">
 									<td><input type='checkbox' name='choice' value='choice' /></td>
 									<td><img src="${pageContext.request.contextPath}/image/main/product/${w.product_image }.jpg" alt="${w.product_image}" width="77px"></td>
 									<td>${w.product_name }<br>
 									<button type="button" id="opt-change" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#optionModal">옵션변경</button>
 									</td>
-									<td>${product.product_price }</td>
-									<td>${product.product_price }</td>
+									<td>${w.product_price }</td>
+									<td>${w.product_price }</td>
 									<td align="center">
 									
 							<!-- Button trigger modal -->
-                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal${vs2.index }">
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal${vs.index }">
                               주문하기
                               </button>
-                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#moveModal${vs2.index }">
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#moveModal${vs.index }">
                               장바구니로
                               </button>
-                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#removeModal${vs2.index }">
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#removeModal${vs.index }">
                               삭제
                               </button>
 
                               <!-- orderModal -->
-                              <div class="modal fade" id="orderModal${vs2.index }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal fade" id="orderModal${vs.index }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
@@ -119,14 +122,14 @@ p{text-align:left}
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>        
-                                      <a href="purchaseAction.go?num=${ w.product_code}&color=${w.opt_color}&size=${w.opt_size}">
+                                      <a href="purchaseAction.go?num=${ w.product_code}&p_num1=1&color=${w.opt_color}&size=${w.opt_size}">
                                       <button type="button" class="btn btn-primary">주문하기</button></a>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                               <!-- moveModal  -->
-                              <div class="modal fade" id="moveModal${vs2.index }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal fade" id="moveModal${vs.index }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
@@ -145,7 +148,7 @@ p{text-align:left}
                                 </div>
                               </div>
                               <!-- removeModal  -->
-                              <div class="modal fade" id="removeModal${vs2.index}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal fade" id="removeModal${vs.index}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
@@ -157,7 +160,7 @@ p{text-align:left}
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>
-                                      <a href="wishlistdelte.do?id=${id }&code=${w.cart_code}"><button type="button" class="btn btn-primary">삭제하기</button></a>
+                                      <a href="wishlistdelete.do?id=${id }&wishlist_code=${w.wishlist_code}"><button type="button" class="btn btn-primary">삭제하기</button></a>
                                     </div>
                                   </div>
                                 </div>
@@ -170,6 +173,9 @@ p{text-align:left}
                                       <h5 class="modal-title" id="exampleModalLabel">옵션변경</h5>
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+                                    <form action="updatewishlist.do">
+                                    <input type="hidden" name="id" value="${id }">
+                                    <input type="hidden" name="wishlist_code" value="${w.wishlist_code }">
                                     <div class="modal-body">
                                       <p>상품명</p>
                                       <hr>
@@ -184,13 +190,13 @@ p{text-align:left}
                                      </select></td>
                                      
                                       </table>
-                                    </div><%-- <a href="wishlistupdate.do?id=${id }&code=${c.cart_code}"> --%>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">변경</button>  <!-- 변경된 옵션을 저장 -->
-                                      <button type="button" class="btn btn-primary">취소</button>
+                                    </div><%-- <a href="wishlistupdate.do?id=${id }&code=${c.wishlist_code}"> --%>
+                                    <div class="modal-footer">  
+                                      <button type="button" class="btn btn-primary">변경</button>
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
                                     </div>
                                     
-                                    
+                                    </form>
                                   </div>	
                                 </div>
                               </div>
@@ -201,11 +207,24 @@ p{text-align:left}
 					</div>
 					
 				</div>
-				</c:if>
 				<div class="select-btn">
 				   <button type="button" class="btn btn-orderAll" data-bs-dismiss="modal">전체 상품 주문</button> <!--  체크된 상품들을 모두 결제창으로 -->
                    <button type="button" class="btn btn-deleteAll">관심상품 비우기</button> <!--  체크된 상품들을 display none -->
 				</div>
+				</section>
+				</c:if>
+				<c:if test="${empty id }">
+				<section class="py-5">
+				<h1>장바구니 기능은 로그인을 해주세요</h1>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				</section>
+				</c:if>
 			</div>
 		</div>
 	</div>

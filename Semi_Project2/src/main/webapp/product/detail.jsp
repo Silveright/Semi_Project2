@@ -238,7 +238,7 @@
         } else if(str=="cart"){      
         	frm1.action="${pageContext.request.contextPath}/cartadd.do";      
         }  else if(str=="wishList"){
-        	frm1.action="${pageContext.request.contextPath}/wishlist.do";
+        	frm1.action="${pageContext.request.contextPath}/wishlistadd.do";
         }
     }
     
