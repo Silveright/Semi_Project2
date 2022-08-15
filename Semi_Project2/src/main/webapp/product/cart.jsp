@@ -90,12 +90,12 @@ p{text-align:left}
 								<tr class="align-middle">
 									<td><input type='checkbox' name='choice' value='choice' /></td>   <!--  메뉴 체크박스 클릭시 아래 모든 체크박스 표시  -->
 									<td><img src="${pageContext.request.contextPath}/image/main/product/${c.product_image}.jpg" alt="${c.product_image}" width="77px"></td>
-									<td>${c.product_name }<br>
+									<td>${c.product_name }<br>${c.opt_color }, ${c.opt_size}<br>
 									<button type="button" id="opt-change" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#optionModal">옵션변경</button>
 									</td>
-									<td><input type="text" name="p_num1" id="p_num1" size="2" maxlength="4" class="p_num" value="${c.cart_count}">                           
+									<td>${c.cart_count}                           
 									<td>${c.product_price }</td>
-									<td>${c.product_price }</td> <!-- 곱하기 수량 -->
+									<td>${c.product_price*c.cart_count }</td> <!-- 곱하기 수량 -->
 									<td align="center">
 									
 							<!-- Button trigger modal -->
@@ -173,24 +173,35 @@ p{text-align:left}
                                       <h5 class="modal-title" id="exampleModalLabel">옵션변경</h5>
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form action="updatecart.do">
+                                    <form action="cartupdate.do">
                                     <input type="hidden" name="id" value="${id }">
                                     <input type="hidden" name="cart_code" value="${c.cart_code }">
                                     <div class="modal-body">
-                                      <p>상품명</p>
+                                      <p>${c.product_name }</p>
                                       <hr>
-                                      <table class="select">
-                                      <td><img src="../image/profile.png" width="150px"></td>
-                                      <td><label for="select">필수 옵션&nbsp;</label></td>
-                                      <td><select name="size" id="cloth-select">
-                                         <option value="">--[필수] 옵션을 선택하세요--</option><!-- 두가지 적용이 힘듦 색상만 변경가능하게 하던가 사이즈만 가능하게 하든가 해야함 -->
+                                      <div>
+                                      <img src="${pageContext.request.contextPath}/image/main/product/${c.product_image}.jpg" alt="${c.product_image}" width="200px">
+                                      </div><br>
+                                      <div>
+                                      필수 옵션[사이즈] : 
+                                      <select name="size" id="size-select">
+                                         <option value="">--사이즈를 선택하세요--</option>
+                                         <option value="xs">xs</option>
                                          <option value="s">s</option>
                                          <option value="m">m</option>
                                          <option value="l">l</option>
-                                     </select></td>
-                                     
-                                      </table>
-                                    </div><%-- <a href="cartupdate.go?id=${id }&code=${c.cart_code}"> --%>
+                                         <option value="l">xl</option>
+                                      </select>
+                                      <br><br>
+                                      필수 옵션[색상]  :
+                                      <select name="color" id="color-select">
+                                         <option value="">-- 색상을 선택하세요 --</option>
+                                         <option value="black">black</option>
+                                         <option value="white">white</option>
+                                         <option value="blue">blue</option>
+                                      </select>
+                                      </div>
+                                    </div><%-- <a href="cartupdate.do?id=${id }&code=${c.cart_code}"> --%>
                                     <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary">변경</button><!-- select로 정한 값을 가져가려면 form으로 처리되어야함  -->      <!-- 변경된 옵션을 적용 -->
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
@@ -231,5 +242,6 @@ p{text-align:left}
 		</div>
 	</div>
 	<jsp:include page="../mainpage/footer.jsp" />
+
 </body>
 </html>

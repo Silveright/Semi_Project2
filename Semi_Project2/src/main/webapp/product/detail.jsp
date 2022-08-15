@@ -122,22 +122,22 @@
            
           				  <p>색상<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           				  <select name="color" id="size-select" required>
-       				          <option value="">--[필수] 사이즈를 선택해주세요--</option>
-         				      <option value="black">블랙</option>
-        				      <option value="white">화이트</option>
-        				      <option value="blue">블루</option>
+       				          <option value="">--[필수] 색상을 선택해주세요--</option>
+         				      <option value="black">black</option>
+        				      <option value="white">white</option>
+        				      <option value="blue">blue</option>
            				  </select></p><hr>
            				  
            				  <table class="total">
            				    <td>${product.product_name }</td>
            				    <td><input type="text" name="p_num1" id="p_num1" size="2" maxlength="4" class="p_num" value="1">
            				    </td>
-           				    <td ><div id="cal">${product.product_price }</div></td><!-- 곱하기 수량 추가 -->        				    
+           				    <td><div id="cal">${product.product_price }</div></td><!-- 곱하기 수량 추가 -->        				    
            				  </table><br>
            				  
        				      
            			      <hr style="opacity: 1; background-color: black; margin: 0 auto">
-          				  <p>총 상품 금액</p><br><input type="submit" value="바로 구매하기" class="btn btn-dark" onclick='btn_click("purchase");'>
+          				  <p>총 상품 금액</p><div id="cal2">${product.product_price }</div><br><input type="submit" value="바로 구매하기" class="btn btn-dark" onclick='btn_click("purchase");'>
           				   <!-- 링크. 상품 구매로 이동 -->
 					      <button type="button" class="btn btn-primary btn-light" data-bs-toggle="modal" data-bs-target="#WishListModal">
                           관심상품 담기
@@ -245,6 +245,11 @@
     $("#p_num1").on("input", function(){
     	  var price = ${product.product_price };
     	  $("#cal").text(price* $(this).val())
+    })
+    
+    $("#p_num1").on("input", function(){
+    	  var price = ${product.product_price };
+    	  $("#cal2").text(price* $(this).val())
     })
     
    function go(url){

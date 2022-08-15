@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.main.action.MainAction;
 import net.main.action.MemberAgreeProcessAction;
 import net.main.action.MemberIdFindAction;
 import net.main.action.MemberIdFindSuccessAction;
@@ -51,13 +50,17 @@ public class productFrontController extends javax.servlet.http.HttpServlet{
 		case "/cartdelete.do":
 			action = new ProductCartDeleteAction(); 
 			break;
+			
+		case "/cartupdate.do":
+			action = new ProductCartUpdateAction(); 
+			break;
 	
 		case "/accessories.do":
 			action = new CategoryAccAction(); 
 			break;
 		
 		case "/bottom.do":
-			action = new CategoryBottom(); 
+			action = new CategoryBottomAction(); 
 			break;
 			
 		case "/outer.do":
@@ -87,8 +90,11 @@ public class productFrontController extends javax.servlet.http.HttpServlet{
 		case "/wishlistdelete.do":
 			action = new ProductWishlistDeleteAction(); 
 			break;
+			
+		case "/wishlistupdate.do":
+			action = new ProductWishlistUpdateAction(); 
+			break;
 		}
-		
 		
 		forward = action.execute(request, response);
 		

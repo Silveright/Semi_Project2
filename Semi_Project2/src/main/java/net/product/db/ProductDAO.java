@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+
 public class ProductDAO {
 	private DataSource ds;
 	
@@ -73,4 +74,213 @@ public class ProductDAO {
 		}
 		return p;
 	}
+
+	public List<ProductBean> getAccessoriesList() {
+		ProductBean p = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ProductBean> list = new ArrayList<ProductBean>();
+		
+		try {
+			con = ds.getConnection();
+		
+			String sql = "select * "
+					   + "from product "
+					   + "where category_code = 5 ";
+			
+			pstmt = con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				p = new ProductBean();
+				p.setProduct_code(rs.getInt("product_code"));
+				p.setProduct_name(rs.getString("product_name"));
+				p.setProduct_price(rs.getInt("product_price"));
+				p.setProduct_image(rs.getString("product_image"));
+				p.setCategory_code(rs.getInt("category_code"));
+				list.add(p);								
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			System.out.println("getListCount() 에러: " + ex);
+		} finally {
+			if (rs != null)
+			  try {
+				rs.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}			
+			if (pstmt != null)
+			  try {
+				pstmt.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			if (con != null)
+			  try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return list;
+	}
+
+	public List<ProductBean> getBottomList() {
+		ProductBean p = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ProductBean> list = new ArrayList<ProductBean>();
+		
+		try {
+			con = ds.getConnection();
+		
+			String sql = "select * "
+					   + "from product "
+					   + "where category_code = 3 ";
+			
+			pstmt = con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				p = new ProductBean();
+				p.setProduct_code(rs.getInt("product_code"));
+				p.setProduct_name(rs.getString("product_name"));
+				p.setProduct_price(rs.getInt("product_price"));
+				p.setProduct_image(rs.getString("product_image"));
+				p.setCategory_code(rs.getInt("category_code"));
+				list.add(p);								
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			System.out.println("getListCount() 에러: " + ex);
+		} finally {
+			if (rs != null)
+			  try {
+				rs.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}			
+			if (pstmt != null)
+			  try {
+				pstmt.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			if (con != null)
+			  try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return list;
+	}
+
+	public List<ProductBean> getTopList() {
+		ProductBean p = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ProductBean> list = new ArrayList<ProductBean>();
+		
+		try {
+			con = ds.getConnection();
+		
+			String sql = "select * "
+					   + "from product "
+					   + "where category_code = 2 ";
+			
+			pstmt = con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				p = new ProductBean();
+				p.setProduct_code(rs.getInt("product_code"));
+				p.setProduct_name(rs.getString("product_name"));
+				p.setProduct_price(rs.getInt("product_price"));
+				p.setProduct_image(rs.getString("product_image"));
+				p.setCategory_code(rs.getInt("category_code"));
+				list.add(p);								
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			System.out.println("getListCount() 에러: " + ex);
+		} finally {
+			if (rs != null)
+			  try {
+				rs.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}			
+			if (pstmt != null)
+			  try {
+				pstmt.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			if (con != null)
+			  try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return list;
+	}
+
+	public List<ProductBean> getOuterList() {
+		ProductBean p = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ProductBean> list = new ArrayList<ProductBean>();
+		
+		try {
+			con = ds.getConnection();
+		
+			String sql = "select * "
+					   + "from product "
+					   + "where category_code = 4 ";
+			
+			pstmt = con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				p = new ProductBean();
+				p.setProduct_code(rs.getInt("product_code"));
+				p.setProduct_name(rs.getString("product_name"));
+				p.setProduct_price(rs.getInt("product_price"));
+				p.setProduct_image(rs.getString("product_image"));
+				p.setCategory_code(rs.getInt("category_code"));
+				list.add(p);								
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			System.out.println("getListCount() 에러: " + ex);
+		} finally {
+			if (rs != null)
+			  try {
+				rs.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}			
+			if (pstmt != null)
+			  try {
+				pstmt.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			if (con != null)
+			  try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return list;
+	}
+
 }

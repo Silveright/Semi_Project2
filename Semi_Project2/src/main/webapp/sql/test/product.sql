@@ -49,6 +49,10 @@ insert into product VALUES (product_seq.nextval,'청바지','90000','jean',3);
 select * 
 from product where product_code=1
 
+select *
+from product
+where category_code=5;
+
 장바구니번호  -시퀀스   
 상품코드 - 
 수량

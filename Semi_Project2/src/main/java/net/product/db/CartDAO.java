@@ -154,6 +154,45 @@ public class CartDAO {
 			}
 		}//finally
 		return result;
+	}
+
+	public int updateCart(String id, int cart_code, String opt_size, String opt_color) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result =0;
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "update cart "
+					+ "   set opt_size = ?, opt_color = ? "
+					+ "   where id = ? "
+			        + "   and cart_code = ?";
+
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, opt_size);
+				pstmt.setString(2, opt_color);
+				pstmt.setString(3, id);
+				pstmt.setInt(4, cart_code);
+		
+				result = pstmt.executeUpdate();
+				
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+				if(pstmt !=null)
+					try{
+						pstmt.close();
+					} catch(SQLException ex) {
+						
+						ex.printStackTrace();
+					}
+				if(conn != null)
+			try {
+					conn.close();//DB연결을 끊는다.
+			}catch (SQLException ex) {
+			}
+		}//finally
+		return result;
 	}	
 	
 	
