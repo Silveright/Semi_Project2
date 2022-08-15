@@ -34,7 +34,7 @@ img { margin : 0 auto;  object-fit: cover;}
         <button type="button" class="button">Tie</button>
         <button type="button" class="button">Bag</button>
         <button type="button" class="button">Hat</button>
-        <button type="button" class="button">socks</button>
+        <button type="button" class="button">shoes</button>
       </ul>
    </div>
 
