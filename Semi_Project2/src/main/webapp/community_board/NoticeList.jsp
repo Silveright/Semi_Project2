@@ -6,25 +6,25 @@
 <html>
 <head>
 <style>
-
-.btn1 {display : inline-block; float:right; height:50px;}
-.btn2 {display : inline-block; float:left;} 
-
+a{text-decoration:none; color:black;}
+.btn1{float:right}
+.btn1{height:50px;}
 </style>
 <script>
-(document).ready(function() { 
+$(document).ready(function() { 
 	
 	var selectedValue='${search_field}'
 	if(selectedValue !='-1')
 		$("#viewcount").val(selectedValue);
 	
-	$("button").click(function(){
+	$(".search").click(function(){
 		if($('#search').val()==''){
 			alert("검색어를 입력하세요");
 			$('input').focus();
 			return false;
 		}
 	})
+
 	
 	$("#viewcount").change(function(){
 		selectedValue=$(this).val();
@@ -34,14 +34,11 @@
 	})
 	
 	
-
-});
-	(function(){
-	$("button").click(function(){
-		location.href="noticewrite.com";
-		})
-	})
+ 
+	
+	});
 </script>
+</head>
 
 
 
@@ -54,13 +51,13 @@
 		<div class="row align-items-center justify-content-center">
 			<div class="col-sm-9 ">
 				<div>
-					<b>공지사항${id }</b>
+					<b>공지사항</b>
 				</div>
 				<hr
 					style="height: 2px; opacity: 1; border-width: 0; background-color: black; margin: 0 auto">
 				<br>
-
-				<table class="table ">
+				
+				<table class="table text-center">
 					<tbody>
 						<tr class="table-active">
 							<td>번호</td>
@@ -147,11 +144,12 @@
 							<option value="0" selected>제목</option>
 							<option value="1">내용</option>
 						</select> <input name="search_word" type="text" placeholder="검색어를 입력하세요">
-						<button class="btn2 btn-secondary" type="submit">검색</button>
+						<button class="btn btn-secondary" type="submit">검색</button>
 					</div>
 				<c:if test="${id=='admin'}">
-				<a href="noticewrite.co"><button type="button" class="btn1 btn-dark">공지 추가</button></a>
+				<a href="noticewrite.com"><button type="button" class="btn1 btn-dark">공지 추가</button></a>
 				</c:if>
+				
 				</form>
 			</div>
 		</div>
@@ -162,12 +160,13 @@
  <c:if test="${listcount == 0 }">
 	<font size=5>등록된 글이 없습니다.</font><br>
 	<c:if test="${id=='admin'}">
-	<a href="noticewrite.co"><button type="button" class="btn1 btn-dark">공지 추가</button></a>
+	<a href="noticewrite.com"><button type="button" class="btn1 btn-dark">공지 추가</button></a>
 	</c:if>
  </c:if>
 </div>
 
+<br>
  </body>
+<jsp:include page="../mainpage/footer.jsp"/>
 </html>
-</body>
 </html>

@@ -41,12 +41,6 @@ public class CommunityboardFrontController extends javax.servlet.http.HttpServle
 		case "/qnalist.co":
 			action = new QnaListAction();
 			break;
-		case "/noticewrite.co":
-			action = new NoticeWriteAction();
-			break;
-		case "/noticeadd.co":
-			action = new NoticeAddAction();
-			break;
 		//case "/qnadetail.co":
 			//action = new QnaDetailAction();
 			//break;

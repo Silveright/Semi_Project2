@@ -9,6 +9,7 @@
 .btn1 {display : inline-block; float:right;}
 .btn2 {display : inline-block; float:left;} 
 
+footer{margin-top:100px;}
 </style>
 
  <body>
@@ -76,10 +77,7 @@
 					</form>
 </div>
 
-<div class="mt-5 p-4 bg-light text-center margin bottom">
-  <p>Footer</p>
-</div>
+
  </body>
-</html>
-</body>
+ <jsp:include page="../mainpage/footer.jsp"/>
 </html>

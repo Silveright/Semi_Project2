@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="../mainpage/header.jsp"/>
 <title>FAQ 게시판</title>
+<html>
 <head>
 <style>
 body {
@@ -50,6 +51,8 @@ float: left;}
 }
 
 tr td:first-child{width:5%;}
+
+footer {margin-top: 100px;}
 </style>
 </head>
 <body>
@@ -60,14 +63,8 @@ tr td:first-child{width:5%;}
       FAQ
       <small class="text-muted">자주 묻는 질문</small>
     </h3>
-	<div class="input-group">
-						<select id="viewcount" name="search_field">
-							<option value="0" selected>제목</option>
-							<option value="1">내용</option>
-						</select> <input name="search_word" type="text" placeholder="검색어를 입력하세요">
-						<button class="btn2 btn-secondary" type="submit">검색</button>
-					</div>
-						<button id="btn-all-close">FAQ 모두 닫기</button>
+	
+	<button id="btn-all-close">FAQ 모두 닫기</button>
 				
     
     <table class="table table-bordered table-gray table-hover">
@@ -82,9 +79,9 @@ tr td:first-child{width:5%;}
           <td>1</td>
           <td class="text-left" width="50%">
             <div class="panel-faq-container">
-              <p class="panel-faq-title">교환 및 반품은 어떻게 하나요? ▼</p>
+              <strong class="panel-faq-title">교환 및 반품은 어떻게 하나요? ▼</strong>
               <div class="panel-faq-answer">
-                <p>Answer ... ↓</p>
+                <p>↓</p>
                 <p>문의 사항 게시판을 이용해주세요 평균 3~5일정도 소요됩니다.</p>
                 <p>그 외 고객센터로 문의 주세요.</p>
               </div>
@@ -96,9 +93,9 @@ tr td:first-child{width:5%;}
           <td>2</td>
           <td class="text-left" width="50%">
             <div class="panel-faq-container">
-              <p class="panel-faq-title">반품 신청 기간이 어떻게 되나요? ▼</p>
+              <strong class="panel-faq-title">반품 신청 기간이 어떻게 되나요? ▼</strong>
               <div class="panel-faq-answer">
-                <p>Answer (2) ... ↓</p>
+                <p>↓</p>
                 <p>교환/반품은 배송 완료 후 7일 이내 접수 가능합니다.</p>
                 <p>기한 경과 후 교환/반품이 필요하다면 판매자에게 문의해 주세요.</p>
                 <p>기한 경과 후 판매자와 협의 없이 임의로 판매자에게 상품을 발송하는 경우 교환/반품이 거절될 수 있습니다.</p>
@@ -111,9 +108,9 @@ tr td:first-child{width:5%;}
           <td>3</td>
           <td class="text-left" width="50%">
             <div class="panel-faq-container">
-              <p class="panel-faq-title">상품 미도착 접수가 무엇인가요? ▼</p>
+              <strong class="panel-faq-title">상품 미도착 접수가 무엇인가요? ▼</strong>
               <div class="panel-faq-answer">
-                <p>Answer (3) ... ↓</p>
+                <p>↓</p>
                 <p>상품미도착 접수는 주문 상태가 배송중, 배송완료일 때 접수 가능합니다.</p>
                 <p>판매자가 처리 결과를 등록하면 안내톡, 메일로 안내됩니다.</p>
                 <p>판매자 처리 후에도 상품을 받지 못한 경우 상품미도착 접수 후 30일 이내 이의제기 신청이 가능합니다.</p>
@@ -126,9 +123,9 @@ tr td:first-child{width:5%;}
           <td>4</td>
           <td class="text-left" width="50%">
             <div class="panel-faq-container">
-              <p class="panel-faq-title">구매확정이란 무엇인가요? ▼</p>
+              <strong class="panel-faq-title">구매확정이란 무엇인가요? ▼</strong>
               <div class="panel-faq-answer">
-                <p>Answer (4) ... ↓</p>
+                <p>↓</p>
                 <p>상품 구매 최종 의사결정입니다.</p>
                 <p>구매 확정 후 교환 및 환불 불가능 합니다</p>
               </div>
@@ -140,9 +137,9 @@ tr td:first-child{width:5%;}
           <td>5</td>
           <td class="text-left" width="50%">
             <div class="panel-faq-container">
-              <p class="panel-faq-title">FAQ ▼</p>
+              <strong class="panel-faq-title">FAQ ▼</strong>
               <div class="panel-faq-answer">
-                <p>Answer (5) ... ↓</p>
+                <p>↓</p>
                 <p>FAQ test</p>
                 <p></p>
               </div>
@@ -155,21 +152,7 @@ tr td:first-child{width:5%;}
     </table>
   </div>
   
-  <div>
-		<ul class="pagination justify-content-center">
-		
-			<li><a href = "#" style = "margin-right:5px;" class="text-secondary"> ◀ </a></li>
-			<li><a href = "#" style = "margin-right:5px;" class="text-secondary"> 1 </a></li>
-			<li><a href = "#" style = "margin-right:5px;" class="text-secondary"> 2 </a></li>
-			<li><a href = "#" style = "margin-right:5px;" class="text-secondary"> 3 </a></li>
-			<li><a href = "#" style = "margin-right:5px;" class="text-secondary"> 4 </a></li>
-			<li><a href = "#" style = "margin-right:5px;" class="text-secondary"> 5 </a></li>
-			<li><a href = "#" style = "margin-right:5px;" class="text-secondary"> ▶ </a></li>
-			
-		</ul>
-		</div>
-
-
+ 
   
   <script>
  
@@ -199,3 +182,5 @@ tr td:first-child{width:5%;}
 
  </script>
  </body>
+ </html>
+ <jsp:include page="../mainpage/footer.jsp"/>

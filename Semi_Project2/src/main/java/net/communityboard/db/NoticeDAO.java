@@ -191,8 +191,8 @@ public class NoticeDAO {
 					+ "from  (select rownum rnum, n.* "
 					+ "    	  from (SELECT * FROM notice "
 					+ "				where " + field + " like ?"
-					+ " 			ORDER BY review_re_ref DESC, "
-					+ " 			review_re_seq ASC)"
+					+ " 			ORDER BY notice_re_ref DESC, "
+					+ " 			notice_re_seq ASC)"
 					+ " 			where rownum<=?) "
 					+ " 			where rnum>=? and rnum<=?";
 			
@@ -396,6 +396,173 @@ public class NoticeDAO {
 		}//finally
 		return false;
 	}
+
+
+
+	public boolean noticeDelete(int num) {
+		Connection con = null;
+		PreparedStatement pstmt = null,pstmt2 = null;
+		ResultSet rs = null;
+		String select_sql = "select notice_re_ref, notice_re_lev, notice_re_seq "
+				  + " from notice"
+				  + " where notice_num=?";
+
+		
+		String notice_delete_sql ="delete from notice"
+				+" 				where  notice_re_ref = ?"
+				+"				and    notice_re_lev >=?"
+				+"				and    notice_re_seq >=?"
+				+"				and    notice_re_seq <=( " 
+				+"									nvl((select min(notice_re_seq)-1"
+				+"                             			from   notice"
+				+"                             			where  notice_re_ref=?"
+				+"                             			and    notice_re_lev=?"
+				+"                             			and    notice_re_seq>?) ," 
+				+"                            			(select max(notice_re_seq)"
+				+"                            			from   notice"
+				+"										where  notice_re_ref=? ))"
+                +"                        )";
+		
+		boolean result_check = false;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(select_sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				pstmt2 = con.prepareStatement(notice_delete_sql);
+				pstmt2.setInt(1, rs.getInt("notice_re_ref"));
+				pstmt2.setInt(2, rs.getInt("notice_re_lev"));
+				pstmt2.setInt(3, rs.getInt("notice_re_seq"));
+				pstmt2.setInt(4, rs.getInt("notice_re_ref"));
+				pstmt2.setInt(5, rs.getInt("notice_re_lev"));
+				pstmt2.setInt(6, rs.getInt("notice_re_seq"));
+				pstmt2.setInt(7, rs.getInt("notice_re_ref"));
+				
+				int count=pstmt2.executeUpdate();
+				
+				if(count>=1)
+					result_check = true; //삭제가 안된 경우에는 false를 반환합니다.
+			}
+		}  catch (SQLException ex) {
+			System.out.println("isBoardWriter() 에러: " + ex);
+		}finally {
+			if (rs != null)
+				try {
+					rs.close();
+				}catch (SQLException ex) {
+					ex.printStackTrace();
+				}if (pstmt != null)
+					try {
+						pstmt.close();
+					}catch (SQLException ex) {
+						ex.printStackTrace();
+					}
+				if (pstmt2 != null)
+					try {
+						pstmt2.close();
+					} catch (SQLException ex) {
+						ex.printStackTrace();
+					}
+				if (con != null)
+					try {
+						con.close();
+					} catch (SQLException ex) {
+						ex.printStackTrace();
+					}
+				}//finally
+		
+		return result_check;
+	}
+
+
+
+	public boolean noticeModify(NoticeBean modifyboard) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "update notice"
+				   + " set notice_title=?, notice_content=?, notice_file=?"
+				   + " where notice_num=? ";
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, modifyboard.getNotice_title());
+			pstmt.setString(2, modifyboard.getNotice_content());
+			pstmt.setString(3, modifyboard.getNotice_file());
+			pstmt.setInt(4, modifyboard.getNotice_num());
+			int result = pstmt.executeUpdate();
+			if(result == 1) {
+				System.out.println("성공 업데이트");
+				return true;
+			}
+		}catch (Exception ex) {
+			System.out.println("boardModify() 에러: " + ex);
+			} finally {
+				if (pstmt != null)
+					try {
+						pstmt.close();
+					}catch (SQLException e) {
+						System.out.println(e.getMessage());
+					}
+				if (con != null)
+					try {
+						con.close();
+					} catch (Exception e) {
+						System.out.println(e.getMessage());
+					}
+				}//finally
+		
+		return false;
+
+	}
+
+
+
+//	public boolean isBoardWriter(int num, String id) {
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		boolean result = false;
+//		String notice_sql = "select notice_id from notice where notice_num=?";
+//		try {
+//			con = ds.getConnection();
+//			pstmt = con.prepareStatement(notice_sql);
+//			pstmt.setInt(1, num);
+//			rs = pstmt.executeQuery();
+//			if(rs.next()) {
+//				if (id.equals(rs.getString("notice_id"))) {
+//					result = true;
+//				}
+//			}
+//		} catch (SQLException ex) {
+//			System.out.println("isBoardWriter() 에러: " + ex);
+//		}finally {
+//			if (rs != null)
+//				try {
+//					rs.close();
+//				}catch (SQLException ex) {
+//					ex.printStackTrace();
+//				}if (pstmt != null)
+//					try {
+//						pstmt.close();
+//					}catch (SQLException e) {
+//						System.out.println(e.getMessage());
+//					}
+//				if (con != null)
+//					try {
+//						con.close();
+//					} catch (Exception e) {
+//						System.out.println(e.getMessage());
+//					}
+//				}//finally
+//	
+//
+//		return result;
+//	}
+
+	
+	
+
 
 
 
