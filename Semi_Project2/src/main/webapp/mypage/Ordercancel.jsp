@@ -146,6 +146,8 @@ a{text-decoration:none;}
 <br>
 	<br>
 <br>
+	<br>
+<br>
 <br>
 <jsp:include page="../mainpage/footer.jsp" />
 </body>
