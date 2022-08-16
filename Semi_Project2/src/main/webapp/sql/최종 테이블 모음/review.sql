@@ -7,7 +7,7 @@ drop table review
 --1. 리뷰테이블 생성
 create table review(
 	review_num number,
-	review_name varchar2(30) references customer(id),
+	review_name varchar2(30),
 	review_pass varchar2(30),
 	review_subject varchar2(300),
 	review_content varchar2(4000),
@@ -29,7 +29,7 @@ alter sequence review_seq nocache
 --2. 리뷰 댓글 테이블 생성
 create table review_comm(
 	num number primary key,
-	id varchar2(30) references customer(id),
+	id varchar2(30),
 	content varchar2(200),
 	reg_date date,
 	comment_review_num number references review(review_num) on delete cascade,
