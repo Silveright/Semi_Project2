@@ -18,9 +18,7 @@ drop table notice purge;
 select nvl(max(notice_num),0)+1 from notice;
 
 delete from notice
-where notice_num = 9;
-
-
+where notice_num = 3;
 
 
 

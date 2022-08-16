@@ -57,7 +57,6 @@ $(document).ready(function(){
 		$('#filevalue').text('');
 		$(this).css('display', 'none');	
 	
-	alert('수정되었습니다.');
 	
 	});
 		

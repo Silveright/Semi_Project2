@@ -19,14 +19,10 @@ public class NoticeListAction implements Action {
 		NoticeDAO ndao = new NoticeDAO();
 		
 		
-		String id= "admin";//request.getParameter("id"); //임시 아이디
-        HttpSession session = request.getSession();
-        session.setAttribute("id", id);
+		HttpSession session = request.getSession();	
+		String id = (String) session.getAttribute("id");
+		session.setAttribute("id", id);
 		
-	//	HttpSession session = request.getSession();	
-	//	String id = (String) session.getAttribute("id");
-		
-		//로그인 성공시 파라미터 page가 없어요. 그래서 초기값이 필요합니다.
 		int page=1; //보여줄 page
 		int limit=10; //한 페이지에 보여줄 게시판 목록의 수
 		if (request.getParameter("page") != null) {
@@ -40,9 +36,6 @@ public class NoticeListAction implements Action {
 		
 		String search_word="";
 		
-		//메뉴-관리자-회원정보 클릭한 경우(member_list.net)
-		//또는 메뉴-관리자-회원정보 클릭 후 페이지 클릭한 경우
-		//(member_list.net?page=2&search_field=-1&search_word=)
 		if (request.getParameter("search_word") == null 
 			|| request.getParameter("search_word").equals("")){
 			//총 리스트 수를 받아옵니다.
@@ -55,7 +48,7 @@ public class NoticeListAction implements Action {
 				listcount = ndao.getListCount(search_field[index], search_word);
 				list = ndao.getList(search_field[index], search_word, page, limit);
 			}
-		// boardlistaction 클래스에 페이징 처리 설명 있음
+		
 		int maxpage = (listcount + limit -1) / limit;
 		System.out.println("총 페이지수 =" + maxpage);
 		
@@ -82,10 +75,10 @@ public class NoticeListAction implements Action {
 			 request.setAttribute("search_field", index);
 			 request.setAttribute("search_word", search_word);
 			 
-			 //글 목록 페이지로 이동하기 위해 경로를 설정합니다.
+			 //글 목록 페이지로 이동하기 위해 경로설정
 			 forward.setPath("community_board/NoticeList.jsp");
 			 forward.setRedirect(false);
-			 return forward; //MemberFrontController.java로 리턴됩니다.
+			 return forward; 
 
 	
 		}

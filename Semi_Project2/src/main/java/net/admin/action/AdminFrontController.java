@@ -57,18 +57,18 @@ public class AdminFrontController extends javax.servlet.http.HttpServlet{
 		case "/memberdelete.com":
 			action = new MemberDeleteInfoAction();
 			break;
-//		case "/memberupdateinfo.com":
-//			action = new MemberUpdateAction();
-//			break;
-//		
+		case "/memberupdateinfo.com":
+			action = new MemberUpdateAction();
+			break;
+		
 		}
 		
 		forward = action.execute(request, response);
 
 		if (forward != null) {
-			if (forward.isRedirect()) {// 리다이렉트 됩니다.
+			if (forward.isRedirect()) {//리다이렉트
 				response.sendRedirect(forward.getPath());
-			} else {// 포워딩됩니다.
+			} else {//포워딩
 				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
 				dispatcher.forward(request, response);
 			}

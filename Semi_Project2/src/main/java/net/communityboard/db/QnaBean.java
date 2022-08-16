@@ -6,9 +6,11 @@ public class QnaBean {
 	private String qna_cate;
 	private String qna_title;
 	private String qna_content;
-	private String date;
+	private String qna_date;
+	private String qna_state;
 	private int qna_re_ref;
 	private int qna_re_lev;
+	private int qna_re_seq;
 	
 	
 	public int getQna_num() {
@@ -41,11 +43,12 @@ public class QnaBean {
 	public void setQna_content(String qna_content) {
 		this.qna_content = qna_content;
 	}
-	public String getDate() {
-		return date;
+	
+	public String getQna_date() {
+		return qna_date;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setQna_date(String qna_date) {
+		this.qna_date = qna_date;
 	}
 	public int getQna_re_ref() {
 		return qna_re_ref;
@@ -62,10 +65,17 @@ public class QnaBean {
 	public int getQna_re_seq() {
 		return qna_re_seq;
 	}
+
+
+	public String getQna_state() {
+		return qna_state;
+	}
+	public void setQna_state(String qna_state) {
+		this.qna_state = qna_state;
+	}
 	public void setQna_re_seq(int qna_re_seq) {
 		this.qna_re_seq = qna_re_seq;
 	}
-	private int qna_re_seq;
 
 }
 

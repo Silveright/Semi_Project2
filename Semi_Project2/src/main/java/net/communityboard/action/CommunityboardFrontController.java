@@ -41,18 +41,16 @@ public class CommunityboardFrontController extends javax.servlet.http.HttpServle
 		case "/qnalist.co":
 			action = new QnaListAction();
 			break;
-		//case "/qnadetail.co":
-			//action = new QnaDetailAction();
-			//break;
+	
 	
 		}
 		
 		forward = action.execute(request, response);
 
 		if (forward != null) {
-			if (forward.isRedirect()) {// 리다이렉트 됩니다.
+			if (forward.isRedirect()) {// 리다이렉트
 				response.sendRedirect(forward.getPath());
-			} else {// 포워딩됩니다.
+			} else {// 포워딩
 				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
 				dispatcher.forward(request, response);
 			}

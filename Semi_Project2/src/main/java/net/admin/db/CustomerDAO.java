@@ -187,10 +187,10 @@ public class CustomerDAO {
 		try {
 			conn = ds.getConnection();
 			String sql = "select * "
-					+ "from  (select rownum rnum, n.* "
+					+ "from  (select rownum rnum, c.* "
 					+ "    	  from (SELECT * FROM customer "
 					+ "				where " + field + " like ?"
-					+ " 			ORDER BY grade DESC) "
+					+ " 			ORDER BY grade DESC) c "
 					+ " 			where rownum<=?) "
 					+ " 			where rnum>=? and rnum<=?";
 			
@@ -326,6 +326,54 @@ public class CustomerDAO {
 		return result;
 		
 	}
+
+
+	public int customer_update(Customer c) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			con = ds.getConnection();
+			
+			String sql = "update customer"
+					   + " set id=?, name=?, phone=?, post=?, address=?, email=?, gender=?, grade=?"
+					   + " where id=? ";
+		
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, c.getId());
+			pstmt.setString(2, c.getName());
+			pstmt.setString(3, c.getPhone());
+			pstmt.setString(4, c.getPost());
+			pstmt.setString(5, c.getAddress());
+			pstmt.setString(6, c.getEmail());
+			pstmt.setString(7, c.getGender());
+			pstmt.setString(8, c.getGrade());
+			pstmt.setString(9, c.getId());
+			result = pstmt.executeUpdate();
+			
+				
+		}catch (Exception e) {
+			e.printStackTrace();
+			} finally {
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				}catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+			}//finally
+			return result;
+	}
+
+
+	
 
 
 	

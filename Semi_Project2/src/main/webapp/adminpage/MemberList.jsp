@@ -4,12 +4,39 @@
 <jsp:include page="../mainpage/header.jsp"/>
 <title>회원 정보 list</title>
 <html>
+<script src = "http://code.jquery.com/jquery-latest.js"></script>
 <head>
 <style>
 a{text-decoration:none; color:black;}
 b{font-size:25px;}
 footer{margin-top:100px;}
 </style>
+<script>
+$(document).ready(function() { 
+		
+		var selectedValue='${search_field}'
+		if(selectedValue !='-1')
+			$("#viewcount").val(selectedValue);
+		
+		$(".search").click(function(){
+			if($('#search').val()==''){
+				alert("검색어를 입력하세요");
+				$('input').focus();
+				return false;
+			}
+		})
+		
+		$("#viewcount").change(function(){
+			selectedValue=$(this).val();
+			$("input").val('');
+			message=["아이디", "이름"]
+			$("input").attr("placeholder", message[selectedValue]+"을 입력하세요")
+		})
+		
+		});
+</script>
+		
+ 	
 </head>
 
 <body>
@@ -39,7 +66,12 @@ footer{margin-top:100px;}
 						<c:forEach var="c" items="${totallist }">
 						<tr>
 							<td>${c.name}</td>
-							<td>${c.gender}</td>
+							<c:if  test="${c.gender=='m'}">
+							    <td>남자</td>
+							</c:if>
+							<c:if  test="${c.gender=='f'}">
+							    <td>여자</td>
+							</c:if>
 							<td>${c.id}</td>
 							<td>${c.grade}</td>
 							<td><a href="memberinfo.com?id=${c.id}"><button type="submit" class="btn btn-primary">정보수정</button></a>
@@ -71,7 +103,7 @@ footer{margin-top:100px;}
 								</c:if>
 								<c:if test="${a!=page}"> 
 								<li class="page-item">
-									<a href="noticelist.co?page=${a}"  
+									<a href="memberlist.com?page=${a}"  
 									class="page-link">${a }</a>
 								</li>
 								</c:if>
@@ -85,7 +117,7 @@ footer{margin-top:100px;}
 								</c:if>
 								<c:if test="${page <maxpage}"> 
 								<li class="page-item">
-								<a class="page-link" href="noticelist.co?page=${page+1}"
+								<a class="page-link" href="memberlist.com?page=${page+1}"
 									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 								</a></li>
 								</c:if>
@@ -97,7 +129,7 @@ footer{margin-top:100px;}
 					<div class="input-group">
 						<select id="viewcount" name="search_field">
 							<option value="0" selected>아이디</option>
-							<option value="1">등급</option>
+							<option value="1">이름</option>
 						</select>
 						 <input id="search" name="search_word" type="text"  placeholder="검색어를 입력하세요" value="${search_word }">
 						<button class="btn btn-secondary" class="search" type="submit">검색</button>

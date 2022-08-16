@@ -192,7 +192,7 @@ public class NoticeDAO {
 					+ "    	  from (SELECT * FROM notice "
 					+ "				where " + field + " like ?"
 					+ " 			ORDER BY notice_re_ref DESC, "
-					+ " 			notice_re_seq ASC)"
+					+ " 			notice_re_seq ASC) n"
 					+ " 			where rownum<=?) "
 					+ " 			where rnum>=? and rnum<=?";
 			
@@ -218,11 +218,10 @@ public class NoticeDAO {
 				n.setNotice_content(rs.getString("notice_content"));
 				n.setNotice_file(rs.getString("notice_file"));
 				n.setNotice_re_ref(rs.getInt("notice_re_ref"));
-				n.setNotice_re_ref(rs.getInt("notice_re_ref"));
 				n.setNotice_re_lev(rs.getInt("notice_re_lev"));
 				n.setNotice_re_seq(rs.getInt("notice_re_seq"));
-				n.setNotice_readcount(rs.getInt("notice_date"));
-				n.setNotice_date(rs.getString("notice_readcount"));
+				n.setNotice_readcount(rs.getInt("notice_readcount"));
+				n.setNotice_date(rs.getString("notice_date"));
 				list.add(n);//값을 담은 객체를 리스트에 저장
 			}
 		}catch(Exception ex) {

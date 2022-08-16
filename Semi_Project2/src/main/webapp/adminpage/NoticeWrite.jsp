@@ -25,6 +25,10 @@ h1 {
 
 img{width:20px;}
 
+textarea{resize:none;}
+#board_content{height:600px;}
+
+
 </style>
 </head>
 <body>
@@ -78,8 +82,8 @@ img{width:20px;}
 		</form>
 	</div>
 	
-	<div class="mt-5 p-4 bg-light text-center margin bottom">
-  	<p>Footer</p>
+	<div>
+	 <jsp:include page="../mainpage/footer.jsp"/>
 	</div>
 </body>
 </html>

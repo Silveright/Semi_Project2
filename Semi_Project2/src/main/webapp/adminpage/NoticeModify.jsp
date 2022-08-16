@@ -24,6 +24,10 @@ h1 {
 
 img{width:20px;}
 
+textarea{resize:none;}
+#board_content{height:600px;}
+
+
 </style>
 </head>
 <body>
