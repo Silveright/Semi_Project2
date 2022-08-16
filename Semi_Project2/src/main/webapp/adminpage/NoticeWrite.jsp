@@ -71,7 +71,7 @@ textarea{resize:none;}
 								alt="파일첨부">
 					</label> <input type="file" id="upfile" name="board_file"> <span
 						id="filevalue"></span> 
-					<img src="image/remove.png" alt="파일삭제" width="10px" class="remove">
+					<img src="${pageContext.request.contextPath}/image/mypage/remove.png" alt="파일삭제" width="10px" class="remove">
 				</div>
 			
 			<br>

@@ -12,6 +12,14 @@ a{text-decoration:none; color:black;}
 .btn1{height:50px;}
 .btn2{float:end}
 .btn2{height:50px;}
+
+ /* footer{position:fixed; 
+            bottom:0px; 
+            height:3rem;
+            background:#ccc;
+            width:100%; 
+            text-align:center;
+            } */
 </style>
 <script>
 	

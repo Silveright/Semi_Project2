@@ -9,7 +9,13 @@
 <style>
 a{text-decoration:none; color:black;}
 b{font-size:25px;}
-footer{margin-top:100px;}
+ /* footer{ position:fixed; 
+            bottom:0px; 
+            height:3rem;
+            background:#ccc;
+            width:100%; 
+            text-align:center;
+            } */
 </style>
 <script>
 $(document).ready(function() { 

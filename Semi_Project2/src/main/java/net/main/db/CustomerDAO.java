@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
 
 public class CustomerDAO {
 	private DataSource ds;
@@ -398,5 +401,120 @@ public class CustomerDAO {
 			}
 			return result;
 		}
+
+	
+	
+	
+	
+	
+	//관리자-회원정보 게시판 총 리스트
+	public int getListCount() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int c = 0; 
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement("select count(*) from customer");
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				c = rs.getInt(1);
+			}
+		
+		}catch (Exception e) {
+			e.printStackTrace();
+			} finally {
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				}catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+			}//finally
+		return c;
+		}
+
+	
+	//관리자-회원정보 게시판 리스트 회원정보 리스트
+	public List<Customer> getNoticeList(int page, int limit) {
+		List<Customer> list = new ArrayList<Customer>();
+		Connection con = null;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			
+			String sql = "select * "
+					   + " from (select c.*, rownum rnum"
+					   + "		from(select * from customer"
+					   + " 			 order by notice_num desc) n"
+					   +  		")"
+					   + " where rnum>=? and rnum<=?";
+			
+			
+			
+			pstmt = con.prepareStatement(sql);
+			//한 페이지당 10개씩 목록인 경우 1페이지, 2페이지, 3페이지 , 4페이지 ...
+			int startrow = (page - 1) * limit + 1;
+					     //읽기 시작할 row 번호(1 11 21 31 ...
+			int endrow = startrow + limit - 1;
+						//읽을 마지막 row 번호(10 20 30 40 ...
+			pstmt.setInt(1, startrow);
+			pstmt.setInt(2, endrow);
+			rs = pstmt.executeQuery();
+						
+			while(rs.next()) {
+				Customer c = new Customer();
+				c.setId(rs.getString("id"));
+				c.setName(rs.getString("name"));
+				c.setPhone(rs.getString("phone"));
+				c.setAddress(rs.getString("address"));
+				c.setAddress_detail(rs.getString("address_detail"));
+				c.setEmail(rs.getString("email"));
+				c.setGender(rs.getString("gender"));
+				c.setGrade(rs.getString("grade"));
+				list.add(c);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				}catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				}catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+			}//finally
+		
+		
+		return list;
+	}
+
+	
+	
+	
+	
+	
+	
+	
 	
 }

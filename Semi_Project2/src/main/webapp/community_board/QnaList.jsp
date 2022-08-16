@@ -5,6 +5,15 @@
 <title>문의처리 list</title>
 <html>
 <head>
+<style>
+ /* footer{position:fixed; 
+            bottom:0px; 
+            height:3rem;
+            background:#ccc;
+            width:100%; 
+            text-align:center;
+            } */
+</style>
 <script src = "http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	
@@ -171,7 +180,9 @@ footer{margin-top:100px;}
  <c:if test="${listcount == 0 }">
 	<font size=5>등록된 글이 없습니다.</font><br>
 	<button type="button" onclick="history.back()" class="btn btn-dark float-left back">뒤로가기</button>
-	
+	<c:if test="${!empty sessionScope.id && sessionScope.id != 'admin'}">
+	<a href="qnawrite.co"><button type="button" class="btn btn-dark float-left">문의하기</button></a>
+	</c:if>
  </c:if>
 
 </div>
