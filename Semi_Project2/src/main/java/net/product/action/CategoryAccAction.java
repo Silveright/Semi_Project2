@@ -15,17 +15,20 @@ import net.product.db.ProductDAO;
 
 public class CategoryAccAction implements Action {
 
-	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
-		
 		ProductDAO dao = new ProductDAO();
 		List<ProductBean> accessorieslist = new ArrayList<ProductBean>();
+		String type = request.getParameter("type");
 		
-		accessorieslist = dao.getAccessoriesList();
-		request.setAttribute("accessorieslist", accessorieslist); 
-	
+		if(type == null) {
+			accessorieslist = dao.getAccessoriesList();			
+		} else {	
+			accessorieslist = dao.getAccessoriesList(type);		
+		}
+		System.out.println(type);
+		request.setAttribute("accessorieslist", accessorieslist);
 		forward.setPath("product/category-Accessories.jsp");
 		forward.setRedirect(false);
 		return forward;

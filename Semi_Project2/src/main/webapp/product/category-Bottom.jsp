@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <jsp:include page="../mainpage/header.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>	 
-<title>bottom</title>
+<title>Bottom</title>
 <style>
 .carousel-inner { text-align : center; }	
 img { margin : 0 auto;  object-fit: cover;}
@@ -29,14 +30,15 @@ img { margin : 0 auto;  object-fit: cover;}
    <hr>
    <div>
       <ul class="nav justify-content-center">
-        <button type="button" class="button">Short Pants</button>
-        <button type="button" class="button">Jeans</button>
-        <button type="button" class="button">Slacks</button>
-        <button type="button" class="button">Sweatpants</button>
-        <button type="button" class="button">Wide Pants</button>
+        <button type="button" class="button" id="short-pants">Short Pants</button>
+        <button type="button" class="button" id="jeans">Jeans</button>
+        <button type="button" class="button" id="slacks">Slacks</button>
+        <button type="button" class="button" id="sweatpants">Sweatpants</button>
+        <button type="button" class="button" id="wide-pants">Wide Pants</button>
       </ul>
    </div>
-     <section class="py-5">
+
+        <section class="py-5">
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 				<c:forEach var="b" items="${bottomlist}">			
@@ -69,5 +71,28 @@ img { margin : 0 auto;  object-fit: cover;}
 	</section>
 	<jsp:include page="../mainpage/footer.jsp" />
      </div>
+     <script src="js/jquery-3.6.0.js"></script>
+     <script>
+       $("#short-pants").click(function(){
+    	   location.href="bottom.do?type=short-pants";
+       })
+       
+       $("#jeans").click(function(){
+    	   location.href="bottom.do?type=jeans";
+       })
+       
+        $("#slacks").click(function(){
+    	   location.href="bottom.do?type=slacks";
+       })
+       
+       $("#sweatpants").click(function(){
+    	   location.href="bottom.do?type=sweatpants";
+       })
+       
+       $("#wide-pants").click(function(){
+    	   location.href="bottom.do?type=wide-pants";
+       })
+       
+     </script>
 </body>
 </html>

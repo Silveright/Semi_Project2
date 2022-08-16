@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <jsp:include page="../mainpage/header.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>	 
-<title>상품 카테고리</title>
+<title>Outer</title>
 <style>
 .carousel-inner { text-align : center; }	
 img { margin : 0 auto;  object-fit: cover;}
@@ -29,14 +30,15 @@ img { margin : 0 auto;  object-fit: cover;}
    <hr>
    <div>
       <ul class="nav justify-content-center">
-        <button type="button" class="button">Cardigan</button>
-        <button type="button" class="button">Jacket</button>
-        <button type="button" class="button">Coat</button>
-        <button type="button" class="button">Padding</button>
-        <button type="button" class="button">Suit</button>
+        <button type="button" class="button" id="cardigan">Cardigan</button>
+        <button type="button" class="button" id="jacket">Jacket</button>
+        <button type="button" class="button" id="coat">Coat</button>
+        <button type="button" class="button" id="padding">Padding</button>
+        <button type="button" class="button" id="suit">Suit</button>
       </ul>
    </div>
-     <section class="py-5">
+
+        <section class="py-5">
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 				<c:forEach var="o" items="${outerlist}">			
@@ -69,5 +71,28 @@ img { margin : 0 auto;  object-fit: cover;}
 	</section>
 	<jsp:include page="../mainpage/footer.jsp" />
      </div>
+     <script src="js/jquery-3.6.0.js"></script>
+     <script>
+       $("#cardigan").click(function(){
+    	   location.href="outer.do?type=cardigan";
+       })
+       
+       $("#jacket").click(function(){
+    	   location.href="outer.do?type=jacket";
+       })
+       
+        $("#coat").click(function(){
+    	   location.href="outer.do?type=coat";
+       })
+       
+       $("#padding").click(function(){
+    	   location.href="outer.do?type=padding";
+       })
+       
+       $("#suit").click(function(){
+    	   location.href="outer.do?type=suit";
+       })
+       
+     </script>
 </body>
 </html>

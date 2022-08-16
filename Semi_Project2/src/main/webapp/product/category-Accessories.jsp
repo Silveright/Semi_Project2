@@ -30,11 +30,11 @@ img { margin : 0 auto;  object-fit: cover;}
    <hr>
    <div>
       <ul class="nav justify-content-center">
-        <button type="button" class="button">Accessories</button>
-        <button type="button" class="button">Tie</button>
-        <button type="button" class="button">Bag</button>
-        <button type="button" class="button">Hat</button>
-        <button type="button" class="button">shoes</button>
+        <button type="button" class="button" id="accessories">Accessories</button>
+        <button type="button" class="button" id="tie">Tie</button>
+        <button type="button" class="button" id="bag">Bag</button>
+        <button type="button" class="button" id="hat">Hat</button>
+        <button type="button" class="button" id="shoes">shoes</button>
       </ul>
    </div>
 
@@ -71,5 +71,28 @@ img { margin : 0 auto;  object-fit: cover;}
 	</section>
 	<jsp:include page="../mainpage/footer.jsp" />
      </div>
+     <script src="js/jquery-3.6.0.js"></script>
+     <script>
+       $("#accessories").click(function(){
+    	   location.href="accessories.do?type=accessories";
+       })
+       
+       $("#tie").click(function(){
+    	   location.href="accessories.do?type=tie";
+       })
+       
+        $("#bag").click(function(){
+    	   location.href="accessories.do?type=bag";
+       })
+       
+       $("#hat").click(function(){
+    	   location.href="accessories.do?type=hat";
+       })
+       
+       $("#shoes").click(function(){
+    	   location.href="accessories.do?type=shoes";
+       })
+       
+     </script>
 </body>
 </html>

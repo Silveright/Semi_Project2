@@ -16,3 +16,4 @@ alter sequence cart_seq nocache
 select * from cart, product 
 where cart.product_code = product.product_code
 and id ='id';
+
