@@ -68,9 +68,9 @@ img { margin : 0 auto;  object-fit: cover;}
 				</c:forEach>	
 			</div>	
 		</div>			
-	</section>
-	<jsp:include page="../mainpage/footer.jsp" />
+	 </section>
      </div>
+     <jsp:include page="../mainpage/footer.jsp" />
      <script src="js/jquery-3.6.0.js"></script>
      <script>
        $("#cardigan").click(function(){

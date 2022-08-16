@@ -241,6 +241,5 @@ p{text-align:left}
 			</div>
 		</div>
 	</div>
-	<jsp:include page="../mainpage/footer.jsp" />
 </body>
 </html>
