@@ -54,6 +54,10 @@ public class productFrontController extends javax.servlet.http.HttpServlet{
 		case "/cartupdate.do":
 			action = new ProductCartUpdateAction(); 
 			break;
+			
+		case "/cartTowishlist.do":
+			action = new ProductCartToWishlistAction(); 
+			break;
 	
 		case "/accessories.do":
 			action = new CategoryAccAction(); 
@@ -93,6 +97,10 @@ public class productFrontController extends javax.servlet.http.HttpServlet{
 			
 		case "/wishlistupdate.do":
 			action = new ProductWishlistUpdateAction(); 
+			break;
+			
+		case "/wishlistTocart.do":
+			action = new ProductWishlistToCartAction(); 
 			break;
 		}
 		

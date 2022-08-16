@@ -190,7 +190,46 @@ public class WishlistDAO {
 			}
 		}//finally
 		return result;
-	}	
+	}
+
+	public int moveWishlistToCart(WishlistDTO wishlist) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result =0;
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "insert into cart "
+					+ "   values(cart_seq.nextval,?,?,1,?,?)";
+
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, wishlist.getId());
+				pstmt.setInt(2, wishlist.getProduct_code());;
+				pstmt.setString(3, wishlist.getOpt_color());
+				pstmt.setString(4, wishlist.getOpt_size());
+				
+				result = pstmt.executeUpdate();
+		//primary key 제약조건 위반 경우 발생 에러
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+				if(pstmt !=null)
+					try{
+						pstmt.close();
+					} catch(SQLException ex) {
+						
+						ex.printStackTrace();
+					}
+				if(conn != null)
+			try {
+					conn.close();//DB연결을 끊는다.
+			}catch (SQLException ex) {
+			}
+		}//finally
+		return result;
+	}
+
+	
 	
 	
 }
