@@ -24,9 +24,10 @@ insert into qna
 values(3, 'admin', '환불문의', '환불 문의합니다', '환불에 대한 문의입니다content', '나이키상의', sysdate, '답변대기',1,1,1);
 
 
-delete from qna;
+drop table qna purge;
 
-drop table  qna;
+delete from qna
+where qna_num='3';
 select * from notice
 order by notice_num desc
 
