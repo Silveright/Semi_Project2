@@ -38,7 +38,6 @@ textarea{resize:none;}
 			enctype="multipart/form-data" name="noticeform">
 			<input type="hidden" name="notice_num" value="${boarddata.notice_num}">
 			
-			<h1>MVC 게시판 -수정</h1>
 			<div class="form-group">
 				<label for="notice_id">글쓴이</label> <input type="text"
 					class="form-control" value="${boarddata.notice_id}" readOnly>
