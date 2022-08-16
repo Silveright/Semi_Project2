@@ -70,7 +70,7 @@ a{text-decoration:none}
 									<td><img src="${pageContext.request.contextPath}/image/main/product/${l.product_image}.jpg" alt="${p.product_image}" width="77px"></td>
 									<td>${l.product_name }</td>
 									<td>${l.product_count }</td>
-									<td><fmt:formatNumber value="${l.order_cost}" pattern="#,###" /></td>
+									<td><fmt:formatNumber value="${l.order_cost}" pattern="#,###" />원</td>
 									<td>${l.orderstate }</td>
 									<td>
 									${l.product_color}[${l.product_size }]</td>
@@ -194,7 +194,13 @@ a{text-decoration:none}
 	<br>
 <br>
 <br>
+<br>
+	<br>
+<br>
+<br>
+<br>
 </section>
+
 <jsp:include page="../mainpage/footer.jsp" />
 </body>
 </html>

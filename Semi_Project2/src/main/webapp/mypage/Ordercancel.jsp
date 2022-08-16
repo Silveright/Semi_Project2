@@ -69,7 +69,7 @@ a{text-decoration:none;}
 										<td><img src="${pageContext.request.contextPath}/image/main/product/${c.product_image}.jpg" alt="${c.product_image}" width="77px"></td>
 										<td>${c.product_name}</td>
 										<td>${c.product_count}</td>
-										<td><fmt:formatNumber value="${c.order_cost}" pattern="#,###" /></td>
+										<td><fmt:formatNumber value="${c.order_cost}" pattern="#,###" />원</td>
 										<td>${c.orderstate}</td>
 										<td>
 									${c.product_color}[${c.product_size }]</td>
@@ -141,6 +141,9 @@ a{text-decoration:none;}
 		</div>
 	</div>
 	</section>
+	<br>
+<br>
+<br>
 	<br>
 <br>
 <br>

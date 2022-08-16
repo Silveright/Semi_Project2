@@ -63,7 +63,7 @@ body>div.container>div>div>div.container.custom>div:nth-child(2) {
 
 					<div class="col-lg-2 col-md-6" style="width: 20%">
 						<div class="h-100 p-4 bg-light border rounded-3">
-							<a href="wishilist.pg"><img src="${pageContext.request.contextPath}/image/mypage/star.png" alt="Chicago" class="mx-auto rounded d-block"
+							<a href="wishlist.do?id=${id }"><img src="${pageContext.request.contextPath}/image/mypage/star.png" alt="Chicago" class="mx-auto rounded d-block"
 								style="width: 65px"></a> <br>
 							<h6 class="text-center">관심상품</h6>
 						</div>
