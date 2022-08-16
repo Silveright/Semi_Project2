@@ -23,9 +23,9 @@ public class Naver_Sens {
 	        String hostNameUrl = "https://sens.apigw.ntruss.com";     		// 호스트 URL
 	        String requestUrl= "/sms/v2/services/";                   		// 요청 URL
 	        String requestUrlType = "/messages";                      		// 요청 URL
-	        String accessKey = "arPWhCizLmeXxqmMfFvH";                     	// 개인 인증키
-	        String secretKey = "iBcj68bw6tfNnhqvCan7VsJIEVi7PZieVrOeIT8N";  // 2차 인증을 위해 서비스마다 할당되는 service secret
-	        String serviceId = "ncp:sms:kr:290807499763:semiproject";       // 프로젝트에 할당된 SMS 서비스 ID
+	        String accessKey = "9VdVPSxfJrcMOU3RiKxG";                     	// 개인 인증키
+	        String secretKey = "2bW59g8gU4rbqamLnhuTfsktdBluhYlzzS6MJ3o0";  // 2차 인증을 위해 서비스마다 할당되는 service secret
+	        String serviceId = "ncp:sms:kr:290934981841:semiproject";       // 프로젝트에 할당된 SMS 서비스 ID
 	        String method = "POST";											// 요청 method
 	        String timestamp = Long.toString(System.currentTimeMillis()); 	// current timestamp (epoch)
 	        requestUrl += serviceId + requestUrlType;
@@ -45,7 +45,7 @@ public class Naver_Sens {
 		    bodyJson.put("contentType","COMM");
 		    bodyJson.put("countryCode","82");
 		    bodyJson.put("content","인증");
-		    bodyJson.put("from","01099863158");	// 발신번호 * 사전에 인증/등록된 번호만 사용할 수 있습니다.		
+		    bodyJson.put("from","01051489316");	// 발신번호 * 사전에 인증/등록된 번호만 사용할 수 있습니다.		
 		    bodyJson.put("messages", toArr);		
 		    
 

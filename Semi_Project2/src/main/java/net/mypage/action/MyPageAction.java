@@ -18,10 +18,6 @@ public class MyPageAction implements Action {
 			throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
 		
-		/*
-		 * //String id=''; String id= "id";//request.getParameter("id"); HttpSession
-		 * session = request.getSession(); session.setAttribute("id", id);
-		 */
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		
