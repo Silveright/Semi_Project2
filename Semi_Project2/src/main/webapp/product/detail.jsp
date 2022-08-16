@@ -226,11 +226,11 @@
              </div>
 			</div>
 		</div>
+		<jsp:include page="../mainpage/footer.jsp" />
 		<input type="hidden" name="num" value="${product.product_code}">
 		<input type="hidden" name="id" value="${id}">
 		
 </form>
-<jsp:include page="../mainpage/footer.jsp" />
 <script>
     function btn_click(str){                             
         if(str=="purchase"){                                 

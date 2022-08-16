@@ -78,7 +78,7 @@ p{text-align:left}
 							
 							<table class="table">
 								<tr class="table-active">
-									<td class="table-image"><input type='checkbox' name='Allchoice' value='Allchoice' /></td>
+									<td class="table-image"><input type='checkbox' name='Allchoice' id='Allchoice' value='Allchoice' /></td>
 									<td>이미지</td>
 									<td>상품명</td>
 									<td>수량</td>
@@ -88,7 +88,7 @@ p{text-align:left}
 								</tr>
 								<c:forEach var="c" items="${cart }"  varStatus="vs">
 								<tr class="align-middle">
-									<td><input type='checkbox' name='choice' value='choice' /></td>   <!--  메뉴 체크박스 클릭시 아래 모든 체크박스 표시  -->
+									<td><input type='checkbox' name='choice' id='choice' value='choice' /></td>   <!--  메뉴 체크박스 클릭시 아래 모든 체크박스 표시  -->
 									<td><img src="${pageContext.request.contextPath}/image/main/product/${c.product_image}.jpg" alt="${c.product_image}" width="77px"></td>
 									<td>${c.product_name }<br>${c.opt_color }, ${c.opt_size}<br>
 									<button type="button" id="opt-change" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#optionModal${vs.index}">옵션변경</button>
@@ -243,7 +243,18 @@ p{text-align:left}
 			</div>
 		</div>
 	</div>
-	<jsp:include page="../mainpage/footer.jsp" />
+	
+    <script>
+    
+    $('#Allchoice').click(function(){
+        if($("#Allchoice").prop("checked")){
+           $("#choice").prop("checked",true); 
+       }else{
+           $("#choice").prop("checked",false); 
+       }
+   });
 
+
+    </script>
 </body>
 </html>
