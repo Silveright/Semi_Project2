@@ -7,36 +7,37 @@
 <head>
 <style>
 a{text-decoration:none; color:black;}
+
 .btn1{float:right}
 .btn1{height:50px;}
+.btn2{float:end}
+.btn2{height:50px;}
 </style>
 <script>
-$(document).ready(function() { 
 	
-	var selectedValue='${search_field}'
-	if(selectedValue !='-1')
-		$("#viewcount").val(selectedValue);
-	
-	$(".search").click(function(){
-		if($('#search').val()==''){
-			alert("검색어를 입력하세요");
-			$('input').focus();
-			return false;
-		}
-	})
-
-	
-	$("#viewcount").change(function(){
-		selectedValue=$(this).val();
-		$("input").val('');
-		message=["제목", "내용"]
-		$("input").attr("placeholder", message[selectedValue]+"을 입력하세요")
-	})
-	
-	
- 
-	
-	});
+	$(document).ready(function() { 
+		
+		var selectedValue='${search_field}'
+		if(selectedValue !='-1')
+			$("#viewcount").val(selectedValue);
+		
+		$(".search").click(function(){
+			if($('#search').val()==''){
+				alert("검색어를 입력하세요");
+				$('input').focus();
+				return false;
+			}
+		})
+		
+		$("#viewcount").change(function(){
+			selectedValue=$(this).val();
+			$("input").val('');
+			message=["제목", "내용"]
+			$("input").attr("placeholder", message[selectedValue]+"을 입력하세요")
+		})
+		
+		});
+ 	
 </script>
 </head>
 
@@ -146,8 +147,8 @@ $(document).ready(function() {
 						</select> <input name="search_word" type="text" placeholder="검색어를 입력하세요">
 						<button class="btn btn-secondary" type="submit">검색</button>
 					</div>
-				<c:if test="${id=='admin'}">
-				<a href="noticewrite.com"><button type="button" class="btn1 btn-dark">공지 추가</button></a>
+				<c:if test="${!empty sessionScope.id && sessionScope.id == 'admin'}">
+				<a href="noticewrite.com"><button type="button" class="btn btn-dark float-end">공지 추가</button></a>
 				</c:if>
 				
 				</form>
@@ -159,13 +160,14 @@ $(document).ready(function() {
 
  <c:if test="${listcount == 0 }">
 	<font size=5>등록된 글이 없습니다.</font><br>
-	<c:if test="${id=='admin'}">
-	<a href="noticewrite.com"><button type="button" class="btn1 btn-dark">공지 추가</button></a>
+	<button type="button" onclick="history.back()" class="btn btn-dark float-left back">뒤로가기</button>
+	<c:if test="${!empty sessionScope.id && sessionScope.id == 'admin'}">
+	<a href="noticewrite.com"><button type="button" class="btn btn-danger float-left">공지 추가</button></a>
 	</c:if>
  </c:if>
 </div>
 
-<br>
+<br><br><br>
  </body>
 <jsp:include page="../mainpage/footer.jsp"/>
 </html>

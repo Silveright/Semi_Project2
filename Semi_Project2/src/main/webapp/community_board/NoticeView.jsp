@@ -8,6 +8,7 @@
 </head>
 <style>
 #upfile{display:none}
+textarea{resize:none; width:200px; height:500px;}
 
 table td {
   position: relative;
@@ -55,7 +56,7 @@ table td input {
 					</tr>
 				</table>
 					<a href="noticelist.co"><button type="button" class="btn btn-dark float-left">글목록</button></a>
-					<c:if test="${id=='admin'}">
+					<c:if test="${!empty sessionScope.id && sessionScope.id == 'admin'}">
 					<a href="noticemodifyview.com?num=${boarddata.notice_num}"><button type="button" class="btn btn-dark float-right">수정</button></a>
 					<a href="noticedelete.com?num=${boarddata.notice_num}"><button type="button" class="btn btn-danger float-end">삭제</button></a>
 					</c:if>

@@ -21,9 +21,9 @@ public class MemberListAction implements Action {
 		CustomerDAO customerdao = new CustomerDAO();
 		
 		
-		//로그인 성공시 파라미터 page가 없어요. 그래서 초기값이 필요합니다.
+		//로그인 성공시 파라미터 page가 없기 때문에 보여줄 page필요
 		int page=1; //보여줄 page
-		int limit=3; //한 페이지에 보여줄 게시판 목록의 수
+		int limit=5; //한 페이지에 보여줄 게시판 목록의 수
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
@@ -35,9 +35,7 @@ public class MemberListAction implements Action {
 		
 		String search_word="";
 		
-		//메뉴-관리자-회원정보 클릭한 경우(member_list.net)
-		//또는 메뉴-관리자-회원정보 클릭 후 페이지 클릭한 경우
-		//(member_list.net?page=2&search_field=-1&search_word=)
+		
 		if (request.getParameter("search_word") == null 
 			|| request.getParameter("search_word").equals("")){
 			//총 리스트 수를 받아옵니다.
