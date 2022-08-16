@@ -5,7 +5,7 @@ create table wishlist( -- 관심상품
     opt_color      varchar2(10),
 	opt_size       varchar2(10)
 )
-
+drop table wishlist
 drop sequence wishlist_seq
 create sequence wishlist_seq nocache
 

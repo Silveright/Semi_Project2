@@ -17,13 +17,17 @@ public class CategoryBottomAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
-		
 		ProductDAO dao = new ProductDAO();
 		List<ProductBean> bottomlist = new ArrayList<ProductBean>();
+		String type = request.getParameter("type");
 		
-		bottomlist = dao.getBottomList();
-		request.setAttribute("bottomlist", bottomlist); 
-	
+		if(type == null) {
+			bottomlist = dao.getBottomList();			
+		} else {	
+			bottomlist = dao.getBottomList(type);		
+		}
+		System.out.println(type);
+		request.setAttribute("bottomlist", bottomlist);
 		forward.setPath("product/category-Bottom.jsp");
 		forward.setRedirect(false);
 		return forward;

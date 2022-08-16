@@ -92,7 +92,7 @@ p{text-align:left}
 									<td><input type='checkbox' name='choice' value='choice' /></td>
 									<td><img src="${pageContext.request.contextPath}/image/main/product/${w.product_image }.jpg" alt="${w.product_image}" width="77px"></td>
 									<td>${w.product_name }<br>${w.opt_color }, ${w.opt_size}<br>
-									<button type="button" id="opt-change" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#optionModal">옵션변경</button>
+									<button type="button" id="opt-change" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#optionModal${vs.index }">옵션변경</button>
 									</td>
 									<td>${w.product_price }</td>
 									<td>${w.product_price }</td>
@@ -141,7 +141,8 @@ p{text-align:left}
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">뒤로가기</button>
-                                      <a href="cart.do?num=${w.product_code}&p_num1=1&color=${w.opt_color}&size=${w.opt_size}">
+                                      <a href="wishlistTocart.do?id=${id }&product_code=${w.product_code}&product_image=${w.product_image}
+                                      &product_name=${w.product_name}&product_price=${w.product_price}&color=${w.opt_color}&size=${w.opt_size}">
                                       <button type="button" class="btn btn-primary">이동하기</button></a>  
                                     </div>
                                   </div>
@@ -166,7 +167,7 @@ p{text-align:left}
                                 </div>
                               </div>
                               <!-- optionModal  -->
-                              <div class="modal fade" id="optionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal fade" id="optionModal${vs.index}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
@@ -176,6 +177,7 @@ p{text-align:left}
                                     <form action="wishlistupdate.do">
                                     <input type="hidden" name="id" value="${id }">
                                     <input type="hidden" name="wishlist_code" value="${w.wishlist_code }">
+                                    <input type="hidden" name="product_code" value="${w.product_code }">
                                     <div class="modal-body">
                                       <p>${w.product_name }</p>
                                       <hr>
@@ -190,7 +192,7 @@ p{text-align:left}
                                          <option value="s">s</option>
                                          <option value="m">m</option>
                                          <option value="l">l</option>
-                                         <option value="l">xl</option>
+                                         <option value="xl">xl</option>
                                       </select>
                                       <br><br>
                                       필수 옵션[색상]  :
