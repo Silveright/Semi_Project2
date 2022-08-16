@@ -17,24 +17,21 @@ public class OrderListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
-		
 		
 		Order_infoDAO dao = new Order_infoDAO();
 		List<Orderlist> list = null;
 
-		int page=1;//보여줄 page
-		int limit =5;//한 페이지에 보여줄 게시판 목록의 수
-
+		int page=1;
+		int limit =5;
 		
 		if(request.getParameter("page")!= null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		System.out.println("넘어온 주문 페이지 =" +page);
 		
-		int listcount = dao.getListCount(id);//총 내역 수 
+		int listcount = dao.getListCount(id);
 		System.out.println("주문 내역의 수"+listcount);
 		
 		list=dao.getList(id,page,limit);
@@ -53,21 +50,16 @@ public class OrderListAction implements Action {
 			request.setAttribute("message", "주문 정보가 존재하지 않습니다.");
 			return forward;
 		}
-		request.setAttribute("page", page);//현재 페이지 수
-		request.setAttribute("maxpage", maxpage);//최대 페이지 수
-		//현재 페이지에 표시할 첫 페이지 수
+		request.setAttribute("page", page);
+		request.setAttribute("maxpage", maxpage);
 		request.setAttribute("startpage", startpage);
-		//현재 페이지에 표시할 끝 페이지 수
 		request.setAttribute("endpage", endpage);
 		request.setAttribute("listcount", listcount);
 		request.setAttribute("list", list);
 		request.setAttribute("limit", limit);
 		
-		
-		
 		forward.setRedirect(false);
 		forward.setPath("mypage/OrderList.jsp");
 		return forward;
 	}
-
 }

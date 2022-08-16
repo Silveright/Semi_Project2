@@ -241,17 +241,20 @@ public class ReviewDAO {
 		try {
 			conn = ds.getConnection();
 			String sql = "select * "
-					+ "from  (select rownum rnum, review_num, review_name, "
-					+ " 	  review_pass, review_subject,review_content, "
-					+ "  	  review_file, review_re_ref, review_re_lev,  review_re_seq, "
-					+ "   	  review_readcount, review_date"
-					+ "    	  from (SELECT * FROM review "
-					+ "				where " + field + " like ?"
-					+ " 			ORDER BY review_re_ref DESC, "
-					+ " 			review_re_seq ASC)"
-					+ " 			where rownum<=?) "
-					+ " 			where rnum>=? and rnum<=?";
-			
+					+ "		from (select rownum rnum, j.* "
+					+ "	from ( "
+					+ "		SELECT review.*, nvl(cnt,0) as cnt "
+					+ "		FROM review left outer join(select comment_review_num, count(*) cnt "
+					+ "									from review_comm "
+					+ "				group by comment_review_num) "
+					+ "		on review_num = comment_review_num "
+					+ "	where " + field + " like ?"
+					+ "		order by review_re_ref desc, "
+					+ "			review_re_seq asc "
+					+ "				) j "
+					+ "		where rownum<=? "
+					+ "			) "
+					+ "		where rnum>=? and rnum<=?";
 			
 			System.out.println("review getList: "+sql);
 			pstmt = conn.prepareStatement(sql);
@@ -279,6 +282,7 @@ public class ReviewDAO {
 				r.setReview_re_seq(rs.getInt("review_re_seq"));
 				r.setReview_readcount(rs.getInt("review_readcount"));
 				r.setReview_date(rs.getString("review_date"));
+				r.setCnt(rs.getInt("cnt"));
 				list.add(r);//값을 담은 객체를 리스트에 저장
 			}
 		}catch(Exception ex) {

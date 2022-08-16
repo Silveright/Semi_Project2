@@ -73,19 +73,19 @@ footer{position:fixed;
 						<c:set var="num" value="${listcount-(page-1)*limit }"/>
 						<c:forEach var="r" items="${totallist }">
 						<tr>
-							<td><!-- 리뷰 번호 -->
+							<td>
 								<c:out value="${num }"/>
 								<c:set var="num" value="${num-1 }"/>
 							</td>
 							<td>
-							<c:if test="${r.review_re_lev !=0 }"><%-- 답글인 경우 --%>	
+							<c:if test="${r.review_re_lev !=0 }">
 								<c:forEach var="a" begin="0" end="${r.review_re_lev*2 }" step="1">
 									&nbsp;
 								</c:forEach>
 								<img src="${pageContext.request.contextPath}/image/mypage/line.gif">
 							</c:if>
 							
-							<c:if test="${r.review_re_lev ==0 }"><!-- 원문인 경우 -->
+							<c:if test="${r.review_re_lev ==0 }">
 								&nbsp;
 							</c:if>
 							
