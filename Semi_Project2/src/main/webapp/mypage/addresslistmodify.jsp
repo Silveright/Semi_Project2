@@ -13,7 +13,7 @@ img{width:20px}
 </Style>
 </head>
 <body>
-	<form method='post' 
+	<form method='post' id="myform"
 			  action='addresslistmodifyprocess.pg?id=${id}&num=${addressinfo.addresslist_num}'>
 	<div class="container">
 		<div class="row align-items-center justify-content-center">
@@ -26,15 +26,16 @@ img{width:20px}
 				<table class="table table-bordered ">
 					<tr>
 						<td class="table-active text-center" style="width: 20%">배송지명</td>
-						<td><input type="text" name='address_name' class="form-control" value="${addressinfo.address_name}"></td>
+						<td><input type="text" name='address_name' class="form-control" id="addressname" value="${addressinfo.address_name}"></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">수령인</td>
-						<td><input type="text" name='address_receiver' value="${addressinfo.address_receiver}" class="form-control"></td>
+						<td><input type="text" id="receiver" name='address_receiver' value="${addressinfo.address_receiver}" class="form-control"></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">휴대전화</td>
-						<td><input type="text"  value="${addressinfo.address_phone}" name='address_phone' class="form-control" id="check_pass">
+						<td><div class="input-group "><input type="text"  value="${addressinfo.address_phone}" name='address_phone' class="form-control" id="phone">
+						</div><span id="message"></span>
 						</td>
 					</tr>
 					<tr>
@@ -50,7 +51,7 @@ img{width:20px}
 					</tr>
 					<tr>
 						<td class="table-active text-center">주소</td>
-						<td><input type="text" name="address1" class="form-control" value="${addressinfo.address1}" id="address" ></td>
+						<td><input type="text" name="address1" class="form-control" value="${addressinfo.address1}" id="address1" ></td>
 					</tr>
 					<tr>
 						<td class="table-active text-center">상세주소</td>
