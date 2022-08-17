@@ -115,5 +115,6 @@
 <div class="mt-5 p-4 bg-light text-center">
   <p>Footer</p>
 </div>
+<jsp:include page="../mainpage/footer.jsp"/>
  </body>
 </html> 

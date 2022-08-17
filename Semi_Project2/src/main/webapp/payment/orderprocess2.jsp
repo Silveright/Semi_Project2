@@ -583,5 +583,6 @@ $(document).ready(function(){
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 다음 우편번호찾기 -->
 <script src="js/order.js" charset="utf-8"></script>
 </form>
+<jsp:include page="../mainpage/footer.jsp"/>
 </body>
 </html>
